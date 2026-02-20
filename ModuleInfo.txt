@@ -1,0 +1,15 @@
+[MVP 필수 설치]
+•	fastapi: API 서버
+•	uvicorn: ASGI 런너
+•	pydantic: 요청/응답 스키마 검증
+
+[AI Agent답게]
+	•	regex: 파이썬 기본 re보다 강력한 정규식 필요(한글 변형
+		반복 문자)
+	•	rapidfuzz: 띄어쓰기/오타/변형 욕설 유사도 잡을때
+	•	cachetools: 캐시로 중복 댓글 재분류 방지
+	•	structlog rich: 구조화 로그(rich 터미널 로그 가독성 좋아짐)
+
+[가별고 실전적인 ONNX 서빙(추천)]
+	•	onnxruntime: 
+	•	numpy

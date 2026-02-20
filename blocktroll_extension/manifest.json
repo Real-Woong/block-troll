@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "BlockTroll",
+  "version": "0.3.0",
+  "description": "AI agent comment filter for YouTube (TOXIC/SPAM/TAUNT).",
+
+  "permissions": ["storage"],
+  "host_permissions": [
+    "http://127.0.0.1:8787/*",
+    "http://localhost:8787/*"
+  ],
+
+  "options_page": "options.html",
+
+  "content_scripts": [
+    {
+      "matches": ["https://www.youtube.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}

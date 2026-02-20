@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>BlockTroll Options</title>
+  <style>
+    body { font-family: system-ui, -apple-system, sans-serif; margin: 20px; }
+    .row { margin: 12px 0; }
+    label { display: inline-block; min-width: 160px; }
+    input[type="number"] { width: 90px; }
+    .hint { color: #666; font-size: 12px; }
+    .box { padding: 14px; border: 1px solid #ddd; border-radius: 10px; max-width: 560px; }
+    button { padding: 8px 12px; }
+  </style>
+</head>
+<body>
+  <h2>BlockTroll 설정</h2>
+
+  <div class="box">
+    <div class="row">
+      <label>서버 URL</label>
+      <input id="serverUrl" type="text" style="width: 320px;" />
+      <div class="hint">기본값: http://127.0.0.1:8787</div>
+    </div>
+
+    <div class="row">
+      <label>모드</label>
+      <select id="mode">
+        <option value="blur_click">블러 + 클릭시 보기</option>
+        <option value="blur">블러 고정</option>
+        <option value="hide">숨김</option>
+      </select>
+    </div>
+
+    <div class="row">
+      <label>TAUNT(비꼼) 필터</label>
+      <input id="enableTaunt" type="checkbox" />
+      <span class="hint">비꼼/조롱도 블러 처리</span>
+    </div>
+
+    <div class="row">
+      <label>TOXIC(욕설) 필터</label>
+      <input id="enableToxic" type="checkbox" />
+    </div>
+
+    <div class="row">
+      <label>SPAM 필터</label>
+      <input id="enableSpam" type="checkbox" />
+    </div>
+
+    <div class="row">
+      <label>SOFT 임계치</label>
+      <input id="softThreshold" type="number" step="0.01" min="0" max="1" />
+      <span class="hint">TAUNT 추천: 0.45~0.50</span>
+    </div>
+
+    <div class="row">
+      <label>HARD 임계치</label>
+      <input id="hardThreshold" type="number" step="0.01" min="0" max="1" />
+      <span class="hint">TOXIC/SPAM 추천: 0.60</span>
+    </div>
+
+    <div class="row">
+      <button id="saveBtn">저장</button>
+      <span id="status" class="hint"></span>
+    </div>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>
