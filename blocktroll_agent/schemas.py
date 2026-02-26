@@ -1,3 +1,5 @@
+# API 구조 정의
+
 from pydantic import BaseModel
 from typing import List, Dict, Optional
 

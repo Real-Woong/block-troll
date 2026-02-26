@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>BlockTroll</title>
+  <style>
+    body{font-family:system-ui,-apple-system,sans-serif;margin:12px;width:280px}
+    .row{margin:10px 0}
+    .levels button{width:100%;margin:6px 0;padding:10px;border-radius:10px;border:1px solid #ddd;background:#fff;cursor:pointer}
+    .active{border:2px solid #111}
+    .hint{font-size:12px;color:#666}
+  </style>
+</head>
+<body>
+  <h3 style="margin:0 0 8px 0;">BlockTroll</h3>
+  <div class="hint">필터링 강도를 선택하세요</div>
+
+  <div class="row levels">
+    <button data-level="1">낮음</button>
+    <button data-level="2">보통</button>
+    <button data-level="3">높음</button>
+  </div>
+
+  <div class="row">
+    <label><input type="checkbox" id="enableTaunt"> TAUNT(비꼼) 포함</label><br/>
+    <label><input type="checkbox" id="enableToxic"> TOXIC(욕설) 포함</label><br/>
+    <label><input type="checkbox" id="enableSpam"> SPAM 포함</label>
+  </div>
+
+  <div class="row hint" id="status"></div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

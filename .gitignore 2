@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# Virtualenv
+.venv*/
+venv/
+ENV/
+env/
+
+# macOS
+.DS_Store
+
+# Logs
+*.log
+
+# VSCode
+.vscode/
+
+# Data / Models (do not commit large artifacts)
+models/blocktroll-koelectra/model.safetensors
+models/blocktroll-koelectra/pytorch_model.bin
+models/blocktroll-koelectra/*.bin
+models/blocktroll-koelectra/*.safetensors
+models/blocktroll-koelectra/*.pt
+
+# (Optional) If you don't want datasets in repo
+models/K-MHaS-main/
+data/
+datasets/
+
+# Secrets
+.env

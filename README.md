@@ -61,3 +61,19 @@ Roadmap
 	•	Expand to Instagram/TikTok comment surfaces
 	•	On-device inference / WASM option
 
+## Flow
+YouTube 댓글
+   ↓
+content.js
+   ↓
+POST /classify
+   ↓
+app.py
+   ↓
+rules.py (현재 판단 담당)
+   ↓
+label 반환
+   ↓
+content.js
+   ↓
+blur/hide

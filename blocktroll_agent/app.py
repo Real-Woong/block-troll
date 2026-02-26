@@ -1,3 +1,5 @@
+# 2. 요청 처리 + 판단 흐름
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from typing import Any, Dict
@@ -39,7 +41,7 @@ def health():
 @app.post("/classify", response_model=ClassifyResponse)
 def classify(req: ClassifyRequest) -> Dict[str, Any]:
     texts = req.texts or []
-
+    print("[DBG] incoming texts:", texts, flush=True)
     results = []
     if m.MODEL_READY:
         scores_list = m.predict_scores(texts)

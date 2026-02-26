@@ -1,3 +1,6 @@
+# 4. AI 모델 (미사용 상태)
+
+
 import os
 from typing import List, Dict
 from .config import MODEL_DIR, MODEL_LABELS
@@ -43,6 +46,7 @@ def load_model_if_available() -> bool:
         return False
 
 def predict_scores(texts: List[str]) -> List[Dict[str, float]]:
+    print("[DBG] predict_scores called", flush=True)
     import torch
 
     enc = _tokenizer(texts, padding=True, truncation=True, max_length=128, return_tensors="pt")
@@ -50,8 +54,23 @@ def predict_scores(texts: List[str]) -> List[Dict[str, float]]:
 
     with torch.no_grad():
         out = _model(**enc)
-        probs = torch.sigmoid(out.logits).detach().cpu().numpy()
+        print("[DBG] logits shape:", tuple(out.logits.shape))
+        print("[DBG] id2label:", getattr(_model.config, "id2label", None))
+        print("[DBG] label2id:", getattr(_model.config, "label2id", None), flush=True)
+        logits = out.logits
+        # (batch,) -> (batch, 1)
+        if logits.dim() == 1:
+            logits = logits.unsqueeze(-1)
 
+        # Multi-class(single-label): softmax
+        if logits.size(-1) > 1:
+            probs = torch.softmax(logits, dim=-1).detach().cpu().numpy()
+        # Binary / multi-label: sigmoid
+        else:
+            probs = torch.sigmoid(logits).detach().cpu().numpy()
+        print("[DBG] probs[0]:", probs[0], flush=True)
+        print("[DBG] probs[1]:", probs[1], flush=True)
+        print("[DBG] probs[2]:", probs[2], flush=True)    
     res = []
     for row in probs:
         res.append({MODEL_LABELS[i]: float(row[i]) for i in range(len(MODEL_LABELS))})

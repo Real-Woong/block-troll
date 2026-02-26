@@ -1,36 +1,90 @@
-# Python
+############################
+# OS junk (macOS / Windows)
+############################
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+Desktop.ini
+
+############################
+# Editors / IDE
+############################
+.vscode/
+.idea/
+*.swp
+*.swo
+
+############################
+# Python core
+############################
 __pycache__/
 *.py[cod]
 *.pyo
 *.pyd
 *.so
 
-# Virtualenv
+# packaging
+build/
+dist/
+*.egg-info/
+
+############################
+# Virtual environments
+############################
+.venv/
 .venv*/
 venv/
 ENV/
 env/
 
-# macOS
-.DS_Store
-
+############################
 # Logs
+############################
 *.log
 
-# VSCode
-.vscode/
+############################
+# Jupyter / tooling caches
+############################
+.ipynb_checkpoints/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
 
-# Data / Models (do not commit large artifacts)
-models/blocktroll-koelectra/model.safetensors
-models/blocktroll-koelectra/pytorch_model.bin
-models/blocktroll-koelectra/*.bin
-models/blocktroll-koelectra/*.safetensors
-models/blocktroll-koelectra/*.pt
+############################
+# Secrets
+############################
+.env
+.env.*
+!.env.example
 
-# (Optional) If you don't want datasets in repo
-models/K-MHaS-main/
+############################
+# Training artifacts / checkpoints (HUGE + noisy)
+############################
+artifacts/runs/
+**/checkpoint-*/
+**/trainer_state.json
+**/optimizer.pt
+**/scheduler.pt
+**/rng_state.pth
+**/training_args.bin
+**/events.out.tfevents.*
+**/wandb/
+wandb/
+
+############################
+# Model weights (ignore anywhere)
+############################
+*.safetensors
+*.pt
+*.pth
+*.bin
+
+############################
+# Optional: big/raw datasets (keep your curated jsonl if needed)
+############################
 data/
 datasets/
-
-# Secrets
-.env
+models/K-MHaS-main/

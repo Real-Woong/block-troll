@@ -1,3 +1,5 @@
+# 5. 설정
+
 import os
 
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
@@ -7,6 +9,6 @@ MODEL_DIR = os.path.join(PROJECT_ROOT, "models", "blocktroll-koelectra")
 MODEL_LABELS = ["toxic", "spam", "taunt"]
 
 # label threshold (초기값)
-TH_SPAM  = 0.70
-TH_TOXIC = 0.60
-TH_TAUNT = 0.45
+TH_SPAM  = 0.65
+TH_TOXIC = 0.55
+TH_TAUNT = 0.60
