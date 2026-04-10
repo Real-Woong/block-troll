@@ -1,0 +1,86 @@
+############################
+# OS / File system junk
+############################
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+############################
+# Editors / IDE
+############################
+.vscode/
+.idea/
+*.swp
+*.swo
+
+############################
+# Python caches / build
+############################
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+.ipynb_checkpoints/
+
+build/
+dist/
+*.egg-info/
+
+############################
+# Virtual environments
+############################
+.venv311/
+.venv/
+.venv*/
+venv/
+ENV/
+env/
+
+############################
+# Jupyter / tooling caches
+############################
+.ipynb_checkpoints/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+############################
+# Secrets
+############################
+.env
+.env.*
+!.env.example
+
+############################
+# Logs
+############################
+*.log
+
+############################
+# Training artifacts / experiment outputs (DO NOT COMMIT)
+############################
+artifacts/runs/
+**/checkpoint-*/
+wandb/
+**/wandb/
+**/events.out.tfevents.*
+
+############################
+# Model weights / checkpoints (DO NOT COMMIT)
+############################
+*.safetensors
+*.pt
+*.pth
+*.bin
+*.gguf
+
+############################
+# Large datasets / caches (keep only small samples if needed)
+############################
+data/
+datasets/
+models/K-MHaS-main/
+llama_gguf/.cache/
