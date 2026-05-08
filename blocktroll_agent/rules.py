@@ -7,10 +7,17 @@ _whitespace = re.compile(r"\s+")
 
 BAD_WORDS: Dict[str, float] = {
     "ㅅㅂ": 1.2, "시발": 1.3, "씨발": 1.3, "병신": 1.3,
-    "미친": 0.8, "꺼져": 1.1, "죽어": 1.2, "좆": 1.3,
-    "존나": 0.6, "개새": 1.2, "새끼": 1.0, "애미": 1.2,
+    "꺼져": 1.1, "죽어": 1.2, "좆": 1.3,
+    "존나": 0.18, "개새": 1.2, "새끼": 1.0, "애미": 1.2,
     "ㄴㅇㅁ": 1.2, "장애인": 1.2
 }
+
+TOXIC_PATTERNS: List[Tuple[str, float]] = [
+    (r"미친\s*(놈|년|새끼|새키)", 1.2),
+    (r"미쳤냐", 1.0),
+    (r"돌았냐", 0.9),
+    (r"(꺼져|닥쳐)\s*(라|라니까|좀)?", 1.1),
+]
 
 SPAM_PATTERNS: List[Tuple[str, float]] = [
     (r"무료.*(링크|상담|체험)", 1.1),
@@ -32,6 +39,7 @@ TAUNT_SIGNALS: List[Tuple[str, float]] = [
 # 긍정/응원 신호 (TAUNT 오탐 방지용)
 POSITIVE_WORDS: List[str] = [
     "귀엽", "예쁘", "멋지", "잘하", "최고", "짱", "대박", "사랑", "응원", "축하", "고마", "감사",
+    "레전드", "쩐다", "좋다", "좋아", "폼", "등장", "퀄", "미쳤다",
 ]
 POSITIVE_EMOJI_RE = re.compile(r"[❤️🧡💛💚💙💜🖤🤍🤎😍🥰😘😊😁😆😄😃👍✨🎉🔥]")
 LAUGHTER_ONLY_RE = re.compile(r"^[\sㅋㅎ]+$")
@@ -41,13 +49,17 @@ NEGATIVE_CUES: List[str] = [
     "못하", "노답", "역겹", "혐", "꺼져", "죽어", "못생", "망했", "왜저래", "왜 저래", "한심",
 ]
 
+
+def has_negative_cues(text: str) -> bool:
+    return any(cue in text for cue in NEGATIVE_CUES)
+
 def is_positive_laughter(text: str) -> bool:
     """'ㅋㅋ/ㅎㅎ'가 긍정 반응으로 쓰인 케이스를 최대한 OK로 보내기 위한 가드.
     - 부정 단서가 없고
     - (칭찬 단어 또는 긍정 이모지) 가 있거나
     - 아예 'ㅋㅋㅋ' 같은 웃음만 있는 경우
     """
-    if any(cue in text for cue in NEGATIVE_CUES):
+    if has_negative_cues(text):
         return False
     if any(pw in text for pw in POSITIVE_WORDS):
         return True
@@ -79,14 +91,29 @@ def has_url(text: str) -> bool:
 def score_toxic(text: str):
     raw = 0.0
     reasons = []
+    has_bad_word = False
     for w, weight in BAD_WORDS.items():
         hits = count_substring_hits(text, w)
         if hits:
+            has_bad_word = True
             raw += weight * min(hits, 3)
             reasons.append(f"bad_word:{w}*{hits}")
-    if re.search(r"[!?.]{3,}", text):
+
+    for pat, weight in TOXIC_PATTERNS:
+        if re.search(pat, text):
+            has_bad_word = True
+            raw += weight
+            reasons.append(f"toxic_pat:{pat}")
+
+    # Punctuation burst alone is too noisy for fan comments like "대박!!!" or "예???"
+    # so only use it as a booster when the text already looks negative/toxic.
+    if (has_bad_word or has_negative_cues(text)) and re.search(r"[!?.]{3,}", text):
         raw += 0.25
         reasons.append("punctuation_burst")
+
+    if is_positive_laughter(text) and raw < 1.0:
+        raw = max(0.0, raw - 0.25)
+        reasons.append("positive_context_guard")
     return saturate(raw), raw, reasons
 
 def score_spam(text: str):

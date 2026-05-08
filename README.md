@@ -13,17 +13,19 @@ The extension sends comment text to a local FastAPI server and applies blur/hide
 - `models/blocktroll-koelectra/` : Model folder (weights ignored in git)
 
 ## Prerequisites
-- Python **3.11**
+- Shared AI environment: `~/Desktop/project/Project_AI/_venvs/ai`
+- Python **3.12**
 - Chrome (for loading unpacked extensions)
 
 ## Setup (Local)
 ```bash
-python -m venv .venv311
-source .venv311/bin/activate
-pip install -r requirements.txt
+source ~/Desktop/project/Project_AI/_venvs/ai/bin/activate
+# install only if this shared environment does not already include them
+uv pip install -r requirements.txt
+cp .env.example .env
 
 Run the local agent
-source .venv311/bin/activate
+source ~/Desktop/project/Project_AI/_venvs/ai/bin/activate
 python -m uvicorn blocktroll_agent.app:app --host 127.0.0.1 --port 8787 --reload
 
 Health check:
@@ -41,8 +43,21 @@ Options
 Open the extension options page:
 	•	Server URL (default: http://127.0.0.1:8787)
 	•	Mode: blur_click / blur / hide
-	•	Thresholds: soft/hard
+	•	Thresholds: soft/hard or popup intensity
 	•	Enable: TAUNT/TOXIC/SPAM
+
+Environment
+
+- `.env`에서 아래 값을 조정 가능
+- `MODEL_DIR`
+- `TH_TOXIC`, `TH_SPAM`, `TH_TAUNT`
+- `CACHE_MAXSIZE`
+
+Shared environment rules
+
+- BlockTroll 내부에 `.venv`를 새로 만들지 않음
+- 항상 `~/Desktop/project/Project_AI/_venvs/ai` 활성화 후 실행
+- 새 패키지는 공용 환경에 설치
 
 Model
 
@@ -70,7 +85,7 @@ POST /classify
    ↓
 app.py
    ↓
-rules.py (현재 판단 담당)
+model.py + rules.py (hybrid)
    ↓
 label 반환
    ↓

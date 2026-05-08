@@ -47,6 +47,9 @@ def load_model_if_available() -> bool:
 
 def predict_scores(texts: List[str]) -> List[Dict[str, float]]:
     print("[DBG] predict_scores called", flush=True)
+    if not MODEL_READY or _tokenizer is None or _model is None or _device is None:
+        raise RuntimeError("Model is not loaded. Call load_model_if_available() first.")
+
     import torch
 
     enc = _tokenizer(texts, padding=True, truncation=True, max_length=128, return_tensors="pt")
@@ -62,15 +65,23 @@ def predict_scores(texts: List[str]) -> List[Dict[str, float]]:
         if logits.dim() == 1:
             logits = logits.unsqueeze(-1)
 
-        # Multi-class(single-label): softmax
-        if logits.size(-1) > 1:
+        problem_type = getattr(_model.config, "problem_type", None)
+
+        # Multi-label classification:
+        # each label is an independent yes/no decision, so use sigmoid per label.
+        if problem_type == "multi_label_classification":
+            probs = torch.sigmoid(logits).detach().cpu().numpy()
+        # Single-label multi-class:
+        # labels compete with each other, so use softmax across labels.
+        elif logits.size(-1) > 1:
             probs = torch.softmax(logits, dim=-1).detach().cpu().numpy()
-        # Binary / multi-label: sigmoid
+        # Single-logit binary case.
         else:
             probs = torch.sigmoid(logits).detach().cpu().numpy()
-        print("[DBG] probs[0]:", probs[0], flush=True)
-        print("[DBG] probs[1]:", probs[1], flush=True)
-        print("[DBG] probs[2]:", probs[2], flush=True)    
+
+        for idx, row in enumerate(probs[:3]):
+            print(f"[DBG] probs[{idx}]:", row, flush=True)
+
     res = []
     for row in probs:
         res.append({MODEL_LABELS[i]: float(row[i]) for i in range(len(MODEL_LABELS))})

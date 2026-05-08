@@ -1,9 +1,10 @@
 const DEFAULTS = {
   serverUrl: "http://127.0.0.1:8787",
   mode: "blur_click",            // blur_click | blur | hide
-  enableTaunt: true,
+  enableTaunt: false,
   enableToxic: true,
   enableSpam: true,
+  useCustomThresholds: false,
   softThreshold: 0.45,
   hardThreshold: 0.60
 };
@@ -28,6 +29,7 @@ async function saveOptions() {
     enableTaunt: $("enableTaunt").checked,
     enableToxic: $("enableToxic").checked,
     enableSpam: $("enableSpam").checked,
+    useCustomThresholds: true,
     softThreshold: Math.max(0, Math.min(1, Number($("softThreshold").value || DEFAULTS.softThreshold))),
     hardThreshold: Math.max(0, Math.min(1, Number($("hardThreshold").value || DEFAULTS.hardThreshold)))
   };

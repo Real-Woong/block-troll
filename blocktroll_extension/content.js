@@ -5,9 +5,10 @@
 const DEFAULTS = {
   serverUrl: "http://127.0.0.1:8787",
   mode: "blur_click",
-  enableTaunt: true,
+  enableTaunt: false,
   enableToxic: true,
   enableSpam: true,
+  useCustomThresholds: false,
 
   // 3-step intensity (1=낮음, 2=중간, 3=높음)
   intensity: 2,
@@ -75,7 +76,7 @@ async function loadOptionsMaybe() {
 
   // Apply 5-step intensity -> thresholds
   // (If intensity is undefined for older installs, keep the stored thresholds)
-  if (OPT.intensity !== undefined && OPT.intensity !== null) {
+  if (!OPT.useCustomThresholds && OPT.intensity !== undefined && OPT.intensity !== null) {
     const t = thresholdsByIntensity(OPT.intensity);
     OPT.softThreshold = t.soft;
     OPT.hardThreshold = t.hard;
