@@ -26,9 +26,11 @@ async function refreshServerStatus(serverUrl) {
     const data = await res.json();
     dot.className = "dot ok";
     text.textContent = `서버 연결됨 · model=${data.model_ready ? "ON" : "OFF"} · taunt=${data.taunt_enabled ? "ON" : "OFF"}`;
+    return data;
   } catch {
     dot.className = "dot bad";
     text.textContent = "서버 연결 실패";
+    return null;
   }
 }
 
@@ -54,17 +56,23 @@ async function load() {
   document.getElementById("currentIntensity").textContent = thresholdState.label;
   document.getElementById("softValue").textContent = Number(thresholdState.soft).toFixed(2);
   document.getElementById("hardValue").textContent = Number(thresholdState.hard).toFixed(2);
-  document.getElementById("tauntStatus").textContent = v.enableTaunt ? "ON" : "OFF";
+  const serverStatus = await refreshServerStatus(v.serverUrl);
+  const tauntEnabledOnServer = serverStatus?.taunt_enabled !== false;
+  document.getElementById("tauntStatus").textContent = tauntEnabledOnServer && v.enableTaunt ? "ON" : "OFF";
 
   for (const k of ["enableTaunt","enableToxic","enableSpam"]) {
     const el = document.getElementById(k);
     el.checked = !!v[k];
+    if (k === "enableTaunt") {
+      el.disabled = !tauntEnabledOnServer;
+      el.parentElement.title = tauntEnabledOnServer
+        ? ""
+        : "서버 .env에서 ENABLE_TAUNT=true로 켜야 적용됩니다";
+    }
     el.onchange = async () => {
       await chrome.storage.sync.set({ [k]: el.checked });
       await load();
     };
   }
-
-  await refreshServerStatus(v.serverUrl);
 }
 load();

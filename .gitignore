@@ -76,11 +76,17 @@ wandb/
 *.pth
 *.bin
 *.gguf
+models/blocktroll-koelectra/*
+!models/blocktroll-koelectra/README.md
 
 ############################
 # Large datasets / caches (keep only small samples if needed)
 ############################
 data/
 datasets/
+!datasets/
+datasets/*
+!datasets/handmade/
+!datasets/handmade/Blocktroll_dataset.json
 models/K-MHaS-main/
 llama_gguf/.cache/

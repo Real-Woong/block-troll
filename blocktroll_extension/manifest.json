@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "BlockTroll",
   "version": "0.3.0",
-  "description": "AI agent comment filter for YouTube (TOXIC/SPAM/TAUNT).",
+  "description": "AI agent comment filter for social platforms (TOXIC/SPAM/TAUNT).",
 
   "permissions": ["storage"],
   "host_permissions": [
@@ -14,7 +14,22 @@
 
   "content_scripts": [
     {
-      "matches": ["https://www.youtube.com/*"],
+      "matches": [
+        "https://youtube.com/*",
+        "https://*.youtube.com/*",
+        "https://instagram.com/*",
+        "https://*.instagram.com/*",
+        "https://x.com/*",
+        "https://*.x.com/*",
+        "https://twitter.com/*",
+        "https://*.twitter.com/*",
+        "https://threads.net/*",
+        "https://*.threads.net/*",
+        "https://facebook.com/*",
+        "https://*.facebook.com/*",
+        "https://tiktok.com/*",
+        "https://*.tiktok.com/*"
+      ],
       "js": ["content.js"],
       "run_at": "document_idle"
     }

@@ -3,7 +3,7 @@
 
 import os
 from typing import List, Dict
-from .config import MODEL_DIR, MODEL_LABELS
+from .config import DEBUG, ENABLE_MODEL, MODEL_DIR, MODEL_LABELS
 
 MODEL_READY = False
 _tokenizer = None
@@ -19,6 +19,9 @@ def _has_weights(model_dir: str) -> bool:
 def load_model_if_available() -> bool:
     global MODEL_READY, _tokenizer, _model, _device
 
+    if not ENABLE_MODEL:
+        MODEL_READY = False
+        return False
     if not os.path.isdir(MODEL_DIR):
         MODEL_READY = False
         return False
@@ -46,7 +49,8 @@ def load_model_if_available() -> bool:
         return False
 
 def predict_scores(texts: List[str]) -> List[Dict[str, float]]:
-    print("[DBG] predict_scores called", flush=True)
+    if DEBUG:
+        print("[DBG] predict_scores called", flush=True)
     if not MODEL_READY or _tokenizer is None or _model is None or _device is None:
         raise RuntimeError("Model is not loaded. Call load_model_if_available() first.")
 
@@ -57,9 +61,10 @@ def predict_scores(texts: List[str]) -> List[Dict[str, float]]:
 
     with torch.no_grad():
         out = _model(**enc)
-        print("[DBG] logits shape:", tuple(out.logits.shape))
-        print("[DBG] id2label:", getattr(_model.config, "id2label", None))
-        print("[DBG] label2id:", getattr(_model.config, "label2id", None), flush=True)
+        if DEBUG:
+            print("[DBG] logits shape:", tuple(out.logits.shape))
+            print("[DBG] id2label:", getattr(_model.config, "id2label", None))
+            print("[DBG] label2id:", getattr(_model.config, "label2id", None), flush=True)
         logits = out.logits
         # (batch,) -> (batch, 1)
         if logits.dim() == 1:
@@ -79,8 +84,9 @@ def predict_scores(texts: List[str]) -> List[Dict[str, float]]:
         else:
             probs = torch.sigmoid(logits).detach().cpu().numpy()
 
-        for idx, row in enumerate(probs[:3]):
-            print(f"[DBG] probs[{idx}]:", row, flush=True)
+        if DEBUG:
+            for idx, row in enumerate(probs[:3]):
+                print(f"[DBG] probs[{idx}]:", row, flush=True)
 
     res = []
     for row in probs:

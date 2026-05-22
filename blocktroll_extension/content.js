@@ -1,4 +1,4 @@
-// BlockTroll content script (YouTube)
+// BlockTroll content script (social platform comments)
 // VSCode에서 섹션 접기/펼치기: //#region ... //#endregion
 
 //#region 0) 기본 설정/옵션 (DEFAULTS, OPT, loadOptionsMaybe)
@@ -15,15 +15,43 @@ const DEFAULTS = {
 
   // fallback thresholds (used only if intensity is missing)
   softThreshold: 0.45,
-  hardThreshold: 0.60
+  hardThreshold: 0.60,
+  debug: false
 };
 
 let OPT = { ...DEFAULTS };
 let lastOptFingerprint = "";
 let lastOptionsLoad = 0;
+let __btExtensionContextAlive = true;
+let __btScanInterval = null;
+let __btDomObserver = null;
 
 // UI 문구/스타일 변경 시, 이미 처리된 댓글에도 1회 재적용하기 위한 버전값
-const BT_UI_VERSION = "2026-02-24-2";
+const BT_UI_VERSION = "2026-05-22-1";
+
+function debugLog(...args) {
+  if (OPT.debug) console.log(...args);
+}
+
+function stopForInvalidatedContext() {
+  __btExtensionContextAlive = false;
+  if (__btScanTimer) {
+    clearTimeout(__btScanTimer);
+    __btScanTimer = null;
+  }
+  if (__btScanInterval) {
+    clearInterval(__btScanInterval);
+    __btScanInterval = null;
+  }
+  if (__btDomObserver) {
+    __btDomObserver.disconnect();
+    __btDomObserver = null;
+  }
+}
+
+function isInvalidatedExtensionContext(error) {
+  return String(error?.message || error || "").includes("Extension context invalidated");
+}
 
 // chrome.storage.sync를 Promise로 감싸서 옵션을 가져온다.
 // - defaults: 기본값(키/기본값)을 담은 객체
@@ -36,6 +64,11 @@ async function storageGet(defaults) {
         chrome.storage.sync.get(defaults, (items) => {
           // runtime.lastError가 있으면 defaults로 fallback
           if (chrome.runtime && chrome.runtime.lastError) {
+            if (isInvalidatedExtensionContext(chrome.runtime.lastError)) {
+              stopForInvalidatedContext();
+              resolve({ ...defaults });
+              return;
+            }
             console.warn("[BlockTroll] storageGet error:", chrome.runtime.lastError);
             resolve({ ...defaults });
             return;
@@ -45,6 +78,11 @@ async function storageGet(defaults) {
         return;
       }
     } catch (e) {
+      if (isInvalidatedExtensionContext(e)) {
+        stopForInvalidatedContext();
+        resolve({ ...defaults });
+        return;
+      }
       console.warn("[BlockTroll] storageGet exception:", e);
     }
 
@@ -86,6 +124,7 @@ async function loadOptionsMaybe() {
 
 //#region 1) 스타일 주입 (ensureBtStyles)
 let __btStyleInjected = false;
+let __btRevealToggleBound = false;
 function ensureBtStyles() {
   if (__btStyleInjected) return;
   __btStyleInjected = true;
@@ -137,6 +176,50 @@ function ensureBtStyles() {
   `;
   document.documentElement.appendChild(style);
 }
+
+function toggleBlurReveal(host) {
+  if (!host || host.dataset.blocktrollMode !== "blur_click") return;
+
+  const textSpan = directChildByClass(host, "bt-text") || host;
+  const badgeSpan = directChildByClass(host, "bt-badge");
+
+  const hasSoft = textSpan.classList?.contains("bt-soft");
+  const hasHard = textSpan.classList?.contains("bt-hard");
+  let isBlurred = !!(hasSoft || hasHard);
+  if (!isBlurred) {
+    const cur = getComputedStyle(textSpan).filter;
+    isBlurred = !!(cur && cur !== "none");
+  }
+
+  if (isBlurred) {
+    textSpan.classList.remove("bt-soft", "bt-hard");
+    if (badgeSpan) badgeSpan.style.display = "none";
+    host.dataset.blocktrollRevealed = "1";
+    host.title = "BlockTroll: 클릭하면 다시 가리기";
+    return;
+  }
+
+  const originalAction = host.dataset.blocktrollAction || "SOFT";
+  textSpan.classList.remove("bt-soft", "bt-hard");
+  textSpan.classList.add(originalAction === "HARD" ? "bt-hard" : "bt-soft");
+  if (badgeSpan) badgeSpan.style.display = "";
+  host.dataset.blocktrollRevealed = "0";
+  host.title = "BlockTroll: 클릭하면 보기";
+}
+
+function ensureRevealToggleHandler() {
+  if (__btRevealToggleBound) return;
+  __btRevealToggleBound = true;
+
+  document.addEventListener("click", (e) => {
+    const host = e.target?.closest?.(".bt-host");
+    if (!host || host.dataset.blocktrollMode !== "blur_click") return;
+
+    e.preventDefault();
+    e.stopPropagation();
+    toggleBlurReveal(host);
+  }, true);
+}
 //#endregion
 
 //#region 2) 배지 텍스트/색상 결정 (badgeTextForDecision, badgeClassForDecision)
@@ -144,9 +227,9 @@ function badgeTextForDecision(decision) {
   const label = decision?.label || "OK";
 
   // Prefer label if provided
-  if (label === "TAUNT") return "패배자들이랑 답없는 사람들 보기";
-  if (label === "TOXIC") return "인생 패배자들 댓글보기";
-  if (label === "SPAM") return "광고충 댓글 보기";
+  if (label === "TAUNT") return "비꼼 의심 댓글 보기";
+  if (label === "TOXIC") return "욕설 의심 댓글 보기";
+  if (label === "SPAM") return "스팸 의심 댓글 보기";
 
   // For extreme mode, label might still be OK. Derive from per-category scores.
   const s = decision?.scores || {};
@@ -155,9 +238,9 @@ function badgeTextForDecision(decision) {
   const taunt = Number(s.taunt || 0);
 
   const max = Math.max(toxic, spam, taunt);
-  if (max === toxic) return "인생 패배자들 댓글보기";
-  if (max === spam) return "광고충 댓글 보기";
-  return "패배자들이랑 답없는 사람들 보기";
+  if (max === toxic) return "욕설 의심 댓글 보기";
+  if (max === spam) return "스팸 의심 댓글 보기";
+  return "비꼼 의심 댓글 보기";
 }
 
 function badgeClassForDecision(decision) {
@@ -217,7 +300,7 @@ function ensureWrapped(el) {
 }
 //#endregion
 
-//#region 4) 유틸/DOM 수집 (clamp01, getYouTubeCommentTextEls, normalizeText)
+//#region 4) 유틸/DOM 수집 (clamp01, getCommentTextEls, normalizeText)
 function clamp01(x) {
   x = Number(x || 0);
   if (x < 0) return 0;
@@ -234,9 +317,84 @@ function directChildByClass(el, className) {
   return null;
 }
 
+function textFingerprint(text) {
+  let hash = 0;
+  for (let i = 0; i < text.length; i++) {
+    hash = ((hash * 31) + text.charCodeAt(i)) >>> 0;
+  }
+  return `${text.length}:${hash.toString(36)}`;
+}
+
+function resetAppliedUi(el) {
+  if (!el) return;
+
+  el.style.filter = "";
+  el.style.visibility = "";
+  el.style.cursor = "";
+  el.title = "";
+
+  const badgeSpan = directChildByClass(el, "bt-badge");
+  if (badgeSpan) badgeSpan.remove();
+
+  const textSpan = directChildByClass(el, "bt-text");
+  if (textSpan) {
+    textSpan.classList.remove("bt-soft", "bt-hard");
+    while (textSpan.firstChild) {
+      el.insertBefore(textSpan.firstChild, textSpan);
+    }
+    textSpan.remove();
+  }
+
+  el.classList.remove("bt-host");
+  delete el.dataset.blocktrollApplied;
+  delete el.dataset.blocktrollUiVer;
+  delete el.dataset.blocktrollRevealed;
+}
+
+function platformForLocation() {
+  const host = String(location.hostname || "").toLowerCase();
+  if (host === "youtube.com" || host.endsWith(".youtube.com")) return "youtube";
+  if (host === "instagram.com" || host.endsWith(".instagram.com")) return "instagram";
+  return "";
+}
+
 function getYouTubeCommentTextEls() {
-  // YouTube 댓글 텍스트
-  return Array.from(document.querySelectorAll("ytd-comment-thread-renderer #content-text"));
+  // YouTube has both legacy thread renderers and newer comment view models.
+  // Keep the query inside the comments surface so video description text is not scanned.
+  return Array.from(document.querySelectorAll([
+    "#comments ytd-comment-thread-renderer #content-text",
+    "#comments ytd-comment-renderer #content-text",
+    "#comments ytd-comment-view-model #content-text",
+    "#comments yt-attributed-string#content-text"
+  ].join(", ")));
+}
+
+function getInstagramCommentTextEls() {
+  // Instagram comment rows currently live under post dialogs/articles as list items.
+  // Avoid usernames, timestamps, and action labels while keeping leaf text spans.
+  const textEls = new Set();
+  const candidates = document.querySelectorAll("article li span, div[role='dialog'] li span");
+
+  for (const el of candidates) {
+    const row = el.closest("li");
+    const text = normalizeText(el.innerText);
+
+    if (!row || !row.querySelector("time")) continue;
+    if (!text || text.length < 2 || text.length > 2000) continue;
+    if (el.closest("a, button, time")) continue;
+    if (el.children.length && !el.querySelector("img[alt]")) continue;
+
+    textEls.add(el);
+  }
+
+  return Array.from(textEls);
+}
+
+function getCommentTextEls() {
+  const platform = platformForLocation();
+  if (platform === "youtube") return getYouTubeCommentTextEls();
+  if (platform === "instagram") return getInstagramCommentTextEls();
+  return [];
 }
 
 function normalizeText(s) {
@@ -280,6 +438,11 @@ function applyActionToEl(el, action, decision) {
   el.dataset.blocktrollLabel = decision?.label || "";
   el.dataset.blocktrollScore = String(decision?.score ?? "");
   el.dataset.blocktrollAction = action;
+  const mode = OPT.mode || "blur_click";
+  el.dataset.blocktrollMode = mode;
+
+  // Keep click-to-reveal alive when an already-blurred DOM node is rescanned.
+  if (mode === "blur_click") ensureRevealToggleHandler();
 
   if (action === "NONE") {
     // Clear filters/badge if present
@@ -298,8 +461,6 @@ function applyActionToEl(el, action, decision) {
   // 실제로 UI를 변경할 때만 applied 찍기 (중요)
   el.dataset.blocktrollApplied = "1";
   el.dataset.blocktrollUiVer = BT_UI_VERSION;
-
-  const mode = OPT.mode || "blur_click";
 
   if (mode === "hide" && action === "HARD") {
     el.style.visibility = "hidden";
@@ -326,45 +487,6 @@ function applyActionToEl(el, action, decision) {
   if (mode === "blur_click") {
     el.style.cursor = "pointer";
     el.title = "BlockTroll: 클릭하면 보기/가리기";
-    if (!el.dataset.blocktrollClickBound) {
-      el.dataset.blocktrollClickBound = "1";
-      el.addEventListener("click", (e) => {
-        // 댓글 클릭 토글
-        // - blur 상태에서 클릭: blur 제거 + 안내 배지 숨김 (원문 보기)
-        // - 원문 상태에서 클릭: 다시 blur 적용 + 안내 배지 표시
-        e.stopPropagation();
-
-        const host = el;
-        const textSpan = directChildByClass(host, "bt-text") || host;
-        const badgeSpan = directChildByClass(host, "bt-badge");
-
-        // 현재 blur 상태 판단 (클래스 우선, 없으면 computedStyle로 보조)
-        const hasSoft = textSpan.classList?.contains("bt-soft");
-        const hasHard = textSpan.classList?.contains("bt-hard");
-        let isBlurred = !!(hasSoft || hasHard);
-        if (!isBlurred) {
-          const cur = getComputedStyle(textSpan).filter;
-          isBlurred = !!(cur && cur !== "none");
-        }
-
-        if (isBlurred) {
-          // 1) blur -> reveal
-          textSpan.classList.remove("bt-soft", "bt-hard");
-          if (badgeSpan) badgeSpan.style.display = "none";
-          host.dataset.blocktrollRevealed = "1";
-          host.title = "BlockTroll: 클릭하면 다시 가리기";
-          return;
-        }
-
-        // 2) reveal -> blur (원래 action 기준)
-        const originalAction = host.dataset.blocktrollAction || action;
-        textSpan.classList.remove("bt-soft", "bt-hard");
-        textSpan.classList.add(originalAction === "HARD" ? "bt-hard" : "bt-soft");
-        if (badgeSpan) badgeSpan.style.display = "";
-        host.dataset.blocktrollRevealed = "0";
-        host.title = "BlockTroll: 클릭하면 보기";
-      }, true);
-    }
   }
 }
 //#endregion
@@ -376,7 +498,7 @@ async function classifyBatch(texts) {
   const res = await fetch(url, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ texts, platform: "youtube" })
+    body: JSON.stringify({ texts, platform: platformForLocation() || "unknown" })
   });
 
   if (!res.ok) {
@@ -397,6 +519,7 @@ let __btScanTimer = null;
 
 // 여러 이벤트(Interval + MutationObserver)에서 호출되더라도, 일정 시간 내 1번만 실행
 function scheduleScan(delayMs = 200) {
+  if (!__btExtensionContextAlive) return;
   if (__btScanTimer) clearTimeout(__btScanTimer);
   __btScanTimer = setTimeout(() => {
     __btScanTimer = null;
@@ -405,6 +528,7 @@ function scheduleScan(delayMs = 200) {
 }
 
 async function scanAndApply() {
+  if (!__btExtensionContextAlive) return;
   // 이미 실행 중이면 한 번만 재실행 예약하고 빠진다 (서버/브라우저 과열 방지)
   if (__btScanInFlight) {
     __btScanQueued = true;
@@ -413,8 +537,12 @@ async function scanAndApply() {
   __btScanInFlight = true;
 
   await loadOptionsMaybe();
+  if (!__btExtensionContextAlive) {
+    __btScanInFlight = false;
+    return;
+  }
 
-  const els = getYouTubeCommentTextEls();
+  const els = getCommentTextEls();
   if (!els.length) {
     __btScanInFlight = false;
     return;
@@ -424,37 +552,39 @@ async function scanAndApply() {
   if (OPT.__changed) {
     for (const el of els) {
       delete el.dataset.blocktrollSeen;
-      delete el.dataset.blocktrollApplied;
       delete el.dataset.blocktrollClickBound;
-      // Reset UI to a clean baseline before re-applying
-      el.style.filter = "";
-      el.style.visibility = "";
-      el.style.cursor = "";
-      el.title = "";
-      // Reset wrapper-based UI
-      const textSpan = directChildByClass(el, "bt-text");
-      if (textSpan) textSpan.classList.remove("bt-soft", "bt-hard");
-      const badgeSpan = directChildByClass(el, "bt-badge");
-      if (badgeSpan) badgeSpan.remove();
-      el.classList.remove("bt-host");
+      delete el.dataset.blocktrollTextFp;
+      // Reset UI to a clean baseline before re-applying.
+      resetAppliedUi(el);
     }
   }
 
   // 아직 처리 안 한 댓글만
   const pending = [];
   const pendingText = [];
+  const pendingTextFp = [];
 
   for (const el of els) {
-    if (el.dataset.blocktrollSeen === "1") continue;
-
     const t = normalizeText(el.innerText);
+    const fp = textFingerprint(t);
+    if (el.dataset.blocktrollSeen === "1" && el.dataset.blocktrollTextFp === fp) continue;
+
+    // YouTube reuses comment DOM nodes while swapping their text.
+    // Re-classify when the visible comment text no longer matches the last decision.
+    if (el.dataset.blocktrollSeen === "1" && el.dataset.blocktrollTextFp !== fp) {
+      delete el.dataset.blocktrollSeen;
+      resetAppliedUi(el);
+    }
+
     if (!t) {
       el.dataset.blocktrollSeen = "1";
+      el.dataset.blocktrollTextFp = fp;
       continue;
     }
 
     pending.push(el);
     pendingText.push(t);
+    pendingTextFp.push(fp);
 
     // 너무 많이 한 번에 보내지 않기
     if (pending.length >= 30) break;
@@ -490,9 +620,10 @@ async function scanAndApply() {
 
     // 적용/판단 끝난 뒤 seen 찍기 (중요)
     el.dataset.blocktrollSeen = "1";
+    el.dataset.blocktrollTextFp = pendingTextFp[i];
 
     // 디버그: 필터 걸린 것만 출력
-    console.log(
+    debugLog(
       `[BlockTroll] label=${decision?.label} score=${Number(decision?.score ?? 0).toFixed(3)} action=${action} soft=${OPT.softThreshold} hard=${OPT.hardThreshold} | ${String(pendingText[i] || "").slice(0, 60)}`
     );
   }
@@ -512,11 +643,11 @@ function startObservers() {
   scheduleScan(0);
 
   // 주기 스캔 (YouTube는 무한 스크롤/동적 로딩)
-  setInterval(() => scheduleScan(0), 1200);
+  __btScanInterval = setInterval(() => scheduleScan(0), 1200);
 
   // DOM 변화에도 반응
-  const obs = new MutationObserver(() => scheduleScan(200));
-  obs.observe(document.documentElement, { childList: true, subtree: true });
+  __btDomObserver = new MutationObserver(() => scheduleScan(200));
+  __btDomObserver.observe(document.documentElement, { childList: true, subtree: true });
 }
 
 function thresholdsByIntensity(level) {

@@ -1,76 +1,115 @@
-# train/build_dataset.py
+"""Build BlockTroll JSONL training files from K-MHaS and handmade samples."""
 
-import os, json, re
-from typing import List, Tuple
+import argparse
+import json
+import os
+import re
 from pathlib import Path
+from typing import Iterable, List, Tuple
 
-PROJECT_ROOT = Path.home() / "Desktop/project/Project_AI"
-ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__),  ".."))
-DATA_DIR = PROJECT_ROOT / "datasets" / "Datasets-NLP" / "blocktroll_dataset"
-FILES = {
-    "train": os.path.join(DATA_DIR, "kmhas_train.txt"),
-    "valid": os.path.join(DATA_DIR, "kmhas_valid.txt"),
-    "test": os.path.join(DATA_DIR, "kmhas_test.txt")
-}
+ROOT = Path(__file__).resolve().parents[1]
+DEFAULT_INPUT_DIR = Path(os.environ.get("KMHAS_DIR", ROOT / "datasets" / "raw" / "kmhas"))
+DEFAULT_OUTPUT_DIR = Path(os.environ.get("BLOCKTROLL_DATA_DIR", ROOT / "datasets" / "generated"))
+DEFAULT_HANDMADE_JSON = ROOT / "datasets" / "handmade" / "Blocktroll_dataset.json"
 
-OUT_DIR = os.path.join(ROOT, "../../datasets/Datasets-NLP/blocktroll_dataset")
-os.makedirs(OUT_DIR, exist_ok=True)
-
-# 멀티라벨 헤드 순서
-# toxic만 1/0으로 만들고, spam/taunt는 일단 0으로 (blocktroll_agent/rules.py가 담당)
+# BlockTroll head order used by the server.
 LABELS = ["toxic", "spam", "taunt"]
+KMHAS_NOT_HATE_LABEL = 8
+HANDMADE_LABELS = {
+    "normal": [0, 0, 0],
+    "hate": [1, 0, 0],
+    "ad": [0, 1, 0],
+    "sarcasm": [0, 0, 1],
+}
 
 
 def parse_line(line: str) -> Tuple[str, List[int]]:
-    """
-    K-MHaS라인 파싱 (포맷이 약간 달라도 최대한 견딤)
-    - 탭(\t) 기준이 많음: text \t label
-    - label이 "0"또는 "0,3"같은 형태일 수 있음
+    """Parse one K-MHaS row into BlockTroll labels.
+
+    K-MHaS uses label 8 for Not Hate Speech. Any other label is treated as a
+    toxic signal for this first BlockTroll toxic head.
     """
     line = line.strip()
     if not line:
-        return "", [0,0,0]
-    
-    # 1) 우선 탭으로 분리 시도
+        return "", [0, 0, 0]
+
     parts = line.split("\t")
     if len(parts) >= 2:
         text = parts[0].strip()
         label_str = parts[1].strip()
     else:
-        #2) 탭이 없으면 마지막 토큰을 라벨로 가정(최후의 수단)
-        m = re.match(r"^(.*)\s+(\d+(?:,\d+)*)$", line)
-        if not m:
-            return line.strip(), [0,0,0]
-        text = m.group(1).strip()
-        label_str = m.group(2).strip()
+        match = re.match(r"^(.*)\s+(\d+(?:,\d+)*)$", line)
+        if not match:
+            return "", [0, 0, 0]
+        text = match.group(1).strip()
+        label_str = match.group(2).strip()
 
-    # label_str 예: "0" / "0,3" / "1,2,4"
-    label_ids = []
-    for tok in re.split(r"[,\s]+", label_str):
-        tok = tok.strip()
-        if tok.isdigit():
-            label_ids.append(int(tok))
+    label_ids = [int(tok) for tok in re.split(r"[,\s]+", label_str) if tok.isdigit()]
+    if not text or not label_ids or text.lower() in {"document", "text"}:
+        return "", [0, 0, 0]
 
-    # 독하게 단순화: '0만 있으면 정상' 그 외 하나라도 있으면 toxic = 1
-    # (K - MHaS가 혐오/독성 중심 데이터라 이게 가장 안정적인 1차 모델)
-    toxic = 0 if (len(label_ids) == 0 or (len(label_ids) == 1 and label_ids[0] == 0 )) else 1
-
-    # spam/taunt 는 데이터가 없으니 0 고정(blocktroll_agent/rules.py에서 처리)
+    toxic = int(any(label_id != KMHAS_NOT_HATE_LABEL for label_id in label_ids))
     return text, [toxic, 0, 0]
 
-def build(split: str, in_path: str, out_path:str):
-    n = 0
-    with open(in_path, "r", encoding="utf-8") as f_in, open(out_path, "w", encoding="utf-8") as f_out:
-        for line in f_in:
-            text, y = parse_line(line)
-            if not text:
-                continue
-            rec = {"text": text, "labels": y}
-            f_out.write(json.dumps(rec, ensure_ascii=False) + "\n")
-            n += 1
-    print(f"[OK] {split}: {n} rows -> {out_path}")
+
+def write_jsonl(path: Path, rows: Iterable[dict]) -> int:
+    count = 0
+    with path.open("w", encoding="utf-8") as out:
+        for row in rows:
+            out.write(json.dumps(row, ensure_ascii=False) + "\n")
+            count += 1
+    return count
+
+
+def kmhas_rows(path: Path) -> Iterable[dict]:
+    with path.open("r", encoding="utf-8") as source:
+        for line in source:
+            text, labels = parse_line(line)
+            if text:
+                yield {"text": text, "labels": labels}
+
+
+def handmade_rows(path: Path, split: str) -> Iterable[dict]:
+    if not path.exists():
+        return
+
+    rows = json.loads(path.read_text(encoding="utf-8"))
+    for index, row in enumerate(rows):
+        label = HANDMADE_LABELS.get(str(row.get("label", "")).strip().lower())
+        text = str(row.get("text", "")).strip()
+        if not label or not text:
+            continue
+
+        # Keep a deterministic 80/20 validation slice without another tool.
+        row_split = "valid" if index % 5 == 0 else "train"
+        if row_split == split:
+            yield {"text": text, "labels": label}
+
+
+def build_split(split: str, kmhas_path: Path, output_path: Path, handmade_path: Path) -> None:
+    rows = list(kmhas_rows(kmhas_path))
+    if split in {"train", "valid"}:
+        rows.extend(handmade_rows(handmade_path, split))
+    count = write_jsonl(output_path, rows)
+    print(f"[OK] {split}: {count} rows -> {output_path}")
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--input-dir", type=Path, default=DEFAULT_INPUT_DIR, help="Directory with kmhas_train.txt files.")
+    parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT_DIR, help="Directory for generated JSONL files.")
+    parser.add_argument("--handmade-json", type=Path, default=DEFAULT_HANDMADE_JSON, help="Optional BlockTroll handmade JSON.")
+    args = parser.parse_args()
+
+    args.output_dir.mkdir(parents=True, exist_ok=True)
+    for split in ("train", "valid", "test"):
+        build_split(
+            split,
+            args.input_dir / f"kmhas_{split}.txt",
+            args.output_dir / f"kmhas_multilabel_{split}.jsonl",
+            args.handmade_json,
+        )
+
 
 if __name__ == "__main__":
-    build("train", FILES["train"], os.path.join(OUT_DIR, "kmhas_multilabel_train.jsonl"))
-    build("valid", FILES["valid"], os.path.join(OUT_DIR, "kmhas_multilabel_valid.jsonl"))
-    build("test",  FILES["test"],  os.path.join(OUT_DIR, "kmhas_multilabel_test.jsonl"))
+    main()

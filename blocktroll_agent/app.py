@@ -5,7 +5,16 @@ from fastapi.middleware.cors import CORSMiddleware
 from typing import Any, Dict
 from .schemas import ClassifyRequest, ClassifyResponse
 from cachetools import LRUCache
-from .config import TH_SPAM, TH_TOXIC, TH_TAUNT, MODEL_DIR, CACHE_MAXSIZE, ENABLE_TAUNT
+from .config import (
+    CACHE_MAXSIZE,
+    DEBUG,
+    ENABLE_MODEL,
+    ENABLE_TAUNT,
+    MODEL_DIR,
+    TH_SPAM,
+    TH_TAUNT,
+    TH_TOXIC,
+)
 from .rules import normalize, is_positive_laughter, has_negative_cues, rule_scores
 from . import model as m
 
@@ -131,6 +140,7 @@ def classify_one_text(text: str) -> tuple[Dict[str, Any], bool]:
 def health():
     return {
         "ok": True,
+        "model_enabled": ENABLE_MODEL,
         "model_ready": m.MODEL_READY,
         "model_dir": MODEL_DIR,
         "taunt_enabled": ENABLE_TAUNT,
@@ -141,7 +151,8 @@ def health():
 @app.post("/classify", response_model=ClassifyResponse)
 def classify(req: ClassifyRequest) -> Dict[str, Any]:
     texts = req.texts or []
-    print("[DBG] incoming texts:", texts, flush=True)
+    if DEBUG:
+        print("[DBG] incoming texts:", texts, flush=True)
     results = []
 
     if not texts:

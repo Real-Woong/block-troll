@@ -34,7 +34,16 @@ def env_bool(name: str, default: bool) -> bool:
     return value.strip().lower() in {"1", "true", "yes", "on"}
 
 
-MODEL_DIR = os.getenv("MODEL_DIR", os.path.join(PROJECT_ROOT, "models", "blocktroll-koelectra"))
+def env_path(name: str, default: str) -> str:
+    value = os.getenv(name, default)
+    if not os.path.isabs(value):
+        value = os.path.join(PROJECT_ROOT, value)
+    return os.path.abspath(value)
+
+
+DEBUG = env_bool("DEBUG", False)
+ENABLE_MODEL = env_bool("ENABLE_MODEL", False)
+MODEL_DIR = env_path("MODEL_DIR", os.path.join("models", "blocktroll-koelectra"))
 
 # 멀티라벨 출력 순서(학습도 이 순서로 맞추기)
 MODEL_LABELS = ["toxic", "spam", "taunt"]
