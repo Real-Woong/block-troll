@@ -34,6 +34,28 @@ async function refreshServerStatus(serverUrl) {
   }
 }
 
+async function injectCurrentTab() {
+  const status = document.getElementById("status");
+  status.textContent = "현재 탭 연결 중...";
+
+  try {
+    const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+    if (!tab?.id || !/^https:\/\/([^/]+\.)?youtube\.com\//.test(tab.url || "")) {
+      status.textContent = "YouTube 탭에서 다시 눌러주세요";
+      return;
+    }
+
+    await chrome.scripting.executeScript({
+      target: { tabId: tab.id, allFrames: true },
+      files: ["content.js"]
+    });
+
+    status.textContent = "주입 완료: 터미널의 extension-debug를 확인하세요";
+  } catch (e) {
+    status.textContent = `주입 실패: ${String(e?.message || e).slice(0, 80)}`;
+  }
+}
+
 async function load() {
   const v = await chrome.storage.sync.get(DEFAULTS);
   const thresholdState = v.useCustomThresholds
@@ -41,7 +63,9 @@ async function load() {
     : thresholdsByIntensity(v.intensity);
 
   document.querySelectorAll("button[data-level]").forEach(b => {
-    b.classList.toggle("active", Number(b.dataset.level) === Number(v.intensity));
+    const isActive = Number(b.dataset.level) === Number(v.intensity);
+    b.classList.toggle("active", isActive);
+    b.setAttribute("aria-pressed", String(isActive));
     b.onclick = async () => {
       await chrome.storage.sync.set({
         intensity: Number(b.dataset.level),
@@ -74,5 +98,8 @@ async function load() {
       await load();
     };
   }
+
+  const injectBtn = document.getElementById("injectBtn");
+  if (injectBtn) injectBtn.onclick = injectCurrentTab;
 }
 load();

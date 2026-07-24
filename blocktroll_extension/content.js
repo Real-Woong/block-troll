@@ -1,5 +1,18 @@
 // BlockTroll content script (social platform comments)
 // VSCode에서 섹션 접기/펼치기: //#region ... //#endregion
+{
+if (globalThis.__blocktrollContentScriptLoaded) {
+  fetch("http://127.0.0.1:8787/debug", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      event: "already-loaded",
+      href: location.href,
+      readyState: document.readyState
+    })
+  }).catch(() => {});
+} else {
+globalThis.__blocktrollContentScriptLoaded = true;
 
 //#region 0) 기본 설정/옵션 (DEFAULTS, OPT, loadOptionsMaybe)
 const DEFAULTS = {
@@ -25,12 +38,55 @@ let lastOptionsLoad = 0;
 let __btExtensionContextAlive = true;
 let __btScanInterval = null;
 let __btDomObserver = null;
+let __btLastDebugSent = 0;
 
 // UI 문구/스타일 변경 시, 이미 처리된 댓글에도 1회 재적용하기 위한 버전값
 const BT_UI_VERSION = "2026-05-22-1";
 
 function debugLog(...args) {
   if (OPT.debug) console.log(...args);
+}
+
+function currentMode() {
+  return String(OPT?.mode || DEFAULTS.mode || "blur_click");
+}
+
+function serverUrlForFetch(rawUrl) {
+  const fallback = DEFAULTS.serverUrl;
+  const value = String(rawUrl || fallback).trim() || fallback;
+
+  try {
+    const url = new URL(value);
+    if (url.hostname === "localhost") {
+      url.hostname = "127.0.0.1";
+    }
+    return url.toString().replace(/\/+$/, "");
+  } catch {
+    console.warn("[BlockTroll] invalid serverUrl, using default:", value);
+    return fallback;
+  }
+}
+
+function maybeSendExtensionDebug(event, detail = {}, minIntervalMs = 4000) {
+  const now = Date.now();
+  if (event !== "boot" && now - __btLastDebugSent < minIntervalMs) return;
+  __btLastDebugSent = now;
+
+  const payload = {
+    event,
+    platform: platformForLocation() || "unknown",
+    href: location.href,
+    readyState: document.readyState,
+    ...detail
+  };
+
+  fetch(serverUrlForFetch(OPT.serverUrl) + "/debug", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload)
+  }).catch((e) => {
+    debugLog("[BlockTroll] debug event failed:", e);
+  });
 }
 
 function stopForInvalidatedContext() {
@@ -358,15 +414,137 @@ function platformForLocation() {
   return "";
 }
 
+function textForElement(el) {
+  return normalizeText(el?.dataset?.blocktrollTextOverride || el?.innerText || el?.textContent || "");
+}
+
+function setTextOverride(el, text) {
+  if (!el) return;
+  const normalized = normalizeText(text);
+  if (normalized) el.dataset.blocktrollTextOverride = normalized;
+}
+
+function cleanYouTubeCommentLine(line) {
+  const text = normalizeText(line);
+  if (!text) return "";
+  if (/^@?\S+\s+(\d+\s*(초|분|시간|일|주|개월|년)\s*전|방금|now|ago)/i.test(text)) return "";
+  if (/^(답글|reply|replies|댓글\s*\d+\s*개|좋아요|싫어요|더보기|접기|show more|read more)$/i.test(text)) return "";
+  if (/^[\d,.만천kmb]+\s*$/.test(text)) return "";
+  return text;
+}
+
+function extractYouTubeCommentText(root) {
+  const preferred = root.querySelector([
+    "#content-text",
+    "[id='content-text']",
+    "yt-attributed-string#content-text",
+    "yt-formatted-string#content-text",
+    ".yt-core-attributed-string",
+    "span[role='text']"
+  ].join(", "));
+  const preferredText = normalizeText(preferred?.innerText || preferred?.textContent || "");
+  if (preferredText) return { el: preferred, text: preferredText };
+
+  const clone = root.cloneNode(true);
+  for (const noisy of clone.querySelectorAll([
+    "#author-text",
+    "#published-time-text",
+    "#vote-count-middle",
+    "button",
+    "a[href*='/channel/']",
+    "a[href*='/@']",
+    "time",
+    "ytd-button-renderer",
+    "yt-button-shape",
+    "ytd-comment-replies-renderer"
+  ].join(", "))) {
+    noisy.remove();
+  }
+
+  const lines = String(clone.innerText || clone.textContent || "")
+    .split(/\n+/)
+    .map(cleanYouTubeCommentLine)
+    .filter(Boolean);
+
+  return { el: root, text: lines.slice(0, 4).join(" ") };
+}
+
 function getYouTubeCommentTextEls() {
-  // YouTube has both legacy thread renderers and newer comment view models.
-  // Keep the query inside the comments surface so video description text is not scanned.
-  return Array.from(document.querySelectorAll([
-    "#comments ytd-comment-thread-renderer #content-text",
-    "#comments ytd-comment-renderer #content-text",
-    "#comments ytd-comment-view-model #content-text",
-    "#comments yt-attributed-string#content-text"
+  // YouTube uses different comment roots for watch pages, Shorts panels, and
+  // newer view-model renderers. Start from known comment containers so broad
+  // #content-text matches do not accidentally scan the video description.
+  const roots = Array.from(document.querySelectorAll([
+    "ytd-comment-thread-renderer",
+    "ytd-comment-renderer",
+    "ytd-comment-view-model",
+    "yt-comment-thread-renderer",
+    "yt-comment-view-model",
+    "ytm-comment-thread-renderer",
+    "ytd-engagement-panel-section-list-renderer[target-id*='comments']",
+    "#comments"
   ].join(", ")));
+
+  const textEls = new Set();
+  const seenTexts = new Set();
+  const textSelectors = [
+    "#content-text",
+    "[id='content-text']",
+    "yt-attributed-string#content-text",
+    "yt-formatted-string#content-text",
+    ".yt-core-attributed-string",
+    "span[role='text']"
+  ].join(", ");
+
+  for (const root of roots) {
+    for (const el of root.querySelectorAll(textSelectors)) {
+      const text = normalizeText(el.innerText || el.textContent);
+      if (!text || text.length < 1 || text.length > 2000) continue;
+      if (el.closest("a, button, time")) continue;
+      if (seenTexts.has(text)) continue;
+      seenTexts.add(text);
+      setTextOverride(el, text);
+      textEls.add(el);
+    }
+
+    if (!root.matches("#comments")) {
+      const extracted = extractYouTubeCommentText(root);
+      if (extracted.text && extracted.text.length <= 2000) {
+        if (seenTexts.has(extracted.text)) continue;
+        seenTexts.add(extracted.text);
+        const target = extracted.el || root;
+        setTextOverride(target, extracted.text);
+        textEls.add(target);
+      }
+    }
+  }
+
+  return Array.from(textEls);
+}
+
+function youtubeScanDebugInfo(foundEls = []) {
+  const selectors = [
+    "ytd-comment-thread-renderer",
+    "ytd-comment-renderer",
+    "ytd-comment-view-model",
+    "yt-comment-thread-renderer",
+    "yt-comment-view-model",
+    "ytm-comment-thread-renderer",
+    "ytd-engagement-panel-section-list-renderer[target-id*='comments']",
+    "#comments",
+    "#content-text",
+    "[id='content-text']",
+    "yt-attributed-string",
+    "span[role='text']"
+  ];
+  const counts = {};
+  for (const selector of selectors) {
+    counts[selector] = document.querySelectorAll(selector).length;
+  }
+  return {
+    found: foundEls.length,
+    counts,
+    samples: foundEls.slice(0, 5).map((el) => textForElement(el).slice(0, 120))
+  };
 }
 
 function getInstagramCommentTextEls() {
@@ -438,7 +616,7 @@ function applyActionToEl(el, action, decision) {
   el.dataset.blocktrollLabel = decision?.label || "";
   el.dataset.blocktrollScore = String(decision?.score ?? "");
   el.dataset.blocktrollAction = action;
-  const mode = OPT.mode || "blur_click";
+  const mode = currentMode();
   el.dataset.blocktrollMode = mode;
 
   // Keep click-to-reveal alive when an already-blurred DOM node is rescanned.
@@ -493,13 +671,19 @@ function applyActionToEl(el, action, decision) {
 
 //#region 7) 서버 통신 (classifyBatch)
 async function classifyBatch(texts) {
-  const url = (OPT.serverUrl || DEFAULTS.serverUrl).replace(/\/+$/, "") + "/classify";
+  const url = serverUrlForFetch(OPT.serverUrl) + "/classify";
 
-  const res = await fetch(url, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ texts, platform: platformForLocation() || "unknown" })
-  });
+  let res;
+  try {
+    res = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ texts, platform: platformForLocation() || "unknown" })
+    });
+  } catch (e) {
+    e.message = `${e.message} (${url})`;
+    throw e;
+  }
 
   if (!res.ok) {
     throw new Error(`classify failed: ${res.status}`);
@@ -544,8 +728,14 @@ async function scanAndApply() {
 
   const els = getCommentTextEls();
   if (!els.length) {
+    const detail = platformForLocation() === "youtube" ? youtubeScanDebugInfo(els) : { found: 0 };
+    maybeSendExtensionDebug("scan-empty", detail);
     __btScanInFlight = false;
     return;
+  }
+
+  if (platformForLocation() === "youtube") {
+    maybeSendExtensionDebug("scan-found", youtubeScanDebugInfo(els), 10000);
   }
 
   // If options changed (e.g., intensity moved to 5), re-process all currently loaded comments
@@ -565,7 +755,7 @@ async function scanAndApply() {
   const pendingTextFp = [];
 
   for (const el of els) {
-    const t = normalizeText(el.innerText);
+    const t = textForElement(el);
     const fp = textFingerprint(t);
     if (el.dataset.blocktrollSeen === "1" && el.dataset.blocktrollTextFp === fp) continue;
 
@@ -591,16 +781,29 @@ async function scanAndApply() {
   }
 
   if (!pending.length) {
+    maybeSendExtensionDebug("scan-no-pending", {
+      found: els.length,
+      seen: els.filter((el) => el.dataset.blocktrollSeen === "1").length
+    }, 10000);
     __btScanInFlight = false;
     return;
   }
 
   let results;
   try {
+    maybeSendExtensionDebug("classify-send", {
+      count: pendingText.length,
+      texts: pendingText.slice(0, 10)
+    }, 1000);
     results = await classifyBatch(pendingText);
   } catch (e) {
     // 실패하면 seen 찍지 말고 다음 스캔에서 재시도
     console.warn("[BlockTroll] classify error:", e);
+    maybeSendExtensionDebug("classify-error", {
+      message: String(e?.message || e),
+      count: pendingText.length,
+      texts: pendingText.slice(0, 10)
+    }, 1000);
     __btScanInFlight = false;
     return;
   }
@@ -639,6 +842,11 @@ async function scanAndApply() {
 
 //#region 9) 옵저버/부트스트랩 (startObservers, thresholdsByIntensity, start)
 function startObservers() {
+  maybeSendExtensionDebug("boot", {
+    userAgent: navigator.userAgent,
+    title: document.title
+  }, 0);
+
   // 최초 1회
   scheduleScan(0);
 
@@ -665,3 +873,5 @@ function thresholdsByIntensity(level) {
 
 startObservers();
 //#endregion
+}
+}

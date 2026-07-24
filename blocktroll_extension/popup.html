@@ -8,8 +8,11 @@
     body{font-family:system-ui,-apple-system,sans-serif;margin:12px;width:300px;background:#f6f8fb;color:#172033}
     .row{margin:10px 0}
     .card{background:#fff;border:1px solid #dfe6f0;border-radius:14px;padding:12px;box-shadow:0 8px 24px rgba(23,32,51,.06)}
-    .levels button{width:100%;margin:6px 0;padding:10px;border-radius:10px;border:1px solid #d9e0ea;background:#fff;cursor:pointer;font-weight:600}
-    .active{border:2px solid #172033;background:#eef4ff}
+    .levels button{width:100%;margin:6px 0;padding:10px;border-radius:10px;border:1px solid #d9e0ea;background:#fff;color:#172033;cursor:pointer;font-weight:600;transition:background .15s ease,border-color .15s ease,box-shadow .15s ease,transform .15s ease}
+    .levels button:hover{border-color:#9aa8bb;background:#f8fbff}
+    .levels button.active{border-color:#2563eb;background:#2563eb;color:#fff;box-shadow:0 8px 18px rgba(37,99,235,.28);transform:translateY(-1px)}
+    .levels button.active::after{content:" 선택됨";font-size:11px;font-weight:700}
+    .levels button:focus-visible{outline:3px solid rgba(37,99,235,.28);outline-offset:2px}
     .hint{font-size:12px;color:#5f6b7a}
     .statusline{display:flex;align-items:center;gap:8px;font-size:12px}
     .dot{width:10px;height:10px;border-radius:999px;background:#c4ccd8}
@@ -20,6 +23,8 @@
     .label{font-size:11px;color:#6a7685;margin-bottom:4px}
     .value{font-size:14px;font-weight:700}
     .banner{margin-top:10px;padding:10px;border-radius:10px;background:#fff3cd;color:#6b4e00;font-size:12px}
+    .toolbtn{width:100%;margin-top:10px;padding:10px;border-radius:10px;border:1px solid #9aa8bb;background:#172033;color:#fff;cursor:pointer;font-weight:700}
+    .toolbtn:hover{background:#25324a}
   </style>
 </head>
 <body>
@@ -70,6 +75,8 @@
   <div class="banner">
     현재 권장 모드는 `욕설 + 스팸` 중심입니다. 비꼼(TAUNT)은 오탐이 많아 기본적으로 꺼져 있습니다.
   </div>
+
+  <button id="injectBtn" class="toolbtn">현재 YouTube 탭 연결 확인</button>
 
   <div class="row hint" id="status"></div>
 

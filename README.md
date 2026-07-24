@@ -64,15 +64,16 @@ clicked. Click it again to restore the blur.
 ## Environment
 - `.env`에서 아래 값을 조정 가능
 - `DEBUG`
+- `LOG_COMMENTS`
 - `ENABLE_MODEL`
 - `MODEL_DIR`
 - `TH_TOXIC`, `TH_SPAM`, `TH_TAUNT`
 - `ENABLE_TAUNT`
 - `CACHE_MAXSIZE`
 
-Set `DEBUG=true` and restart the server when you want the server terminal to print
-incoming `/classify` comment batches and model debug output. Keep it off for quieter
-normal use.
+Set `LOG_COMMENTS=true` and restart the server when you want the server terminal to
+print incoming `/classify` comment batches and labels. Set `DEBUG=true` when you also
+want lower-level model debug output. Keep them off for quieter normal use.
 
 ## Shared environment rules
 - BlockTroll 내부에 `.venv`를 새로 만들지 않음

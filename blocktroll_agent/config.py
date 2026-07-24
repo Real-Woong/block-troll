@@ -42,6 +42,7 @@ def env_path(name: str, default: str) -> str:
 
 
 DEBUG = env_bool("DEBUG", False)
+LOG_COMMENTS = env_bool("LOG_COMMENTS", False)
 ENABLE_MODEL = env_bool("ENABLE_MODEL", False)
 MODEL_DIR = env_path("MODEL_DIR", os.path.join("models", "blocktroll-koelectra"))
 

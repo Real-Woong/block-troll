@@ -1,8 +1,11 @@
 # 2. 요청 처리 + 판단 흐름
 
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
+from itertools import count
+import json
 from typing import Any, Dict
+
+from fastapi import FastAPI, Request
+from fastapi.middleware.cors import CORSMiddleware
 from .schemas import ClassifyRequest, ClassifyResponse
 from cachetools import LRUCache
 from .config import (
@@ -10,6 +13,7 @@ from .config import (
     DEBUG,
     ENABLE_MODEL,
     ENABLE_TAUNT,
+    LOG_COMMENTS,
     MODEL_DIR,
     TH_SPAM,
     TH_TAUNT,
@@ -31,6 +35,45 @@ app.add_middleware(
 # 서버 시작 시 모델 로드 시도
 m.load_model_if_available()
 _classify_cache: LRUCache[str, Dict[str, Any]] = LRUCache(maxsize=CACHE_MAXSIZE)
+_debug_batch_counter = count(1)
+
+
+def _truncate_for_log(text: str, limit: int = 160) -> str:
+    clean = " ".join(str(text).split())
+    if len(clean) <= limit:
+        return clean
+    return clean[: limit - 1] + "…"
+
+
+def _debug_log_incoming(batch_id: int, platform: str, texts: list[str]) -> None:
+    print(
+        f"[BlockTroll][batch {batch_id}] platform={platform} comments={len(texts)}",
+        flush=True,
+    )
+    print(
+        f"[BlockTroll][batch {batch_id}] texts={json.dumps(texts, ensure_ascii=False)}",
+        flush=True,
+    )
+    for idx, text in enumerate(texts, start=1):
+        print(
+            f"[BlockTroll][batch {batch_id}][{idx:02d}] text=\"{_truncate_for_log(text)}\"",
+            flush=True,
+        )
+
+
+def _debug_log_results(batch_id: int, results: list[Dict[str, Any]]) -> None:
+    for idx, result in enumerate(results, start=1):
+        scores = result.get("scores") or {}
+        print(
+            "[BlockTroll]"
+            f"[batch {batch_id}][{idx:02d}]"
+            f" label={result.get('label')}"
+            f" score={float(result.get('score') or 0):.3f}"
+            f" toxic={float(scores.get('toxic') or 0):.3f}"
+            f" spam={float(scores.get('spam') or 0):.3f}"
+            f" taunt={float(scores.get('taunt') or 0):.3f}",
+            flush=True,
+        )
 
 def decide_label(scores: Dict[str, float]) -> tuple[str, float]:
     spam  = scores.get("spam", 0.0)
@@ -144,15 +187,30 @@ def health():
         "model_ready": m.MODEL_READY,
         "model_dir": MODEL_DIR,
         "taunt_enabled": ENABLE_TAUNT,
+        "debug": DEBUG,
+        "log_comments": LOG_COMMENTS,
         "cache_size": len(_classify_cache),
         "cache_maxsize": CACHE_MAXSIZE,
     }
 
+
+@app.post("/debug")
+async def extension_debug(req: Request) -> Dict[str, Any]:
+    payload = await req.json()
+    print(
+        "[BlockTroll][extension-debug] "
+        + json.dumps(payload, ensure_ascii=False, default=str),
+        flush=True,
+    )
+    return {"ok": True}
+
+
 @app.post("/classify", response_model=ClassifyResponse)
 def classify(req: ClassifyRequest) -> Dict[str, Any]:
     texts = req.texts or []
-    if DEBUG:
-        print("[DBG] incoming texts:", texts, flush=True)
+    batch_id = next(_debug_batch_counter)
+    if LOG_COMMENTS:
+        _debug_log_incoming(batch_id, req.platform or "unknown", texts)
     results = []
 
     if not texts:
@@ -169,5 +227,8 @@ def classify(req: ClassifyRequest) -> Dict[str, Any]:
                 },
             }
         results.append(result)
+
+    if LOG_COMMENTS:
+        _debug_log_results(batch_id, results)
 
     return {"results": results}
