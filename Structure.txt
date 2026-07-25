@@ -1,0 +1,13 @@
+Project_AI
+├ NLP
+│  └ BlockTroll
+│     └ 코드
+│
+├ datasets
+│  └ Datasets-NLP
+│     ├ blocktroll_dataset
+│     └ blocktroll_dataset_balanced
+│
+└ models
+   └ Model-NLP
+      └ blocktroll-koelectra

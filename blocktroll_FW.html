@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BlockTroll — 로컬 AI 유튜브 댓글 필터링 시스템</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Space+Mono:wght@400;700&display=swap');
+
+  :root {
+    --bg: #0a0c10;
+    --surface: #111318;
+    --surface2: #181c24;
+    --border: #232838;
+    --accent: #e63946;
+    --accent2: #f4a261;
+    --accent3: #2ec4b6;
+    --text: #e8eaf0;
+    --text-muted: #7a8099;
+    --text-dim: #4a5068;
+    --toxic: #e63946;
+    --spam: #f4a261;
+    --taunt: #a8dadc;
+    --mono: 'Space Mono', monospace;
+    --sans: 'Noto Sans KR', sans-serif;
+    --radius: 12px;
+    --radius-lg: 20px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(10, 12, 16, 0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+  }
+  .nav-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+  }
+  .nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 500;
+    transition: color 0.2s;
+    letter-spacing: 0.03em;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  /* SECTIONS */
+  section { padding: 5rem 1.5rem; }
+  .container { max-width: 1080px; margin: 0 auto; }
+
+  .section-label {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .section-label::before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 2px;
+    background: var(--accent);
+  }
+
+  h2.section-title {
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 900;
+    line-height: 1.25;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+  }
+
+  .section-desc {
+    color: var(--text-muted);
+    font-size: 1rem;
+    max-width: 580px;
+    margin-bottom: 3rem;
+    font-weight: 300;
+  }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: 6rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 60% at 70% 40%, rgba(230, 57, 70, 0.10) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 20% 70%, rgba(46, 196, 182, 0.07) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 48px 48px;
+    opacity: 0.35;
+    pointer-events: none;
+  }
+
+  .hero-content { position: relative; z-index: 1; }
+
+  .badge-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 2rem;
+  }
+
+  .badge {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    padding: 0.28rem 0.75rem;
+    border-radius: 999px;
+    text-transform: uppercase;
+  }
+  .badge-red    { background: rgba(230,57,70,0.15); color: var(--toxic); border: 1px solid rgba(230,57,70,0.35); }
+  .badge-teal   { background: rgba(46,196,182,0.12); color: var(--accent3); border: 1px solid rgba(46,196,182,0.3); }
+  .badge-orange { background: rgba(244,162,97,0.12); color: var(--spam); border: 1px solid rgba(244,162,97,0.3); }
+
+  .hero-title {
+    font-family: var(--mono);
+    font-size: clamp(3rem, 10vw, 7rem);
+    font-weight: 700;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.5rem;
+  }
+  .hero-title .accent { color: var(--accent); }
+
+  .hero-subtitle {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    color: var(--text-muted);
+    font-weight: 300;
+    max-width: 520px;
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+  }
+
+  .hero-meta {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .hero-meta span { display: flex; align-items: center; gap: 0.35rem; }
+
+  /* CARDS */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    border-color: #2e3348;
+    box-shadow: 0 16px 40px rgba(0,0,0,0.4);
+  }
+
+  .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; }
+  .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; }
+  .grid-5 { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.25rem; }
+
+  /* OVERVIEW */
+  #overview { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+  .overview-card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .overview-icon {
+    font-size: 1.6rem;
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius);
+    background: var(--bg);
+    border: 1px solid var(--border);
+  }
+  .overview-card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.35rem; }
+  .overview-card p  { font-size: 0.85rem; color: var(--text-muted); font-weight: 300; line-height: 1.6; }
+
+  /* FLOW */
+  .flow-wrapper {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .flow-item {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .flow-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.2rem 1.4rem;
+    text-align: center;
+    min-width: 130px;
+    transition: border-color 0.2s, transform 0.2s;
+    cursor: default;
+  }
+  .flow-box:hover {
+    border-color: var(--accent);
+    transform: scale(1.04);
+  }
+  .flow-box .flow-icon { font-size: 1.6rem; margin-bottom: 0.5rem; display: block; }
+  .flow-box .flow-label { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.03em; color: var(--text); }
+  .flow-box .flow-sub   { font-size: 0.68rem; color: var(--text-dim); margin-top: 0.2rem; font-family: var(--mono); }
+
+  .flow-box.highlight { border-color: rgba(230,57,70,0.5); background: rgba(230,57,70,0.06); }
+  .flow-box.highlight .flow-label { color: var(--accent); }
+
+  .flow-arrow {
+    width: 36px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-dim);
+    font-size: 1.1rem;
+  }
+  .flow-arrow::before { content: '→'; font-family: var(--mono); }
+
+  /* FEATURES */
+  .feature-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 48px rgba(0,0,0,0.45);
+  }
+  .feature-tag {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+  }
+  .tag-toxic  { background: rgba(230,57,70,0.18); color: var(--toxic); }
+  .tag-spam   { background: rgba(244,162,97,0.18); color: var(--spam); }
+  .tag-taunt  { background: rgba(168,218,220,0.15); color: var(--taunt); }
+
+  .feature-card h3 { font-size: 1.3rem; font-weight: 900; margin-bottom: 0.5rem; letter-spacing: -0.01em; }
+  .feature-card .feature-desc { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1.25rem; font-weight: 300; line-height: 1.65; }
+
+  .example-box {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 0.9rem 1rem;
+  }
+  .example-label {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    color: var(--text-dim);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  .example-comment {
+    font-size: 0.84rem;
+    color: var(--text-muted);
+    font-style: italic;
+    line-height: 1.55;
+  }
+  .example-comment.blurred {
+    filter: blur(4px);
+    pointer-events: none;
+    user-select: none;
+  }
+
+  /* ARCH */
+  .arch-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    transition: border-color 0.25s, transform 0.25s;
+  }
+  .arch-card:hover {
+    border-color: #2e3348;
+    transform: translateY(-4px);
+  }
+  .arch-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .arch-icon {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+  .arch-name {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: 0.01em;
+  }
+  .arch-tech {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    margin-top: 0.1rem;
+  }
+  .arch-desc {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    font-weight: 300;
+    line-height: 1.65;
+    border-top: 1px solid var(--border);
+    padding-top: 0.75rem;
+  }
+
+  /* STATUS */
+  #status { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+  .status-group { margin-bottom: 2.5rem; }
+  .status-group:last-child { margin-bottom: 0; }
+
+  .status-title {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .dot-green  { background: #4ade80; box-shadow: 0 0 8px #4ade8066; }
+  .dot-yellow { background: var(--spam); box-shadow: 0 0 8px rgba(244,162,97,0.5); }
+
+  .status-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .status-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 0.85rem 1.1rem;
+    font-size: 0.88rem;
+    color: var(--text-muted);
+  }
+
+  /* ROADMAP */
+  .roadmap-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem;
+  }
+  .roadmap-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    transition: transform 0.25s, border-color 0.25s;
+  }
+  .roadmap-card:hover { transform: translateY(-4px); border-color: #2e3348; }
+  .roadmap-card .r-icon { font-size: 1.5rem; margin-bottom: 0.75rem; }
+  .roadmap-card h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.4rem; }
+  .roadmap-card p  { font-size: 0.82rem; color: var(--text-muted); font-weight: 300; line-height: 1.6; }
+
+  /* TIMELINE */
+  .timeline { position: relative; padding-left: 2rem; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--accent), var(--accent3), transparent);
+    border-radius: 2px;
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 2.25rem;
+  }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot {
+    position: absolute;
+    left: -2.45rem;
+    top: 0.35rem;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 3px solid var(--bg);
+    box-shadow: 0 0 0 2px var(--accent);
+  }
+  .timeline-dot.done { background: var(--accent3); box-shadow: 0 0 0 2px var(--accent3); }
+
+  .timeline-step {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 0.25rem;
+  }
+  .timeline-title {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.35rem;
+    letter-spacing: -0.01em;
+  }
+  .timeline-desc {
+    font-size: 0.84rem;
+    color: var(--text-muted);
+    font-weight: 300;
+    line-height: 1.65;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 0.8rem;
+    font-family: var(--mono);
+  }
+  footer span { color: var(--accent); }
+
+  /* SCROLL REVEAL */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 640px) {
+    nav .nav-links { display: none; }
+    section { padding: 3.5rem 1.25rem; }
+    .hero-title { font-size: 3.2rem; }
+    .flow-wrapper { gap: 0; }
+  }
+
+  /* CHIP */
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 0.2rem 0.7rem;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    font-family: var(--mono);
+  }
+
+  /* Pulse dot */
+  .pulse {
+    display: inline-block;
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: #4ade80;
+    box-shadow: 0 0 0 0 rgba(74,222,128,0.5);
+    animation: pulse-anim 2s infinite;
+  }
+  @keyframes pulse-anim {
+    0%   { box-shadow: 0 0 0 0 rgba(74,222,128,0.5); }
+    70%  { box-shadow: 0 0 0 8px rgba(74,222,128,0); }
+    100% { box-shadow: 0 0 0 0 rgba(74,222,128,0); }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Block<span style="color:var(--text-muted)">Troll</span></div>
+  <ul class="nav-links">
+    <li><a href="#overview">개요</a></li>
+    <li><a href="#flow">구조</a></li>
+    <li><a href="#features">기능</a></li>
+    <li><a href="#arch">아키텍처</a></li>
+    <li><a href="#status">개발 현황</a></li>
+    <li><a href="#process">프로세스</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="container hero-content">
+    <div class="badge-row">
+      <span class="badge badge-red">🔴 Local MVP</span>
+      <span class="badge badge-teal">⚡ Hybrid AI</span>
+      <span class="badge badge-orange">🧩 Chrome Extension</span>
+    </div>
+    <div class="hero-title">Block<span class="accent">Troll</span></div>
+    <p class="hero-subtitle">
+      유튜브 댓글을 로컬 AI로 분석해,<br>
+      악플·스팸·비꼼 댓글을 자동으로 가려주는<br>
+      <strong style="color:var(--text); font-weight:700;">프라이빗 댓글 필터링 시스템</strong>
+    </p>
+    <div class="hero-meta">
+      <span><span class="pulse"></span> 로컬 실행 · 클라우드 없음</span>
+      <span>🤖 AI + 룰 하이브리드</span>
+      <span>🛡 YouTube 댓글 실시간 처리</span>
+    </div>
+  </div>
+</section>
+
+<!-- OVERVIEW -->
+<section id="overview">
+  <div class="container">
+    <div class="section-label">프로젝트 개요</div>
+    <h2 class="section-title reveal">이게 뭘 하는 프로젝트인가요?</h2>
+    <p class="section-desc reveal">복잡한 기술 없이도 이해할 수 있도록, 핵심 기능과 방식을 한눈에 정리했습니다.</p>
+
+    <div class="grid-2 reveal">
+      <div class="overview-card">
+        <div class="overview-icon">💬</div>
+        <div>
+          <h3>YouTube 댓글을 읽습니다</h3>
+          <p>Chrome 확장 프로그램이 유튜브 댓글 페이지를 감지하고, 화면에 표시된 댓글 목록을 수집합니다. 사용자가 별도로 버튼을 누를 필요 없습니다.</p>
+        </div>
+      </div>
+      <div class="overview-card">
+        <div class="overview-icon">🧠</div>
+        <div>
+          <h3>내 PC에서 AI가 판단합니다</h3>
+          <p>수집된 댓글은 인터넷이 아닌 내 컴퓨터 안에서 실행되는 AI 서버로 전송됩니다. 개인 정보가 외부로 나가지 않습니다.</p>
+        </div>
+      </div>
+      <div class="overview-card">
+        <div class="overview-icon">🔍</div>
+        <div>
+          <h3>AI + 규칙이 함께 작동합니다</h3>
+          <p>딥러닝 모델과 사전에 정의된 필터 규칙을 같이 사용하는 하이브리드 구조입니다. 속도와 정확도를 모두 챙깁니다.</p>
+        </div>
+      </div>
+      <div class="overview-card">
+        <div class="overview-icon">🙈</div>
+        <div>
+          <h3>위험한 댓글을 가려줍니다</h3>
+          <p>분석 결과에 따라 악성 댓글은 흐릿하게 처리(Blur)하거나 아예 숨깁니다(Hide). 원하면 클릭해서 확인할 수 있습니다.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FLOW -->
+<section id="flow">
+  <div class="container">
+    <div class="section-label">시스템 구조</div>
+    <h2 class="section-title reveal">댓글이 처리되는 흐름</h2>
+    <p class="section-desc reveal">유튜브에서 댓글을 읽고, 필터 결과를 반환하기까지의 전체 과정입니다.</p>
+
+    <div class="flow-wrapper reveal">
+      <div class="flow-item">
+        <div class="flow-box">
+          <span class="flow-icon">📺</span>
+          <div class="flow-label">YouTube</div>
+          <div class="flow-sub">댓글 페이지</div>
+        </div>
+      </div>
+      <div class="flow-arrow"></div>
+      <div class="flow-item">
+        <div class="flow-box">
+          <span class="flow-icon">🧩</span>
+          <div class="flow-label">Chrome Extension</div>
+          <div class="flow-sub">댓글 감지 · 수집</div>
+        </div>
+      </div>
+      <div class="flow-arrow"></div>
+      <div class="flow-item">
+        <div class="flow-box">
+          <span class="flow-icon">⚙️</span>
+          <div class="flow-label">FastAPI Server</div>
+          <div class="flow-sub">로컬 PC 실행</div>
+        </div>
+      </div>
+      <div class="flow-arrow"></div>
+      <div class="flow-item">
+        <div class="flow-box highlight">
+          <span class="flow-icon">🤖</span>
+          <div class="flow-label">AI + Rules</div>
+          <div class="flow-sub">하이브리드 분류</div>
+        </div>
+      </div>
+      <div class="flow-arrow"></div>
+      <div class="flow-item">
+        <div class="flow-box">
+          <span class="flow-icon">📊</span>
+          <div class="flow-label">분류 결과</div>
+          <div class="flow-sub">TOXIC / SPAM / TAUNT</div>
+        </div>
+      </div>
+      <div class="flow-arrow"></div>
+      <div class="flow-item">
+        <div class="flow-box">
+          <span class="flow-icon">🙈</span>
+          <div class="flow-label">Blur / Hide</div>
+          <div class="flow-sub">댓글 처리</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top: 2rem;" class="reveal">
+      <p style="font-size:0.84rem; color:var(--text-dim); font-family:var(--mono);">
+        ※ 모든 처리는 사용자의 로컬 PC 내에서만 이루어집니다. 외부 서버로 댓글 데이터가 전송되지 않습니다.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features" style="background: var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+  <div class="container">
+    <div class="section-label">핵심 기능</div>
+    <h2 class="section-title reveal">3가지 댓글 유형을 분류합니다</h2>
+    <p class="section-desc reveal">각 유형은 서로 다른 방식으로 탐지되고, 상황에 맞게 처리됩니다.</p>
+
+    <div class="grid-3 reveal">
+      <!-- TOXIC -->
+      <div class="feature-card">
+        <span class="feature-tag tag-toxic">TOXIC 🚫</span>
+        <h3 style="color:var(--toxic)">악성 댓글</h3>
+        <p class="feature-desc">욕설, 혐오 표현, 인신공격 등 명백히 해로운 표현을 포함한 댓글입니다. AI 모델과 키워드 필터를 함께 사용해 높은 정확도로 탐지합니다.</p>
+        <div class="example-box">
+          <div class="example-label">예시 (처리 후)</div>
+          <div class="example-comment blurred">야 이 ㅂㅅ아 꺼져라 진짜 ㅈㄹ하고 있어</div>
+        </div>
+        <div style="margin-top:1rem; display:flex; gap:0.5rem; flex-wrap:wrap;">
+          <span class="chip">AI 모델</span>
+          <span class="chip">룰 기반</span>
+          <span class="chip">Blur / Hide</span>
+        </div>
+      </div>
+
+      <!-- SPAM -->
+      <div class="feature-card">
+        <span class="feature-tag tag-spam">SPAM 🗑️</span>
+        <h3 style="color:var(--spam)">스팸 댓글</h3>
+        <p class="feature-desc">광고, 홍보 링크, 반복적인 홍보성 문구 등 실질적인 의미가 없는 댓글입니다. 패턴 기반 룰 엔진의 비중이 큰 유형입니다.</p>
+        <div class="example-box">
+          <div class="example-label">예시 (처리 후)</div>
+          <div class="example-comment blurred">팔로우 하면 맞팔 ㄱ! 구독자 늘리는 법 t.me/xxxx</div>
+        </div>
+        <div style="margin-top:1rem; display:flex; gap:0.5rem; flex-wrap:wrap;">
+          <span class="chip">룰 기반 주도</span>
+          <span class="chip">링크 탐지</span>
+          <span class="chip">Hide</span>
+        </div>
+      </div>
+
+      <!-- TAUNT -->
+      <div class="feature-card">
+        <span class="feature-tag tag-taunt">TAUNT 😏</span>
+        <h3 style="color:var(--taunt)">비꼼 / 조롱</h3>
+        <p class="feature-desc">직접적인 욕설은 없지만 비아냥, 조롱, 빈정거림이 담긴 댓글입니다. 문맥 파악이 중요해 룰과 AI가 함께 사용됩니다.</p>
+        <div class="example-box">
+          <div class="example-label">예시 (처리 후)</div>
+          <div class="example-comment blurred">와 진짜 대단하시네요^^  이런 분들이 계속 활동하시다니</div>
+        </div>
+        <div style="margin-top:1rem; display:flex; gap:0.5rem; flex-wrap:wrap;">
+          <span class="chip">AI 모델</span>
+          <span class="chip">패턴 룰</span>
+          <span class="chip">Blur</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARCH -->
+<section id="arch">
+  <div class="container">
+    <div class="section-label">개발 구조</div>
+    <h2 class="section-title reveal">시스템을 구성하는 5가지 요소</h2>
+    <p class="section-desc reveal">각 구성 요소가 어떤 역할을 맡고 있는지, 비개발자도 이해할 수 있도록 설명합니다.</p>
+
+    <div class="grid-5 reveal">
+      <div class="arch-card">
+        <div class="arch-header">
+          <div class="arch-icon">🧩</div>
+          <div>
+            <div class="arch-name">Chrome Extension</div>
+            <div class="arch-tech">Frontend</div>
+          </div>
+        </div>
+        <p class="arch-desc">유튜브 화면을 감시하고 댓글을 수집합니다. 분류 결과를 받아 댓글을 숨기거나 흐리게 처리합니다.</p>
+      </div>
+
+      <div class="arch-card">
+        <div class="arch-header">
+          <div class="arch-icon">⚡</div>
+          <div>
+            <div class="arch-name">FastAPI Server</div>
+            <div class="arch-tech">Local Backend</div>
+          </div>
+        </div>
+        <p class="arch-desc">로컬 PC에서 실행되는 중간 서버입니다. 확장 프로그램의 요청을 받아 AI와 룰 엔진에 전달하고 결과를 반환합니다.</p>
+      </div>
+
+      <div class="arch-card">
+        <div class="arch-header">
+          <div class="arch-icon">🧠</div>
+          <div>
+            <div class="arch-name">AI Inference</div>
+            <div class="arch-tech">Model Engine</div>
+          </div>
+        </div>
+        <p class="arch-desc">한국어 텍스트를 분석하도록 학습된 AI 모델이 댓글의 독성 여부를 판단합니다. 주로 TOXIC 분류에 활용됩니다.</p>
+      </div>
+
+      <div class="arch-card">
+        <div class="arch-header">
+          <div class="arch-icon">📋</div>
+          <div>
+            <div class="arch-name">Rule Engine</div>
+            <div class="arch-tech">Filter Logic</div>
+          </div>
+        </div>
+        <p class="arch-desc">사전에 정의된 패턴과 키워드로 빠르게 판단합니다. 스팸과 비꼼 댓글에 특히 효과적이며, AI보다 속도가 빠릅니다.</p>
+      </div>
+
+      <div class="arch-card">
+        <div class="arch-header">
+          <div class="arch-icon">🏋️</div>
+          <div>
+            <div class="arch-name">Training Pipeline</div>
+            <div class="arch-tech">Separate Env</div>
+          </div>
+        </div>
+        <p class="arch-desc">AI 모델을 더 똑똑하게 만드는 학습 과정입니다. 현재는 구조만 설계된 상태이며, 실제 학습은 별도 환경에서 진행됩니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATUS -->
+<section id="status">
+  <div class="container">
+    <div class="section-label">개발 현황</div>
+    <h2 class="section-title reveal">지금 어디까지 만들었나요?</h2>
+    <p class="section-desc reveal">현재 구현된 기능과 앞으로 개선할 항목을 정직하게 정리했습니다.</p>
+
+    <div class="grid-2 reveal">
+      <div>
+        <div class="status-group">
+          <div class="status-title">
+            <span class="dot dot-green"></span>
+            구현 완료
+          </div>
+          <div class="status-list">
+            <div class="status-item">✅ 로컬 FastAPI 서버 실행 및 Chrome Extension 연동</div>
+            <div class="status-item">✅ 유튜브 댓글 자동 감지 및 텍스트 수집</div>
+            <div class="status-item">✅ TOXIC / SPAM / TAUNT 3가지 분류 반환</div>
+            <div class="status-item">✅ 분류 결과에 따른 Blur / Hide 처리</div>
+            <div class="status-item">✅ 룰 기반 스팸 탐지 (링크, 반복 패턴 등)</div>
+            <div class="status-item">✅ 하이브리드 구조 설계 및 분류 로직 연결</div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="status-group">
+          <div class="status-title">
+            <span class="dot dot-yellow"></span>
+            개선 예정
+          </div>
+          <div class="status-list">
+            <div class="status-item">🔧 AI 모델 성능 고도화 (더 큰 한국어 모델 적용)</div>
+            <div class="status-item">🔧 분류 속도 최적화 및 캐싱 처리</div>
+            <div class="status-item">🔧 사용자 설정 패널 (민감도 조절 등)</div>
+            <div class="status-item">🔧 모델 재학습 파이프라인 완성</div>
+            <div class="status-item">🔧 YouTube 외 플랫폼 지원 확장</div>
+            <div class="status-item">🔧 서버형 배포 구조로 전환 가능성 설계</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section id="roadmap">
+  <div class="container">
+    <div class="section-label">향후 확장 방향</div>
+    <h2 class="section-title reveal">더 커질 수 있는 가능성</h2>
+    <p class="section-desc reveal">현재는 로컬 실행형 MVP입니다. 이후 단계에 따라 다양한 방향으로 확장할 수 있습니다.</p>
+
+    <div class="roadmap-grid reveal">
+      <div class="roadmap-card">
+        <div class="r-icon">☁️</div>
+        <h4>서버형 배포</h4>
+        <p>팀 단위·서비스 형태로 발전 시 클라우드 서버에 배포하는 구조로 전환할 수 있습니다.</p>
+      </div>
+      <div class="roadmap-card">
+        <div class="r-icon">🤖</div>
+        <h4>대형 한국어 모델</h4>
+        <p>더 큰 한국어 악플 분류 모델을 적용해 비꼼, 맥락적 독성 탐지 정확도를 높입니다.</p>
+      </div>
+      <div class="roadmap-card">
+        <div class="r-icon">🌐</div>
+        <h4>플랫폼 확장</h4>
+        <p>YouTube 외에 네이버 뉴스, 트위터(X), 카카오 등 다른 댓글 플랫폼으로 필터 범위를 확대합니다.</p>
+      </div>
+      <div class="roadmap-card">
+        <div class="r-icon">🎛️</div>
+        <h4>사용자 설정 고도화</h4>
+        <p>개인별 민감도, 허용 키워드 설정, 화이트리스트/블랙리스트 등 세부 커스터마이징 기능을 추가합니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process" style="background: var(--surface); border-top:1px solid var(--border);">
+  <div class="container">
+    <div class="section-label">개발 프로세스</div>
+    <h2 class="section-title reveal">어떻게 만들어졌나요?</h2>
+    <p class="section-desc reveal">문제를 발견하고 해결책을 만들어가는 개발의 흐름을 단계별로 정리했습니다.</p>
+
+    <div class="timeline reveal">
+      <div class="timeline-item">
+        <div class="timeline-dot done"></div>
+        <div class="timeline-step">Step 01</div>
+        <div class="timeline-title">문제 정의</div>
+        <div class="timeline-desc">유튜브 댓글의 악플·스팸 문제를 직접 경험하고, 클라우드 없이 로컬에서 처리할 수 있는 필터 시스템의 필요성을 정의했습니다.</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot done"></div>
+        <div class="timeline-step">Step 02</div>
+        <div class="timeline-title">프로토타입 제작</div>
+        <div class="timeline-desc">Chrome Extension과 간단한 로컬 서버를 연결하는 최소 프로토타입을 제작했습니다. 댓글 수집 → 처리 → 화면 반영의 흐름을 검증했습니다.</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot done"></div>
+        <div class="timeline-step">Step 03</div>
+        <div class="timeline-title">룰 기반 필터 구축</div>
+        <div class="timeline-desc">스팸 링크, 반복 패턴, 특정 키워드를 기반으로 빠르게 동작하는 규칙 엔진을 먼저 구현했습니다. 즉각적인 탐지 속도를 확보했습니다.</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot done"></div>
+        <div class="timeline-step">Step 04</div>
+        <div class="timeline-title">AI 모델 연결</div>
+        <div class="timeline-desc">한국어 텍스트를 처리할 수 있는 딥러닝 모델을 로컬 서버에 연결했습니다. TOXIC 분류에 AI 추론이 적용되기 시작했습니다.</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot done"></div>
+        <div class="timeline-step">Step 05</div>
+        <div class="timeline-title">하이브리드 구조 설계</div>
+        <div class="timeline-desc">AI 모델과 룰 엔진의 역할을 분리해 하이브리드 구조를 설계했습니다. TOXIC은 모델 주도, SPAM·TAUNT는 룰 비중을 높이는 방향으로 최적화했습니다.</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-step">Step 06 (진행 중)</div>
+        <div class="timeline-title">성능 및 정확도 개선</div>
+        <div class="timeline-desc">분류 속도 최적화, 모델 고도화, 사용자 피드백 반영을 통한 정확도 개선이 현재 진행 중입니다. 모델 재학습 파이프라인도 설계 중입니다.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>🛡 <span>BlockTroll</span> — Local AI YouTube Comment Filter · Hybrid Model MVP</p>
+  <p style="margin-top:0.5rem; font-size:0.7rem;">모든 분류는 로컬 PC에서 처리됩니다. 외부 서버로 데이터가 전송되지 않습니다.</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Stagger children of grids
+  document.querySelectorAll('.grid-2, .grid-3, .grid-5, .roadmap-grid').forEach(grid => {
+    Array.from(grid.children).forEach((child, i) => {
+      child.style.transitionDelay = `${i * 80}ms`;
+      child.classList.add('reveal');
+      observer.observe(child);
+    });
+  });
+
+  // Blurred example hover reveal
+  document.querySelectorAll('.example-comment.blurred').forEach(el => {
+    const wrapper = el.parentElement;
+    wrapper.style.cursor = 'pointer';
+    wrapper.title = '클릭해서 내용 확인';
+    wrapper.addEventListener('click', () => {
+      el.style.filter = el.style.filter === 'none' ? 'blur(4px)' : 'none';
+    });
+  });
+</script>
+</body>
+</html>

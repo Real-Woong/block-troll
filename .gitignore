@@ -1,9 +1,7 @@
 ############################
-# OS junk (macOS / Windows)
+# OS / File system junk
 ############################
 .DS_Store
-.AppleDouble
-.LSOverride
 Thumbs.db
 Desktop.ini
 
@@ -16,15 +14,15 @@ Desktop.ini
 *.swo
 
 ############################
-# Python core
+# Python caches / build
 ############################
 __pycache__/
 *.py[cod]
 *.pyo
 *.pyd
 *.so
+.ipynb_checkpoints/
 
-# packaging
 build/
 dist/
 *.egg-info/
@@ -32,16 +30,12 @@ dist/
 ############################
 # Virtual environments
 ############################
+.venv311/
 .venv/
 .venv*/
 venv/
 ENV/
 env/
-
-############################
-# Logs
-############################
-*.log
 
 ############################
 # Jupyter / tooling caches
@@ -61,30 +55,38 @@ htmlcov/
 !.env.example
 
 ############################
-# Training artifacts / checkpoints (HUGE + noisy)
+# Logs
+############################
+*.log
+
+############################
+# Training artifacts / experiment outputs (DO NOT COMMIT)
 ############################
 artifacts/runs/
 **/checkpoint-*/
-**/trainer_state.json
-**/optimizer.pt
-**/scheduler.pt
-**/rng_state.pth
-**/training_args.bin
-**/events.out.tfevents.*
-**/wandb/
 wandb/
+**/wandb/
+**/events.out.tfevents.*
 
 ############################
-# Model weights (ignore anywhere)
+# Model weights / checkpoints (DO NOT COMMIT)
 ############################
 *.safetensors
 *.pt
 *.pth
 *.bin
+*.gguf
+models/blocktroll-koelectra/*
+!models/blocktroll-koelectra/README.md
 
 ############################
-# Optional: big/raw datasets (keep your curated jsonl if needed)
+# Large datasets / caches (keep only small samples if needed)
 ############################
 data/
 datasets/
+!datasets/
+datasets/*
+!datasets/handmade/
+!datasets/handmade/Blocktroll_dataset.json
 models/K-MHaS-main/
+llama_gguf/.cache/

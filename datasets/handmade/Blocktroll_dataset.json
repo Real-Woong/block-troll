@@ -1,0 +1,2402 @@
+[
+  {
+    "id": 1,
+    "text": "와 진짜 대단하세요~ 이렇게까지 못할 수도 있구나",
+    "label": "sarcasm",
+    "difficulty": "easy"
+  },
+  {
+    "id": 2,
+    "text": "역시 천재십니다 ㅋㅋㅋ 진짜 감탄했어요",
+    "label": "sarcasm",
+    "difficulty": "easy"
+  },
+  {
+    "id": 3,
+    "text": "오 이게 작품이라고요? 신선하네요 진짜로",
+    "label": "sarcasm",
+    "difficulty": "easy"
+  },
+  {
+    "id": 4,
+    "text": "와 이런 퀄리티 요즘도 있네요 대박",
+    "label": "sarcasm",
+    "difficulty": "easy"
+  },
+  {
+    "id": 5,
+    "text": "설명 진짜 잘하시네요 이해가 하나도 안 되게",
+    "label": "sarcasm",
+    "difficulty": "easy"
+  },
+  {
+    "id": 6,
+    "text": "ㅋㅋ 진짜 이런 실력으로 유튜브 하시는 분도 계시는구나",
+    "label": "sarcasm",
+    "difficulty": "easy"
+  },
+  {
+    "id": 7,
+    "text": "와 저 저렇게는 못하겠다 진심으로",
+    "label": "sarcasm",
+    "difficulty": "easy"
+  },
+  {
+    "id": 8,
+    "text": "대단해요 이걸 이렇게 하다니 진짜 놀라워요 😂",
+    "label": "sarcasm",
+    "difficulty": "easy"
+  },
+  {
+    "id": 9,
+    "text": "역시 수준 잘 봤습니다 ㅎ",
+    "label": "sarcasm",
+    "difficulty": "easy"
+  },
+  {
+    "id": 10,
+    "text": "이게 최선이었군요 그렇군요",
+    "label": "sarcasm",
+    "difficulty": "easy"
+  },
+  {
+    "id": 11,
+    "text": "진짜 이 영상 보면서 많이 자극받았어요. 저도 저렇게만 하면 안 되겠다 싶어서요",
+    "label": "sarcasm",
+    "difficulty": "easy"
+  },
+  {
+    "id": 12,
+    "text": "오 이런 분도 구독자가 있군요 세상 넓네요 ㅎㅎ",
+    "label": "sarcasm",
+    "difficulty": "easy"
+  },
+  {
+    "id": 13,
+    "text": "진짜 독보적이에요 이 분야에서 ㅋㅋ",
+    "label": "sarcasm",
+    "difficulty": "easy"
+  },
+  {
+    "id": 14,
+    "text": "정말 재능이 남다르시네요~ 부럽다 진짜로",
+    "label": "sarcasm",
+    "difficulty": "easy"
+  },
+  {
+    "id": 15,
+    "text": "이 정도면 전문가 아닌가요 ㅋㅋ 진짜",
+    "label": "sarcasm",
+    "difficulty": "easy"
+  },
+  {
+    "id": 16,
+    "text": "아니 진짜 어떻게 이렇게 하셨어요 신기하다",
+    "label": "sarcasm",
+    "difficulty": "easy"
+  },
+  {
+    "id": 17,
+    "text": "저도 이 분 보면서 배워야겠어요 뭘 하면 안 되는지를",
+    "label": "sarcasm",
+    "difficulty": "easy"
+  },
+  {
+    "id": 18,
+    "text": "와 진짜 용감하시다 이걸 올리시다니",
+    "label": "sarcasm",
+    "difficulty": "easy"
+  },
+  {
+    "id": 19,
+    "text": "이런 컨텐츠가 있다니 놀랍네요 진심으로",
+    "label": "sarcasm",
+    "difficulty": "easy"
+  },
+  {
+    "id": 20,
+    "text": "역시 기대를 저버리지 않으시네요 ㅎ",
+    "label": "sarcasm",
+    "difficulty": "easy"
+  },
+  {
+    "id": 21,
+    "text": "오늘도 퀄리티 믿고 봤는데 역시나 실망은 없네요 ㅋ",
+    "label": "sarcasm",
+    "difficulty": "easy"
+  },
+  {
+    "id": 22,
+    "text": "이분 진짜 특별해요 이런 식으로 생각하는 사람은 흔치 않아서",
+    "label": "sarcasm",
+    "difficulty": "easy"
+  },
+  {
+    "id": 23,
+    "text": "와 정말 고생하셨겠다 이걸 만드느라고",
+    "label": "sarcasm",
+    "difficulty": "easy"
+  },
+  {
+    "id": 24,
+    "text": "이 영상 보면 힘이 솟아요 저도 이것보단 잘할 수 있겠다 싶어서",
+    "label": "sarcasm",
+    "difficulty": "easy"
+  },
+  {
+    "id": 25,
+    "text": "계속 이런 거 올려주세요 볼수록 신기해서요 ㅋㅋ",
+    "label": "sarcasm",
+    "difficulty": "easy"
+  },
+  {
+    "id": 26,
+    "text": "진짜 노력은 했겠지 뭐 결과가 좀 그렇긴 해도",
+    "label": "sarcasm",
+    "difficulty": "medium"
+  },
+  {
+    "id": 27,
+    "text": "이 정도면 선방한 거 아닌가요 ㅎ 뭐",
+    "label": "sarcasm",
+    "difficulty": "medium"
+  },
+  {
+    "id": 28,
+    "text": "나름 열심히 하셨네요 ㅎㅎ 결과물이 좀 아쉽긴 하지만",
+    "label": "sarcasm",
+    "difficulty": "medium"
+  },
+  {
+    "id": 29,
+    "text": "뭐 처음치곤 그럴 수 있죠 몇 번째인지는 모르겠지만",
+    "label": "sarcasm",
+    "difficulty": "medium"
+  },
+  {
+    "id": 30,
+    "text": "어... 네 잘 봤어요 수고하셨습니다",
+    "label": "sarcasm",
+    "difficulty": "medium"
+  },
+  {
+    "id": 31,
+    "text": "이거 올리기 전에 한 번 더 보셨나요? 뭐 올리셨으니 됐고요",
+    "label": "sarcasm",
+    "difficulty": "medium"
+  },
+  {
+    "id": 32,
+    "text": "나름 개성이 있네요 이런 스타일 좋아하는 분도 계실 거예요 어딘가에는",
+    "label": "sarcasm",
+    "difficulty": "medium"
+  },
+  {
+    "id": 33,
+    "text": "이런 방향도 있구나 싶었어요 신선한 시각이라 할까요",
+    "label": "sarcasm",
+    "difficulty": "medium"
+  },
+  {
+    "id": 34,
+    "text": "뭐 각자의 방식이 있으니까요 이게 이분 방식인 거겠죠",
+    "label": "sarcasm",
+    "difficulty": "medium"
+  },
+  {
+    "id": 35,
+    "text": "이 분야 공부를 따로 하셨어요? 독학이신 것 같은데 ㅎ",
+    "label": "sarcasm",
+    "difficulty": "medium"
+  },
+  {
+    "id": 36,
+    "text": "열정은 느껴져요 방향이 어디로 가는지는 모르겠지만",
+    "label": "sarcasm",
+    "difficulty": "medium"
+  },
+  {
+    "id": 37,
+    "text": "뭐든 도전하는 자세가 중요하죠 결과와 관계없이 ㅎ",
+    "label": "sarcasm",
+    "difficulty": "medium"
+  },
+  {
+    "id": 38,
+    "text": "오 이런 방식이 있었군요 생각도 못했는데 ㅎㅎ",
+    "label": "sarcasm",
+    "difficulty": "medium"
+  },
+  {
+    "id": 39,
+    "text": "나름 자기 색깔이 있으시네요 독특한 색깔이요",
+    "label": "sarcasm",
+    "difficulty": "medium"
+  },
+  {
+    "id": 40,
+    "text": "처음엔 이게 뭔가 했는데 보다 보니 적응되더라고요",
+    "label": "sarcasm",
+    "difficulty": "medium"
+  },
+  {
+    "id": 41,
+    "text": "이런 콘텐츠도 있어야 균형이 맞죠 뭐 ㅎ",
+    "label": "sarcasm",
+    "difficulty": "medium"
+  },
+  {
+    "id": 42,
+    "text": "뭐 틀린 말은 아닌데... 뭐라 하기도 애매하네요",
+    "label": "sarcasm",
+    "difficulty": "medium"
+  },
+  {
+    "id": 43,
+    "text": "이거 보면서 제가 많이 성장했어요 어떻게 하면 안 되는지 배웠거든요",
+    "label": "sarcasm",
+    "difficulty": "medium"
+  },
+  {
+    "id": 44,
+    "text": "나름 감동적이에요 이걸 만드셨다는 게 ㅎ",
+    "label": "sarcasm",
+    "difficulty": "medium"
+  },
+  {
+    "id": 45,
+    "text": "네 뭐 좋은 시도였어요 다음엔 더 잘 되시길 바랍니다",
+    "label": "sarcasm",
+    "difficulty": "medium"
+  },
+  {
+    "id": 46,
+    "text": "뭔가 열심히 하신 것 같긴 한데 ㅎ 잘 봤습니다",
+    "label": "sarcasm",
+    "difficulty": "medium"
+  },
+  {
+    "id": 47,
+    "text": "이런 퀄리티도 사람들이 보는구나 싶어서 신기했어요",
+    "label": "sarcasm",
+    "difficulty": "medium"
+  },
+  {
+    "id": 48,
+    "text": "뭐 이런 스타일을 좋아하는 분들이 있으시겠죠",
+    "label": "sarcasm",
+    "difficulty": "medium"
+  },
+  {
+    "id": 49,
+    "text": "정성이 느껴지긴 해요 어디에 쏟으셨는지는 모르겠지만",
+    "label": "sarcasm",
+    "difficulty": "medium"
+  },
+  {
+    "id": 50,
+    "text": "계속 하시다 보면 언젠간 잘 되실 거예요 아마도",
+    "label": "sarcasm",
+    "difficulty": "medium"
+  },
+  {
+    "id": 51,
+    "text": "이 영상 보면서 많이 배웠어요. 반면교사로요.",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 52,
+    "text": "항상 독창적인 시각을 가지고 계시네요~ 정말 남다르세요",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 53,
+    "text": "이런 콘텐츠 만드시는 분이 계시다니 세상이 넓긴 넓네요",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 54,
+    "text": "오늘도 변함없이 올려주셨네요 꾸준함 하나는 인정해요",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 55,
+    "text": "이런 시도 자체는 칭찬해드리고 싶어요 결과는 논외로 하고요",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 56,
+    "text": "보는 내내 뭔가 느꼈어요 정확히 뭔지는 모르겠지만",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 57,
+    "text": "진짜 이분 특유의 감성이 있어요 다른 분들한테선 볼 수 없는",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 58,
+    "text": "이 콘텐츠 덕분에 오늘 하루도 생각이 많아졌어요",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 59,
+    "text": "솔직히 저는 이런 방향성이 신선하다고 느꼈어요 정말로요",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 60,
+    "text": "이분 영상은 볼 때마다 뭔가 깨닫게 되더라고요",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 61,
+    "text": "오늘 영상도 기대 이상이었어요 의미에서는 항상 기대를 뛰어넘으시더라고요",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 62,
+    "text": "이런 분이 있으니까 우리가 비교할 기준이 생기는 것 같아요",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 63,
+    "text": "이 분 영상 보면 제 고민이 다 사라져요 더 큰 걱정이 생겨서요",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 64,
+    "text": "정말 유니크한 크리에이터세요 어떤 면에서도 비교 불가예요",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 65,
+    "text": "이런 영상이 있기에 다른 영상들이 돋보이는 것 같아요",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 66,
+    "text": "뭔가 이분만의 철학이 담긴 것 같아요 해석은 각자가 알아서요",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 67,
+    "text": "이 영상 덕분에 오늘 많이 웃었어요 의도하신 건지 모르겠지만요",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 68,
+    "text": "이런 콘텐츠를 꾸준히 올리신다는 게 대단해요 진짜 대단해요",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 69,
+    "text": "보면 볼수록 뭔가 알 것 같기도 하고 모를 것 같기도 하고",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 70,
+    "text": "남들과 다른 길을 가고 계시네요 그 용기만큼은 진심으로 인정해요",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 71,
+    "text": "이분은 정말 자기 세계가 확실해요 그 세계가 어딘지는 저도 모르겠지만",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 72,
+    "text": "보는 내내 많은 생각이 들었어요 주로 왜 보고 있지였지만요",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 73,
+    "text": "이분 덕분에 오늘도 풍요로운 하루였어요 기준이 낮아진 의미에서요",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 74,
+    "text": "이런 분들이 있어서 세상이 다채로운 것 같아요",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 75,
+    "text": "정말 보기 드문 콘텐츠를 만드시네요 여러 의미에서요",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 76,
+    "text": "와 이런 방향도 있구나 역시 넓은 세상이에요 ㅎ",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 77,
+    "text": "이 분 영상 보면 항상 뭔가 새로운 걸 알게 돼요 왜 그렇게 하면 안 되는지요",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 78,
+    "text": "오 이 방법도 있군요 진짜 다양하네요 방법이",
+    "label": "sarcasm",
+    "difficulty": "medium"
+  },
+  {
+    "id": 79,
+    "text": "이 분 진짜 꾸준하시다 이런 퀄리티로 꾸준하게 올리시다니",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 80,
+    "text": "ㅋㅋㅋ 대박이다 진짜로 ㅋㅋ",
+    "label": "sarcasm",
+    "difficulty": "easy"
+  },
+  {
+    "id": 81,
+    "text": "이게 되는구나 신기하다 이런 방법이 통하다니",
+    "label": "sarcasm",
+    "difficulty": "medium"
+  },
+  {
+    "id": 82,
+    "text": "진짜 대단하다 어떻게 이런 생각을 했을까",
+    "label": "sarcasm",
+    "difficulty": "easy"
+  },
+  {
+    "id": 83,
+    "text": "이 분 콘텐츠 항상 기대 이상이에요 여러 방향으로요",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 84,
+    "text": "오 이런 결과가 나왔군요 흠흠 네네",
+    "label": "sarcasm",
+    "difficulty": "medium"
+  },
+  {
+    "id": 85,
+    "text": "이런 분이 계셔서 참 다양하네요 유튜브가",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 86,
+    "text": "진짜 이 영상 도움 많이 됐어요 어떻게 살면 안 되는지요",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 87,
+    "text": "ㅎㅎ 역시 기대를 안 하면 실망도 없는데 그게 안 됩니다 이 분은",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 88,
+    "text": "이거 진짜 감동이다 ㅋㅋ 어떤 의미에서는요",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 89,
+    "text": "이 채널 계속 와야겠어요 볼수록 뭔가 느끼는 게 있어서",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 90,
+    "text": "와 이게 진짜야? 진짜네 ㅋㅋ 대단해",
+    "label": "sarcasm",
+    "difficulty": "easy"
+  },
+  {
+    "id": 91,
+    "text": "이 분 정말 뭔가 다르세요 분명히 다른데 뭔지는 말 못하겠어요",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 92,
+    "text": "저 이 영상 세 번 봤어요 볼수록 새로운 게 느껴져서요 ㅎ",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 93,
+    "text": "이 분 팬 됐어요 이런 콘텐츠를 어떻게 이렇게 만드시는지",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 94,
+    "text": "이거 진짜 잘 만들었다 감사하다 반면교사 콘텐츠로",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 95,
+    "text": "뭐 이런 것도 콘텐츠가 되는군요 요즘 세상 참 ㅎ",
+    "label": "sarcasm",
+    "difficulty": "medium"
+  },
+  {
+    "id": 96,
+    "text": "이 분 볼 때마다 삶에 대한 의욕이 솟아요 뭔가 해야겠다 싶어서",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 97,
+    "text": "오늘도 새로운 걸 배웠네요 이래선 안 되겠다는 걸요",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 98,
+    "text": "이 분 영상 없었으면 제가 어쩔 뻔 했나요 ㅎ 진심이에요 어떤 방향으로든",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 99,
+    "text": "와 이 분 유튜브 안 하셨으면 큰일 날 뻔 했다 어떤 의미에서는요",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 100,
+    "text": "이 영상 덕분에 비교가 되더라고요 좋은 영상이 뭔지 알겠어요",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 101,
+    "text": "부업 관심 있으시면 프로필 링크 확인해주세요",
+    "label": "ad",
+    "difficulty": "easy"
+  },
+  {
+    "id": 102,
+    "text": "다이어트 성공 비결 DM으로 알려드려요 👇",
+    "label": "ad",
+    "difficulty": "easy"
+  },
+  {
+    "id": 103,
+    "text": "투자 정보 공유방 오픈했어요 링크는 바이오에",
+    "label": "ad",
+    "difficulty": "easy"
+  },
+  {
+    "id": 104,
+    "text": "무료 상담 가능합니다 프로필 클릭해주세요!",
+    "label": "ad",
+    "difficulty": "easy"
+  },
+  {
+    "id": 105,
+    "text": "하루 2시간으로 월 300 가능해요 궁금하면 DM주세요",
+    "label": "ad",
+    "difficulty": "easy"
+  },
+  {
+    "id": 106,
+    "text": "피부 고민 있으신 분 댓글 달아주세요 해결책 알려드릴게요",
+    "label": "ad",
+    "difficulty": "easy"
+  },
+  {
+    "id": 107,
+    "text": "코인 고수익 정보 오픈채팅방 링크 프로필에 있어요",
+    "label": "ad",
+    "difficulty": "easy"
+  },
+  {
+    "id": 108,
+    "text": "쇼핑몰 오픈했어요! 팔로우하고 첫 구매 10% 할인받으세요",
+    "label": "ad",
+    "difficulty": "easy"
+  },
+  {
+    "id": 109,
+    "text": "재택 부업 구인 중입니다. 하루 3시간만 투자하세요. DM 환영",
+    "label": "ad",
+    "difficulty": "easy"
+  },
+  {
+    "id": 110,
+    "text": "탈모 고민 있으신 분들 저한테 연락 주세요 제품 추천해드려요",
+    "label": "ad",
+    "difficulty": "easy"
+  },
+  {
+    "id": 111,
+    "text": "무자본 창업 관심 있는 분 계세요? 오픈채팅 링크 바이오에~",
+    "label": "ad",
+    "difficulty": "easy"
+  },
+  {
+    "id": 112,
+    "text": "살 빼고 싶은 분 제 블로그 방문해보세요 진짜 효과 있어요",
+    "label": "ad",
+    "difficulty": "easy"
+  },
+  {
+    "id": 113,
+    "text": "✅ 월급 외 수입 원하시는 분 프로필에서 확인하세요",
+    "label": "ad",
+    "difficulty": "easy"
+  },
+  {
+    "id": 114,
+    "text": "제 인스타 팔로우하면 할인 쿠폰 드려요 지금 바로 오세요",
+    "label": "ad",
+    "difficulty": "easy"
+  },
+  {
+    "id": 115,
+    "text": "강아지 간식 직접 만드는 제품이에요 링크 클릭해보세요",
+    "label": "ad",
+    "difficulty": "easy"
+  },
+  {
+    "id": 116,
+    "text": "주식 리딩방 무료로 들어오세요! 먼저 오는 분께만 공개합니다",
+    "label": "ad",
+    "difficulty": "easy"
+  },
+  {
+    "id": 117,
+    "text": "네일 패키지 반값 할인 중이에요 DM으로 예약하세요 💅",
+    "label": "ad",
+    "difficulty": "easy"
+  },
+  {
+    "id": 118,
+    "text": "건강기능식품 체험단 모집해요! 관심 있는 분 댓글이나 DM주세요",
+    "label": "ad",
+    "difficulty": "easy"
+  },
+  {
+    "id": 119,
+    "text": "지금 스마트스토어 세일 중입니다 프로필 링크 클릭!",
+    "label": "ad",
+    "difficulty": "easy"
+  },
+  {
+    "id": 120,
+    "text": "N잡 하실 분 구합니다 하루 1~2시간 가능하신 분 DM주세요",
+    "label": "ad",
+    "difficulty": "easy"
+  },
+  {
+    "id": 121,
+    "text": "이 영상 보시는 분들 혜택 드려요 링크에서 코드 쓰시면 10% 추가 할인",
+    "label": "ad",
+    "difficulty": "easy"
+  },
+  {
+    "id": 122,
+    "text": "온라인 쇼핑몰 창업 무료 강의 링크 댓글로 드릴게요 원하시면 말씀해주세요",
+    "label": "ad",
+    "difficulty": "easy"
+  },
+  {
+    "id": 123,
+    "text": "피부 트러블 고민이신 분들 저 연락주세요 좋은 제품 알고 있어요",
+    "label": "ad",
+    "difficulty": "easy"
+  },
+  {
+    "id": 124,
+    "text": "비트코인 지금 올라요! 제 오픈채팅방에서 실시간 정보 공유 중이에요",
+    "label": "ad",
+    "difficulty": "easy"
+  },
+  {
+    "id": 125,
+    "text": "저도 이거 써봤는데 효과 있더라고요~ 궁금하면 물어보세요 ㅎ",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 126,
+    "text": "이런 거 찾고 있었는데 마침 저도 비슷한 거 알고 있어요",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 127,
+    "text": "저 이 방법으로 진짜 바뀌었어요 원하시면 알려드릴게요",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 128,
+    "text": "이거 어디서 구해요? 아 제가 아는 곳 있긴 한데 ㅎㅎ",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 129,
+    "text": "저도 예전에 이 고민 있었는데 지금은 해결했어요 궁금하신 분 말씀해요",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 130,
+    "text": "이 영상 내용이랑 관련 있는 정보 있는데 나눠도 될까요?",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 131,
+    "text": "저도 처음엔 반신반의했는데 써보고 달라졌어요 진짜로요",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 132,
+    "text": "비슷한 거 찾다가 더 좋은 거 발견했는데 얘기해도 될까요",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 133,
+    "text": "저 이거 해봤는데 생각보다 괜찮더라고요 자세한 건 DM으로요",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 134,
+    "text": "이거 효과 있어요? 저 알고 있는 더 좋은 방법이 있긴 한데",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 135,
+    "text": "저도 이 분야 공부했는데 더 좋은 방법 있어요 알고 싶으시면요",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 136,
+    "text": "혹시 관련 정보 원하는 분 계세요? 공유해드릴 수 있어요",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 137,
+    "text": "이거 결과 나왔어요 ㅎ 자세한 건 제 페이지에 올려놨어요",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 138,
+    "text": "저도 이 방법 써서 효과 봤어요 자세한 내용은 제 계정에 있어요",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 139,
+    "text": "이거 저도 고민하다가 방법 찾았는데 공유드려도 될까요",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 140,
+    "text": "저도 똑같은 고민 있었는데 해결했어요! 원하시면 알려드릴게요",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 141,
+    "text": "이거 관심 있으신 분들 좋은 정보 있는데 필요하시면 말씀해주세요",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 142,
+    "text": "저도 처음엔 몰랐는데 알고 나서 바뀌었어요 나눠드릴게요",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 143,
+    "text": "이거 효과 봤어요 진짜로 방법은 프로필에 적어놨어요",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 144,
+    "text": "저도 전에 이런 거 찾았는데 더 좋은 거 알고 있거든요 ㅎ",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 145,
+    "text": "이 주제 관심 있으신 분 저 팔로우 해두시면 정보 드려요",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 146,
+    "text": "이런 방법도 있다는 거 알려드리고 싶었어요 혹시 필요하시면요",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 147,
+    "text": "저도 비슷한 상황이었는데 방법 찾았거든요 혹시 궁금하시면요",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 148,
+    "text": "이 분야 관련해서 제가 아는 게 있어서요 공유 괜찮을까요",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 149,
+    "text": "우연히 알게 된 정보인데 도움 될 것 같아서요 필요하시면 말씀해요",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 150,
+    "text": "저도 작년에 이런 고민 있었는데 지금은 해결했어요 ㅎ",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 151,
+    "text": "진짜로 바뀌었어요 이거 알고 나서 제 삶이 달라진 게 있어요",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 152,
+    "text": "이 영상 내용이랑 연관해서 제가 좋은 경험 있거든요",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 153,
+    "text": "요즘 이거 공부하는데 생각보다 할 만해요 혹시 같이 공부하실 분?",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 154,
+    "text": "저 이거 해봤는데 생각보다 괜찮더라고요 방법이 있어요",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 155,
+    "text": "이쪽으로 방향 바꿨더니 좀 달라지더라고요 의외로요",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 156,
+    "text": "저도 처음엔 반신반의했는데 한번 해보니까 나쁘지 않더라고요",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 157,
+    "text": "이 방법 알기 전이랑 후가 진짜 달라요 뭔지 궁금하시면 연락요",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 158,
+    "text": "혼자 하기 어려운 거 있잖아요 그거 도움받을 수 있어요",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 159,
+    "text": "저도 이거 시작하기 전에 망설였는데 지금은 잘했다 싶어요",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 160,
+    "text": "비슷한 고민 있으신 분들 연락주세요 방법 알려드릴 수 있어요",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 161,
+    "text": "이거 알게 된 게 진짜 다행이에요 여러분도 알면 좋겠어요",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 162,
+    "text": "요즘 많이 힘들었는데 이거 하고 나서 좀 나아졌어요",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 163,
+    "text": "이거 진짜 괜찮아요 관심 있으신 분들 편하게 물어봐요",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 164,
+    "text": "저 이거 통해서 좀 달라진 게 있어요 나중에 공유해드릴게요",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 165,
+    "text": "뭔가 막혀 있는 분들 있으면 제가 도움이 될 수도 있을 것 같아요",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 166,
+    "text": "저는 이거 알고 나서 진짜 많이 바뀌었어요 그냥 지나치기 아까워서요",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 167,
+    "text": "이 방향으로 가시면 더 좋을 것 같아요 제 경험상으로요",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 168,
+    "text": "혹시 같은 고민 있으신 분들 저랑 이야기 나눠봐요",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 169,
+    "text": "요즘 이쪽으로 꽤 공부했는데 같이 하실 분 있으면 좋겠어요",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 170,
+    "text": "저도 이 영상 주제랑 관련해서 도움받았던 방법 있거든요",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 171,
+    "text": "뭔가 변화가 필요하신 분들 있으면 댓글 달아주세요",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 172,
+    "text": "이거 알기 전이랑 비교하면 진짜 차이가 나요 말해드리고 싶어요",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 173,
+    "text": "저 이런 방법으로 해결했거든요 나눠드려도 괜찮을 것 같아서요",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 174,
+    "text": "이거 한번 알아보시면 생각보다 도움될 수도 있을 것 같아요",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 175,
+    "text": "저 이거 알고 나서 진짜 달라졌어요 같이 해보실 분 DM주세요",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 176,
+    "text": "수익화 방법 궁금하신 분 제 오픈채팅방 초대드릴게요",
+    "label": "ad",
+    "difficulty": "easy"
+  },
+  {
+    "id": 177,
+    "text": "피부 좋아진 방법 물어보시면 알려드려요 댓글로 신청 받아요",
+    "label": "ad",
+    "difficulty": "easy"
+  },
+  {
+    "id": 178,
+    "text": "이 분야 공부하실 분 저 알고 있는 좋은 커뮤니티 있어요",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 179,
+    "text": "요즘 재태크 공부하는데 같이 공부하실 분 있으면 연락주세요",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 180,
+    "text": "제가 3개월 만에 바뀐 방법 알려드릴게요 댓글 남겨주시면요",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 181,
+    "text": "이런 정보 찾고 계신 분들 제 프로필 보시면 도움될 거예요",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 182,
+    "text": "저도 이 고민 해결하는 데 시간이 걸렸는데 방법 알게 됐어요 알고 싶으면 DM이요",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 183,
+    "text": "다이어트 포기하셨던 분들 저한테 한번 물어봐주세요",
+    "label": "ad",
+    "difficulty": "easy"
+  },
+  {
+    "id": 184,
+    "text": "부업 알아보시는 분 저 지금 팀원 모집 중이에요",
+    "label": "ad",
+    "difficulty": "easy"
+  },
+  {
+    "id": 185,
+    "text": "코인 단톡방 참여하실 분 프로필 링크 확인해주세요",
+    "label": "ad",
+    "difficulty": "easy"
+  },
+  {
+    "id": 186,
+    "text": "저도 처음엔 안 된다고 생각했는데 이제는 됩니다 방법은 DM으로요",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 187,
+    "text": "이런 거 혼자 하시려면 힘든데 같이 하실 분 구해요",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 188,
+    "text": "제 경험 나눠드릴게요 원하시면 채팅으로 연락주세요",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 189,
+    "text": "헬스보조식품 체험단 모집 중입니다 관심 있으신 분 댓글 달아주세요",
+    "label": "ad",
+    "difficulty": "easy"
+  },
+  {
+    "id": 190,
+    "text": "한 달 무료 상담 진행 중이에요 지금 신청하시면 돼요",
+    "label": "ad",
+    "difficulty": "easy"
+  },
+  {
+    "id": 191,
+    "text": "저도 이거 해봤는데 진짜 달라졌어요 더 알고 싶으시면 댓글 주세요",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 192,
+    "text": "투자 공부방에서 같이 성장하실 분들 찾아요",
+    "label": "ad",
+    "difficulty": "easy"
+  },
+  {
+    "id": 193,
+    "text": "저도 직장 다니면서 이거 시작했는데 지금은 꽤 됩니다 궁금하시면요",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 194,
+    "text": "이 방향으로 가면 달라질 수 있어요 경험자로서 말씀드려요",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 195,
+    "text": "쇼핑몰 창업 도와드려요 처음부터 끝까지 저랑 해봐요",
+    "label": "ad",
+    "difficulty": "easy"
+  },
+  {
+    "id": 196,
+    "text": "이 영상 보신 분들 중에 제 상황이랑 비슷한 분 있으면 연락주세요",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 197,
+    "text": "온라인 수익 구조 만들고 싶은 분 같이 시작해봐요",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 198,
+    "text": "저 3개월째 하고 있는데 생각보다 나쁘지 않아요 궁금하신 분 말씀하세요",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 199,
+    "text": "이런 고민 있는 분들 제 블로그에 정리해뒀어요 참고하세요",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 200,
+    "text": "강아지 유기농 간식 만들어서 판매 중이에요 구경 오세요 링크 바이오에",
+    "label": "ad",
+    "difficulty": "easy"
+  },
+  {
+    "id": 201,
+    "text": "진짜 못생겼다 저게 뭐야",
+    "label": "hate",
+    "difficulty": "easy"
+  },
+  {
+    "id": 202,
+    "text": "뇌가 없냐 이게 뭔 소리야 진짜",
+    "label": "hate",
+    "difficulty": "easy"
+  },
+  {
+    "id": 203,
+    "text": "개별로다 이게 무슨 영상이야",
+    "label": "hate",
+    "difficulty": "easy"
+  },
+  {
+    "id": 204,
+    "text": "얼굴은 왜 저래 ㅋㅋㅋ 충격이다",
+    "label": "hate",
+    "difficulty": "easy"
+  },
+  {
+    "id": 205,
+    "text": "저 사람 진짜 구제불능이다 ㅋ",
+    "label": "hate",
+    "difficulty": "easy"
+  },
+  {
+    "id": 206,
+    "text": "말하는 것 좀 봐 진짜 한심하다",
+    "label": "hate",
+    "difficulty": "easy"
+  },
+  {
+    "id": 207,
+    "text": "저 좀 나가라 진짜 보기 싫어",
+    "label": "hate",
+    "difficulty": "easy"
+  },
+  {
+    "id": 208,
+    "text": "아니 왜 이런 사람이 인기 있는 거야 이해 안 된다",
+    "label": "hate",
+    "difficulty": "easy"
+  },
+  {
+    "id": 209,
+    "text": "저 표정 좀 봐 진짜 어이없어",
+    "label": "hate",
+    "difficulty": "easy"
+  },
+  {
+    "id": 210,
+    "text": "이 사람 진짜 답없다 ㅋㅋ",
+    "label": "hate",
+    "difficulty": "easy"
+  },
+  {
+    "id": 211,
+    "text": "쓸모도 없는 영상 왜 올려 진짜 시간 낭비야",
+    "label": "hate",
+    "difficulty": "easy"
+  },
+  {
+    "id": 212,
+    "text": "저거 진짜 찐따다 미안한데",
+    "label": "hate",
+    "difficulty": "easy"
+  },
+  {
+    "id": 213,
+    "text": "얼굴값 좀 해라 제발",
+    "label": "hate",
+    "difficulty": "easy"
+  },
+  {
+    "id": 214,
+    "text": "진짜 학교 제대로 다녔냐 이런 말을 해?",
+    "label": "hate",
+    "difficulty": "easy"
+  },
+  {
+    "id": 215,
+    "text": "이 분 좀 사라졌으면 진심으로",
+    "label": "hate",
+    "difficulty": "easy"
+  },
+  {
+    "id": 216,
+    "text": "저렇게 살아도 되는 거야? 진짜 한심해",
+    "label": "hate",
+    "difficulty": "easy"
+  },
+  {
+    "id": 217,
+    "text": "저 사람 볼 때마다 기분 나빠진다 진짜",
+    "label": "hate",
+    "difficulty": "easy"
+  },
+  {
+    "id": 218,
+    "text": "왜 이런 게 추천되지 진짜 이해 안 돼 ㅋ",
+    "label": "hate",
+    "difficulty": "easy"
+  },
+  {
+    "id": 219,
+    "text": "이거 보고 밥 다 토할 뻔",
+    "label": "hate",
+    "difficulty": "easy"
+  },
+  {
+    "id": 220,
+    "text": "이 정도 실력이면 그냥 하지 마 진짜",
+    "label": "hate",
+    "difficulty": "easy"
+  },
+  {
+    "id": 221,
+    "text": "이거 진짜 쓰레기 영상이다 구독 취소함",
+    "label": "hate",
+    "difficulty": "easy"
+  },
+  {
+    "id": 222,
+    "text": "저 사람 진짜 어디서 왔어 저러면 안 되는데",
+    "label": "hate",
+    "difficulty": "easy"
+  },
+  {
+    "id": 223,
+    "text": "얼굴이나 관리해라 진짜로",
+    "label": "hate",
+    "difficulty": "easy"
+  },
+  {
+    "id": 224,
+    "text": "이게 영상이야 그냥 쓰레기지",
+    "label": "hate",
+    "difficulty": "easy"
+  },
+  {
+    "id": 225,
+    "text": "이 사람 말투 진짜 거슬려 죽겠어",
+    "label": "hate",
+    "difficulty": "easy"
+  },
+  {
+    "id": 226,
+    "text": "이게 콘텐츠라고 올리는 거임? 진짜 이해불가",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 227,
+    "text": "이 정도 실력으로 유튜브를 하네 진짜",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 228,
+    "text": "저 사람 저거 진심으로 하는 건가 모르겠다",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 229,
+    "text": "댓글 다는 분들은 진짜 뭐 보고 좋다는 거예요",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 230,
+    "text": "이런 채널이 구독자가 있다는 게 놀랍네요 진짜로",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 231,
+    "text": "저분 말투가 너무 불쾌해요 뭔가 가르치려는 게 느껴져서",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 232,
+    "text": "이거 보면서 진짜 허탈했어요 시간이 아까워서",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 233,
+    "text": "저 분 다른 영상도 이래요? 이러면 보기 힘든데",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 234,
+    "text": "진짜 어떻게 저런 말을 아무렇지 않게 하는지 모르겠어요",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 235,
+    "text": "이 영상 보고 기분 나빠졌어요 뭔가 무시당한 느낌",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 236,
+    "text": "이게 진짜 최선이라고 생각하는 거면 좀 심각한 거 아닌가요",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 237,
+    "text": "저렇게 자신 있게 틀린 말 할 수 있는 것도 재능이긴 해요",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 238,
+    "text": "이 사람 왜 이렇게 잘난 척해요 진짜 보기 싫어",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 239,
+    "text": "저 분 좀 겸손하게 사시면 안 되나요",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 240,
+    "text": "이 영상은 진짜 아무 의미가 없어요 보는 사람만 손해",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 241,
+    "text": "이 채널 왜 이렇게 퀄리티가 낮아요 진짜 실망이에요",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 242,
+    "text": "저분 말투 왜 저래요 진짜 기분 나쁘게 말하는 스타일이네",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 243,
+    "text": "이 사람 진짜 모르면 모른다고 하지 왜 아는 척이야",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 244,
+    "text": "이 영상 누가 좋아요 눌렀어요? 진짜 이해 안 돼",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 245,
+    "text": "저 분 진짜 인터넷 하면 안 되는 타입인 것 같아요",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 246,
+    "text": "이 영상 보는 내내 눈살이 찌푸려졌어요 이유는 다양하고요",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 247,
+    "text": "이런 콘텐츠가 알고리즘에 뜨는 게 이해가 안 가요",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 248,
+    "text": "저 분 다시 학교 다녀오셔야 할 것 같아요 진지하게",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 249,
+    "text": "이 분 팬들은 왜 이런 걸 좋다고 하는지 모르겠어요 진짜",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 250,
+    "text": "이런 영상이 조회수 나온다는 게 이 사회 수준을 보여주네요",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 251,
+    "text": "그냥 본인이 좋아서 하시는 거잖아요 굳이 올리실 필욘 없는데",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 252,
+    "text": "뭔가 착각하고 계신 것 같은데 이게 잘하는 거라고 생각하세요?",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 253,
+    "text": "이 분야 진짜 좀 아는 사람들은 이 영상 어떻게 볼지 궁금하네요",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 254,
+    "text": "이런 방향으로 계속 가실 건가요? 좀 바꿔보실 생각은 없으신지",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 255,
+    "text": "보는 분들이 있으시니 계속 올리시겠지만 저는 좀 의문이에요",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 256,
+    "text": "이 분야 공부를 좀 더 하고 나서 영상 올리시면 어떨까요",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 257,
+    "text": "뭔가 자신감이 넘치시는데 근거가 좀 부족한 것 같아요",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 258,
+    "text": "이런 식으로 계속 콘텐츠 내시면 구독자들한테 좋을 게 없을 것 같아요",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 259,
+    "text": "이게 좋은 콘텐츠라고 생각하신 거면 기준을 좀 올려보시는 게 어떨까요",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 260,
+    "text": "솔직히 이 분야 잘 아는 사람들한테 이 영상 검증 받아보셨나요",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 261,
+    "text": "이 분 영상 보면 항상 뭔가 답답한 느낌이 있어요 이유는 많고요",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 262,
+    "text": "이런 걸 공유하시면 보시는 분들이 잘못된 정보 가질 수 있지 않을까요",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 263,
+    "text": "이 영상 주제 관련해서 더 잘하시는 분들 많이 계세요 찾아보세요",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 264,
+    "text": "뭔가 핵심이 빠진 것 같아요 이 영상은 그냥 겉핥기 수준이에요",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 265,
+    "text": "이런 방식으로 설명하시면 보는 사람이 더 헷갈리는 것 같아요",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 266,
+    "text": "이 분 다른 분야 하시는 게 더 나을 것 같다는 생각이 드네요",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 267,
+    "text": "저는 이 분 콘텐츠에서 배울 게 없었어요 솔직히 말씀드리면",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 268,
+    "text": "이렇게 잘못된 정보를 당당하게 말씀하시는 게 좀 문제 있어 보여요",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 269,
+    "text": "이 주제로 계속 영상 내실 거면 공부 좀 더 하시고 내시는 게 맞을 것 같아요",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 270,
+    "text": "이 분 스스로 뭘 모르는지도 모르시는 것 같아요 그게 더 걱정이에요",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 271,
+    "text": "이런 영상이 많은 분들에게 노출된다는 게 조금 우려스럽네요",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 272,
+    "text": "이 분 영상 의도는 좋은데 방향이 좀 잘못된 것 같아 아쉬워요",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 273,
+    "text": "이 분야 종사하는 입장에서 이 영상 보면 많이 답답해요",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 274,
+    "text": "뭔가 기본이 없는 채로 자신 있게 말씀하시는 게 좀 무서워요",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 275,
+    "text": "이거 진짜 쓸데없는 영상이다 시간 돌려줘",
+    "label": "hate",
+    "difficulty": "easy"
+  },
+  {
+    "id": 276,
+    "text": "저 사람 어디서 왔냐 진짜 ㅋㅋ",
+    "label": "hate",
+    "difficulty": "easy"
+  },
+  {
+    "id": 277,
+    "text": "이 채널 왜 추천 뜨냐 진짜 싫어",
+    "label": "hate",
+    "difficulty": "easy"
+  },
+  {
+    "id": 278,
+    "text": "저 분 좀 그냥 인터넷 끊으시면 안 되나요",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 279,
+    "text": "이거 보는 사람들 취향이 참 다양하네요 ㅋ 어떻게 이런 걸 보죠",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 280,
+    "text": "진짜 이 분 자기 영상 보면서 부끄럽지 않나요?",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 281,
+    "text": "이 채널 뭔가 문제 있는 것 같아요 그냥 막 올리는 것 같아서",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 282,
+    "text": "저 표정 진짜 보기 싫어 왜 저러는지 모르겠어",
+    "label": "hate",
+    "difficulty": "easy"
+  },
+  {
+    "id": 283,
+    "text": "이 분 댓글 차단 좀 적극적으로 하시죠 그게 나을 것 같아요",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 284,
+    "text": "이 영상 좋아요 누른 사람들 미각이 없는 거 아닌가요",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 285,
+    "text": "이 분 진짜 민폐다 이런 정보 퍼뜨리지 마세요",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 286,
+    "text": "저 말투 들을 때마다 귀가 아파요",
+    "label": "hate",
+    "difficulty": "easy"
+  },
+  {
+    "id": 287,
+    "text": "이거 올리기 전에 한 번만 생각해보셨나요 진짜",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 288,
+    "text": "이분 지적 수준이 걱정됩니다 진지하게",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 289,
+    "text": "이 영상 왜 이렇게 많이 봤지 내 시간이 아깝다",
+    "label": "hate",
+    "difficulty": "easy"
+  },
+  {
+    "id": 290,
+    "text": "저분은 뭘 믿고 이런 영상 찍는지 모르겠어요 근거가 어딨어요",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 291,
+    "text": "이 채널 정말 발전이 없어요 맨날 이 수준이에요",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 292,
+    "text": "이 분 얼굴이랑 영상이랑 둘 다 별로예요 솔직히 말하면",
+    "label": "hate",
+    "difficulty": "easy"
+  },
+  {
+    "id": 293,
+    "text": "이런 분들이 활개 치는 게 이해가 안 돼요",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 294,
+    "text": "이분 거슬리는 게 한두 가지가 아닌데 굳이 나열할 필요도 없고",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 295,
+    "text": "저 사람 진짜 창피한 줄 알아야 해",
+    "label": "hate",
+    "difficulty": "easy"
+  },
+  {
+    "id": 296,
+    "text": "이 분 제발 유튜브 그만하시고 다른 일 알아보세요",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 297,
+    "text": "이런 게 콘텐츠라고 만들어 올리는 의도가 뭔지 진짜 모르겠어요",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 298,
+    "text": "이 분 전문성이 전혀 없는데 왜 이런 영상을 올리시는지요",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 299,
+    "text": "저 분 말하는 거 보면 공부를 얼마나 안 하셨는지 다 보여요",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 300,
+    "text": "이 영상 내용이 진짜 해롭다 이런 거 퍼지면 안 되는데",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 301,
+    "text": "이 영상 잘 봤어요 ㅎㅎ",
+    "label": "normal",
+    "difficulty": "easy"
+  },
+  {
+    "id": 302,
+    "text": "오늘도 좋은 영상 감사합니다!",
+    "label": "normal",
+    "difficulty": "easy"
+  },
+  {
+    "id": 303,
+    "text": "설명 진짜 잘하시네요 이해가 잘 됐어요",
+    "label": "normal",
+    "difficulty": "easy"
+  },
+  {
+    "id": 304,
+    "text": "구독하고 갑니다 앞으로도 자주 올려주세요",
+    "label": "normal",
+    "difficulty": "easy"
+  },
+  {
+    "id": 305,
+    "text": "이런 영상 기다리고 있었어요 감사해요!",
+    "label": "normal",
+    "difficulty": "easy"
+  },
+  {
+    "id": 306,
+    "text": "유익한 정보 감사합니다 많이 도움됐어요",
+    "label": "normal",
+    "difficulty": "easy"
+  },
+  {
+    "id": 307,
+    "text": "와 진짜 좋다 최고야 ㅎㅎ",
+    "label": "normal",
+    "difficulty": "easy"
+  },
+  {
+    "id": 308,
+    "text": "오늘 영상도 재밌었어요 다음 것도 기대할게요",
+    "label": "normal",
+    "difficulty": "easy"
+  },
+  {
+    "id": 309,
+    "text": "늘 응원합니다 파이팅 😊",
+    "label": "normal",
+    "difficulty": "easy"
+  },
+  {
+    "id": 310,
+    "text": "이거 진짜 따라해봐야겠다 감사해요",
+    "label": "normal",
+    "difficulty": "easy"
+  },
+  {
+    "id": 311,
+    "text": "목소리가 좋으세요 듣기 편해요",
+    "label": "normal",
+    "difficulty": "easy"
+  },
+  {
+    "id": 312,
+    "text": "예전부터 팬이었는데 이번 영상도 좋네요",
+    "label": "normal",
+    "difficulty": "easy"
+  },
+  {
+    "id": 313,
+    "text": "처음 왔는데 좋아요 누르고 구독했어요 ㅎ",
+    "label": "normal",
+    "difficulty": "easy"
+  },
+  {
+    "id": 314,
+    "text": "이런 콘텐츠 더 많이 올려주세요!",
+    "label": "normal",
+    "difficulty": "easy"
+  },
+  {
+    "id": 315,
+    "text": "친구한테 공유했어요 같이 봐야겠다고 해서요",
+    "label": "normal",
+    "difficulty": "easy"
+  },
+  {
+    "id": 316,
+    "text": "이번 영상 특히 더 좋았어요 감사합니다",
+    "label": "normal",
+    "difficulty": "easy"
+  },
+  {
+    "id": 317,
+    "text": "편집 너무 잘하셨어요 보기 편하더라고요",
+    "label": "normal",
+    "difficulty": "easy"
+  },
+  {
+    "id": 318,
+    "text": "도움 많이 됐어요 감사합니다 선생님!",
+    "label": "normal",
+    "difficulty": "easy"
+  },
+  {
+    "id": 319,
+    "text": "진짜 꿀팁이네요 몰랐던 거 많이 알아가요",
+    "label": "normal",
+    "difficulty": "easy"
+  },
+  {
+    "id": 320,
+    "text": "오늘 처음 봤는데 전 영상도 다 볼 것 같아요",
+    "label": "normal",
+    "difficulty": "easy"
+  },
+  {
+    "id": 321,
+    "text": "항상 이렇게 좋은 내용 올려주셔서 감사해요",
+    "label": "normal",
+    "difficulty": "easy"
+  },
+  {
+    "id": 322,
+    "text": "이거 어디서 사나요? 제품명 알 수 있을까요?",
+    "label": "normal",
+    "difficulty": "easy"
+  },
+  {
+    "id": 323,
+    "text": "영상 길이가 딱 적당한 것 같아요 지루하지 않네요",
+    "label": "normal",
+    "difficulty": "easy"
+  },
+  {
+    "id": 324,
+    "text": "댓글 남기고 싶어서 처음으로 써봐요 잘 봤습니다!",
+    "label": "normal",
+    "difficulty": "easy"
+  },
+  {
+    "id": 325,
+    "text": "배경음악이 뭔지 아시는 분 계세요?",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 326,
+    "text": "이거 어디 지역 얘기예요? 저도 거기 살아서요",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 327,
+    "text": "혹시 이 제품 여러 색깔 있나요?",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 328,
+    "text": "이 방법 말고 다른 방법도 있나요?",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 329,
+    "text": "저도 비슷한 경험 있었는데 이렇게 해결했어요",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 330,
+    "text": "이거 초보자도 따라 할 수 있을까요?",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 331,
+    "text": "영상에서 입고 나오신 옷 어디 거예요?",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 332,
+    "text": "이 내용 관련해서 책 추천해주실 수 있어요?",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 333,
+    "text": "다음에는 이런 주제로도 올려주실 수 있나요?",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 334,
+    "text": "이 방법 써봤는데 저는 효과가 좀 달랐어요 개인차가 있는 것 같아요",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 335,
+    "text": "저도 이 주제 관심 있었는데 많이 도움됐어요",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 336,
+    "text": "이거 여름에도 할 수 있나요?",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 337,
+    "text": "혹시 자막 추가해주실 수 있나요 소리가 잘 안 들려서요",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 338,
+    "text": "이 부분이 좀 이해가 안 됐는데 다시 설명해주실 수 있을까요",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 339,
+    "text": "이거 한국에서도 구할 수 있어요?",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 340,
+    "text": "저 이거 따라해봤는데 생각보다 어렵더라고요 ㅎ",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 341,
+    "text": "이 영상 보기 전에 알았으면 좋았을 텐데요 ㅎ",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 342,
+    "text": "이 내용이랑 관련해서 더 심화 영상도 올려주실 건가요?",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 343,
+    "text": "저도 이거 해보려고 하는데 뭐부터 시작하면 될까요",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 344,
+    "text": "이 방법이 나이 들어도 효과가 있나요?",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 345,
+    "text": "혹시 비용이 얼마나 들어요?",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 346,
+    "text": "이거 혼자서도 할 수 있을까요 아니면 같이 해야 하나요?",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 347,
+    "text": "이 영상 진짜 많이 공유됐겠다 싶어요 저도 공유할게요",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 348,
+    "text": "이거 틀린 부분도 있는 것 같아서요 확인해보시면 어떨까요",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 349,
+    "text": "솔직히 이 부분은 좀 아쉬웠어요",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 350,
+    "text": "전에 올리신 거랑 거의 비슷한 내용 아닌가요",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 351,
+    "text": "음... 저는 좀 다르게 생각하는데 뭐 개인차이겠죠",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 352,
+    "text": "이 방법이 무조건 맞는 건 아닌 것 같아요 케이스바이케이스 아닐까요",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 353,
+    "text": "이 영상 정보가 좀 오래된 것 같은데 최신 정보로 업데이트해주시면 좋겠어요",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 354,
+    "text": "이 부분 설명이 조금 부족한 것 같아요",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 355,
+    "text": "다른 분들이 다 좋다고 하는데 저는 별로였어요 취향 차이겠지만요",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 356,
+    "text": "이거 효과 있는 건지 잘 모르겠어요 해봤는데 저는 못 느꼈어요",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 357,
+    "text": "뭔가 설명이 좀 두루뭉술한 것 같아요 구체적으로 해주시면 좋겠는데",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 358,
+    "text": "이건 좀 공감이 안 되는 내용이었어요 개인적으로는요",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 359,
+    "text": "이거 반드시 이렇게 해야 하는 건 아니잖아요 다른 방법도 있는데",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 360,
+    "text": "이전 영상이 더 나았던 것 같아요 뭔가 달라진 것 같은 느낌이요",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 361,
+    "text": "이 내용 좀 더 검토해보시는 게 좋을 것 같아요 오류가 있어 보여서",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 362,
+    "text": "저는 이게 그렇게 효과적이라고 생각하지 않아요 뭐 경험 차이겠지만",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 363,
+    "text": "흠 이 방법은 저한테는 안 맞는 것 같아요",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 364,
+    "text": "이 영상 좀 더 준비하고 올리셔도 됐을 것 같아요",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 365,
+    "text": "솔직히 기대했던 것보다는 좀 아쉬웠어요",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 366,
+    "text": "이 부분은 좀 동의가 안 되는데 다른 분들은 어때요?",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 367,
+    "text": "뭔가 좀 억지스러운 부분이 있는 것 같아요",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 368,
+    "text": "이게 진짜 효과 있는 방법인지 의문이 들긴 해요",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 369,
+    "text": "이 주제 관련해서는 좀 더 다양한 의견이 있을 것 같아요",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 370,
+    "text": "이 방법이 모든 사람한테 맞는 건 아니지 않나요",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 371,
+    "text": "좀 편향된 시각 같기도 하고 물론 이분 의견이니까요",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 372,
+    "text": "이거 사실과 다른 내용도 섞여 있는 것 같은데 확인해보세요",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 373,
+    "text": "이 영상만 보고 따라 하기에는 정보가 좀 부족한 것 같아요",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 374,
+    "text": "뭔가 내용이 좀 산만한 것 같아요 집중이 잘 안 됐어요",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 375,
+    "text": "이 부분은 다르게 접근하면 어떨까 싶었어요 뭐 제 생각이지만",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 376,
+    "text": "생각보다 깊이가 없는 것 같아요 아쉽네요",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 377,
+    "text": "이거 구독자한테만 보여주는 버전은 없나요?",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 378,
+    "text": "이 분 채널 처음 왔는데 다른 영상도 이런 퀄리티인가요",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 379,
+    "text": "이거 외국에서도 통하는 방법인가요?",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 380,
+    "text": "이분 강의 따로 하시나요? 더 자세히 배우고 싶어요",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 381,
+    "text": "음식 만드는 거 보면서 배고파졌네요 ㅋㅋ",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 382,
+    "text": "이거 몇 살부터 할 수 있어요?",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 383,
+    "text": "이 방법 적용해봤는데 효과가 있었어요 감사해요",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 384,
+    "text": "저는 이런 스타일 별로 안 좋아하는데 그냥 내용만 봤어요",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 385,
+    "text": "이거 글로 정리해서 올려주실 수 있어요? 다시 보기 편하게요",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 386,
+    "text": "이 분야 유명한 분들 중에서 이 방식 쓰는 분이 얼마나 되나요?",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 387,
+    "text": "뭔가 핵심 포인트가 있는 것 같은데 제가 놓친 건지 모르겠어요",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 388,
+    "text": "이거 얼마나 오래 해야 효과 나요?",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 389,
+    "text": "이거 과학적으로 증명된 방법인가요?",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 390,
+    "text": "중간에 광고 좀 적게 넣어주시면 좋겠어요 내용이 좋아서 더 아쉬워요",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 391,
+    "text": "이거 저도 해봤는데 저랑 체질이 달라서인지 효과가 달랐어요",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 392,
+    "text": "뭔가 좀 더 구체적인 수치가 있으면 설득력이 있을 것 같아요",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 393,
+    "text": "이 분 말투가 좀 낯설긴 한데 내용은 좋아요",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 394,
+    "text": "이거 부작용은 없나요?",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 395,
+    "text": "이 내용 믿어도 되는 건지 좀 불안한데 출처가 있나요?",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 396,
+    "text": "이거 한번 써보고 싶은데 구하기가 어렵네요",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 397,
+    "text": "이분 팬인데 이번 영상은 좀 아쉬웠어요 다음엔 더 좋아질 거라 믿어요",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 398,
+    "text": "이 방법 진짜 효과 있을까요 반신반의 중이에요",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 399,
+    "text": "솔직히 유료 강의랑 차이가 별로 없는 것 같은데 무료라서 좋네요",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 400,
+    "text": "이거 얼마예요?",
+    "label": "normal",
+    "difficulty": "hard"
+  }
+]
