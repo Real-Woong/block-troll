@@ -34,6 +34,31 @@ async function refreshServerStatus(serverUrl) {
   }
 }
 
+// manifest.json에는 매치돼 있지만 아직 댓글 수집기(content.js)가 없는 곳.
+const MATCHED_BUT_UNSUPPORTED_RE = /(^|\.)(x\.com|twitter\.com|threads\.net|facebook\.com|tiktok\.com)$/;
+
+async function refreshSiteSupportBanner() {
+  const banner = document.getElementById("siteSupportBanner");
+  if (!banner) return;
+
+  let hostname = "";
+  try {
+    const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+    hostname = new URL(tab?.url || "").hostname;
+  } catch {
+    banner.style.display = "none";
+    return;
+  }
+
+  if (MATCHED_BUT_UNSUPPORTED_RE.test(hostname)) {
+    banner.textContent = `⚠ ${hostname}은(는) 아직 댓글 필터링을 지원하지 않습니다 (현재 YouTube/Instagram만 지원)`;
+    banner.style.display = "block";
+    return;
+  }
+
+  banner.style.display = "none";
+}
+
 async function injectCurrentTab() {
   const status = document.getElementById("status");
   status.textContent = "현재 탭 연결 중...";
@@ -57,6 +82,7 @@ async function injectCurrentTab() {
 }
 
 async function load() {
+  await refreshSiteSupportBanner();
   const v = await chrome.storage.sync.get(DEFAULTS);
   const thresholdState = v.useCustomThresholds
     ? { soft: Number(v.softThreshold || DEFAULTS.softThreshold), hard: Number(v.hardThreshold || DEFAULTS.hardThreshold), label: "직접 설정" }

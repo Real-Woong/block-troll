@@ -2398,5 +2398,2405 @@
     "text": "이거 얼마예요?",
     "label": "normal",
     "difficulty": "hard"
+  },
+  {
+    "id": 401,
+    "text": "부업 정보 필요하신 분 프로필 링크 확인하세요",
+    "label": "ad",
+    "difficulty": "easy"
+  },
+  {
+    "id": 402,
+    "text": "재택 부업 문의는 카톡으로 주세요",
+    "label": "ad",
+    "difficulty": "easy"
+  },
+  {
+    "id": 403,
+    "text": "무료 상담 받으실 분 디엠 주세요",
+    "label": "ad",
+    "difficulty": "easy"
+  },
+  {
+    "id": 404,
+    "text": "투자 리딩방 무료 초대 링크 프로필에 있어요",
+    "label": "ad",
+    "difficulty": "easy"
+  },
+  {
+    "id": 405,
+    "text": "다이어트 한약 효과 좋아요 문의는 디엠으로",
+    "label": "ad",
+    "difficulty": "easy"
+  },
+  {
+    "id": 406,
+    "text": "구독자 이벤트 당첨되셨습니다 링크 확인해주세요",
+    "label": "ad",
+    "difficulty": "easy"
+  },
+  {
+    "id": 407,
+    "text": "팔로우하면 맞팔해드려요 서로이웃 환영",
+    "label": "ad",
+    "difficulty": "easy"
+  },
+  {
+    "id": 408,
+    "text": "대출 상담 무료로 해드립니다 연락주세요",
+    "label": "ad",
+    "difficulty": "easy"
+  },
+  {
+    "id": 409,
+    "text": "부수입 만드는 법 궁금하면 링크 클릭",
+    "label": "ad",
+    "difficulty": "easy"
+  },
+  {
+    "id": 410,
+    "text": "텔레그램 오픈채팅방 참여하고 정보 받아가세요",
+    "label": "ad",
+    "difficulty": "easy"
+  },
+  {
+    "id": 411,
+    "text": "라인 아이디 남겨주시면 상담 도와드릴게요",
+    "label": "ad",
+    "difficulty": "easy"
+  },
+  {
+    "id": 412,
+    "text": "성인용품 할인쿠폰 프로필 링크 확인",
+    "label": "ad",
+    "difficulty": "easy"
+  },
+  {
+    "id": 413,
+    "text": "주식 리딩방 지금 무료로 열려있어요 링크 참고",
+    "label": "ad",
+    "difficulty": "easy"
+  },
+  {
+    "id": 414,
+    "text": "코인 정보방 무료 초대 디엠 주세요",
+    "label": "ad",
+    "difficulty": "easy"
+  },
+  {
+    "id": 415,
+    "text": "이 링크 누르면 상품권 받아가세요",
+    "label": "ad",
+    "difficulty": "easy"
+  },
+  {
+    "id": 416,
+    "text": "재테크 무료 강의 신청은 프로필에서",
+    "label": "ad",
+    "difficulty": "easy"
+  },
+  {
+    "id": 417,
+    "text": "부업으로 월 300 버는 방법 궁금하면 문의주세요",
+    "label": "ad",
+    "difficulty": "easy"
+  },
+  {
+    "id": 418,
+    "text": "카카오톡 오픈채팅 링크는 프로필에 있습니다",
+    "label": "ad",
+    "difficulty": "easy"
+  },
+  {
+    "id": 419,
+    "text": "무료 체험 이벤트 참여하고 싶으신 분 디엠",
+    "label": "ad",
+    "difficulty": "easy"
+  },
+  {
+    "id": 420,
+    "text": "홍보 문의는 아래 링크로 연락주세요",
+    "label": "ad",
+    "difficulty": "easy"
+  },
+  {
+    "id": 421,
+    "text": "재택 부업 궁금하시면 프로필 링크 눌러서 확인해보세요",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 422,
+    "text": "요즘 이걸로 부수입 벌고 있어요 관심있으면 디엠 주세요",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 423,
+    "text": "이 상품 후기 궁금하신 분들 아래 링크 참고하세요",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 424,
+    "text": "카톡 오픈채팅으로 문의주시면 상세히 안내드립니다",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 425,
+    "text": "무료체험 신청은 프로필 상단 링크에서 가능합니다",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 426,
+    "text": "요즘 핫한 투자 정보 공유방입니다 관심있으면 연락주세요",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 427,
+    "text": "다이어트 성공한 방법 디엠으로 자세히 알려드릴게요",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 428,
+    "text": "구독자님들만 드리는 할인코드 프로필 확인해주세요",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 429,
+    "text": "부업 정보 나눔방 운영중입니다 참여 원하시면 디엠주세요",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 430,
+    "text": "돈 버는 방법 궁금하신 분들 프로필 링크 눌러보세요",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 431,
+    "text": "이벤트 당첨자분들 아래 링크에서 상품 수령해가세요",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 432,
+    "text": "재테크 상담 무료로 진행중입니다 문의 남겨주세요",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 433,
+    "text": "부업 관심 있으신 분들만 조용히 디엠 주세요",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 434,
+    "text": "카톡 문의 남겨주시면 상세 자료 보내드릴게요",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 435,
+    "text": "이 링크 통해서 가입하시면 포인트 드립니다",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 436,
+    "text": "요즘 유행하는 재택근무 정보 필요하신 분 연락주세요",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 437,
+    "text": "투자 수익 인증 궁금하신 분들 프로필 확인해주세요",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 438,
+    "text": "무료 강의 마감 임박입니다 서둘러 신청하세요 링크 참고",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 439,
+    "text": "다이어트 보조제 협찬 문의는 디엠으로 부탁드려요",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 440,
+    "text": "온라인 부업 노하우 공유방 초대 원하시면 댓글 남겨주세요",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 441,
+    "text": "부.업 관심있으신분 프로필 링크 확인해주세요",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 442,
+    "text": "카.톡 문의 주시면 자세히 알려드릴게요",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 443,
+    "text": "무료체 험 신청은 프로필에서 가능합니다",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 444,
+    "text": "돈.버는.법 궁금하면 디엠 주세요",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 445,
+    "text": "재.택.부.업 정보 필요하신분 링크 확인",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 446,
+    "text": "투.자 리딩방 무료초대 관심있으면 연락주세요",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 447,
+    "text": "이 링크 클 릭 하시면 좋은 정보 있어요",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 448,
+    "text": "부업문의는 라 인 아이디로 남겨주세요",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 449,
+    "text": "카톡문의 ㅋㅌ 아이디 프로필참고",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 450,
+    "text": "재테크 정보 궁금하면 오픈챗 링크 프로필에",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 451,
+    "text": "온라인부업 노하우 디엠주시면 알려드림",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 452,
+    "text": "다이어트약 효과 후기 프로필 링크 확인부탁",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 453,
+    "text": "구독이벤트 당첨자분 아래 링크로 연락주세요",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 454,
+    "text": "부수입 만드는법 궁금하신분 조용히 디엠",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 455,
+    "text": "투자정보 공유방 링크는 첫댓글에 있어요",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 456,
+    "text": "재택알바 정보 필요하시면 프로필참고해주세요",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 457,
+    "text": "성인용품 할인정보 궁금하면 링크타고 들어오세요",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 458,
+    "text": "코인정보방 무료초대 관심있으신분 연락줘요",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 459,
+    "text": "부업 꿀팁 궁금하면 프사 링크 클릭",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 460,
+    "text": "대출상담 무료 진행중이니 연락주시면 안내해드려요",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 461,
+    "text": "이 상품 협찬받았어요 궁금하신분 프로필 링크 참고부탁드려요",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 462,
+    "text": "재테크 강의 무료로 열었어요 신청은 아래 링크에서 가능합니다",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 463,
+    "text": "부업으로 부수입 만드는 노하우 궁금하신 분들은 디엠 주세요",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 464,
+    "text": "투자수익 인증샷 궁금하신분들 프로필 상단 링크 확인해주세요",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 465,
+    "text": "다이어트 성공비법 디엠으로 상세하게 안내해드리겠습니다",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 466,
+    "text": "구독자 전용 할인쿠폰 발급중이니 링크 눌러서 받아가세요",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 467,
+    "text": "카카오톡 오픈채팅방 무료초대 진행중이니 관심있으면 연락주세요",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 468,
+    "text": "온라인 재택부업 문의는 프로필 링크로 남겨주시기 바랍니다",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 469,
+    "text": "요즘 인기있는 부수입 정보방 참여하고 싶으신분 댓글 남겨주세요",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 470,
+    "text": "이벤트 당첨되신 분들은 아래 링크에서 상품권 수령해가세요",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 471,
+    "text": "무료 컨설팅 진행중입니다 관심있으신분들은 디엠 부탁드려요",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 472,
+    "text": "텔레그램 정보공유방 초대링크는 프로필에 있으니 참고해주세요",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 473,
+    "text": "부업 관심있는 분들만 조용히 라인 아이디로 연락주시면 됩니다",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 474,
+    "text": "재택근무로 월수입 올리는 방법 궁금하신분들 링크 확인하세요",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 475,
+    "text": "투자 리딩방 무료체험 신청은 프로필 링크에서 가능합니다",
+    "label": "ad",
+    "difficulty": "hard"
+  },
+  {
+    "id": 476,
+    "text": "이 상품 정말 좋아서 추천드려요 링크는 프로필에",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 477,
+    "text": "부업 시작하고 싶으신 분들 댓글로 연락처 남겨주세요",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 478,
+    "text": "재테크 무료 세미나 신청 링크 프로필 참고하세요",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 479,
+    "text": "투잡으로 이 일 해보실 분 디엠 주세요",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 480,
+    "text": "온라인 쇼핑몰 창업 정보 궁금하면 문의주세요",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 481,
+    "text": "이 제품 체험단 모집합니다 관심있으면 댓글주세요",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 482,
+    "text": "SNS 마케팅 대행 문의는 프로필 링크로",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 483,
+    "text": "핫한 재테크 정보 놓치지 마세요 링크 확인",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 484,
+    "text": "부업 후기 궁금하신분 디엠으로 자세히 알려드려요",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 485,
+    "text": "무료 컨설팅 예약은 프로필 링크에서 가능해요",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 486,
+    "text": "이 강의 무료로 들으실 분 링크 눌러주세요",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 487,
+    "text": "재택근무 채용 정보 필요하신분 연락주세요",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 488,
+    "text": "투자 카페 무료가입 링크는 첫댓글 참고하세요",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 489,
+    "text": "성형 상담 무료로 받으실분 디엠 주세요",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 490,
+    "text": "다이어트 챌린지 참여자 모집중입니다 링크 확인",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 491,
+    "text": "이 앱 설치하면 포인트 드려요 링크 클릭",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 492,
+    "text": "부동산 투자 정보 궁금하신분 문의주세요",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 493,
+    "text": "카드 발급 이벤트 진행중이니 링크 확인해주세요",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 494,
+    "text": "무료 폰테크 상담 받으실분 댓글 남겨주세요",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 495,
+    "text": "인플루언서 협업 문의는 프로필 이메일로",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 496,
+    "text": "구매대행 문의 남겨주시면 안내드리겠습니다",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 497,
+    "text": "재무 상담 무료 진행중이니 관심있으면 연락주세요",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 498,
+    "text": "부업 커뮤니티 초대링크는 프로필에 있어요",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 499,
+    "text": "이 서비스 이용해보고 싶으신분 디엠주세요",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 500,
+    "text": "환급 대상자분들은 아래 링크에서 확인하세요",
+    "label": "ad",
+    "difficulty": "medium"
+  },
+  {
+    "id": 501,
+    "text": "진짜 못생겼다 저게 뭐냐",
+    "label": "hate",
+    "difficulty": "easy"
+  },
+  {
+    "id": 502,
+    "text": "얼굴 실화냐 진짜 별로다",
+    "label": "hate",
+    "difficulty": "easy"
+  },
+  {
+    "id": 503,
+    "text": "실력이 형편없네 그만해라",
+    "label": "hate",
+    "difficulty": "easy"
+  },
+  {
+    "id": 504,
+    "text": "보기만 해도 짜증난다",
+    "label": "hate",
+    "difficulty": "easy"
+  },
+  {
+    "id": 505,
+    "text": "이걸 영상이라고 올린거냐",
+    "label": "hate",
+    "difficulty": "easy"
+  },
+  {
+    "id": 506,
+    "text": "목소리 진짜 듣기 싫다",
+    "label": "hate",
+    "difficulty": "easy"
+  },
+  {
+    "id": 507,
+    "text": "왜 이렇게 못하는거야 답답하다",
+    "label": "hate",
+    "difficulty": "easy"
+  },
+  {
+    "id": 508,
+    "text": "센스가 하나도 없네",
+    "label": "hate",
+    "difficulty": "easy"
+  },
+  {
+    "id": 509,
+    "text": "그냥 하지마 민폐다",
+    "label": "hate",
+    "difficulty": "easy"
+  },
+  {
+    "id": 510,
+    "text": "쓸데없는 소리 그만해",
+    "label": "hate",
+    "difficulty": "easy"
+  },
+  {
+    "id": 511,
+    "text": "재능이 하나도 안보인다",
+    "label": "hate",
+    "difficulty": "easy"
+  },
+  {
+    "id": 512,
+    "text": "이런걸 왜 올리는거야",
+    "label": "hate",
+    "difficulty": "easy"
+  },
+  {
+    "id": 513,
+    "text": "진짜 한심하다 어떻게 저러지",
+    "label": "hate",
+    "difficulty": "easy"
+  },
+  {
+    "id": 514,
+    "text": "뭘 잘했다고 저러는거야",
+    "label": "hate",
+    "difficulty": "easy"
+  },
+  {
+    "id": 515,
+    "text": "정말 노잼이다 시간아깝다",
+    "label": "hate",
+    "difficulty": "easy"
+  },
+  {
+    "id": 516,
+    "text": "얼굴만 믿고 저러는거지",
+    "label": "hate",
+    "difficulty": "easy"
+  },
+  {
+    "id": 517,
+    "text": "다시는 안본다 진짜 별로",
+    "label": "hate",
+    "difficulty": "easy"
+  },
+  {
+    "id": 518,
+    "text": "실망이다 왜 이렇게 됐어",
+    "label": "hate",
+    "difficulty": "easy"
+  },
+  {
+    "id": 519,
+    "text": "그냥 채널접어라",
+    "label": "hate",
+    "difficulty": "easy"
+  },
+  {
+    "id": 520,
+    "text": "너무 별로라 할말이없다",
+    "label": "hate",
+    "difficulty": "easy"
+  },
+  {
+    "id": 521,
+    "text": "생각이 있는건지 없는건지 모르겠다 진짜",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 522,
+    "text": "그냥 조용히 있어라 말하지 말고",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 523,
+    "text": "저러고도 부끄러운줄 모르나보다",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 524,
+    "text": "보고있으면 답답해서 화가난다",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 525,
+    "text": "이 정도면 그냥 그만두는게 낫다",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 526,
+    "text": "왜 이렇게까지 못하는지 이해가 안된다",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 527,
+    "text": "실력도 없으면서 왜 계속 하는거야",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 528,
+    "text": "저건 그냥 민폐수준이다 진짜",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 529,
+    "text": "이런 영상 만든거 자체가 문제다",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 530,
+    "text": "그동안 뭘 배운건지 궁금하다",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 531,
+    "text": "진짜 실망스럽다 기대한 내가 바보다",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 532,
+    "text": "이런식으로 계속하면 답이 없다",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 533,
+    "text": "저 정도 실력으로 유튜브 하는게 신기하다",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 534,
+    "text": "보는 내내 한숨만 나온다",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 535,
+    "text": "정말 무능하다는 말밖에 안나온다",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 536,
+    "text": "왜 자꾸 이런짓을 반복하는지 모르겠다",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 537,
+    "text": "이걸 보고 응원할 사람이 있을까 싶다",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 538,
+    "text": "진짜 어이가 없어서 말이 안나온다",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 539,
+    "text": "저런 태도로는 발전이 없을거다",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 540,
+    "text": "보고 있기 힘들정도로 별로다",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 541,
+    "text": "ㅅㅂ 진짜 못하네",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 542,
+    "text": "병1신 아니냐 이거",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 543,
+    "text": "미 친놈 아니야 진짜",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 544,
+    "text": "개 새끼처럼 구네",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 545,
+    "text": "ㅄ같은 소리 그만해",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 546,
+    "text": "존 나 못한다 진짜",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 547,
+    "text": "미친놈 이네 이거 완전",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 548,
+    "text": "병 신같이 왜 저러냐",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 549,
+    "text": "시1발 진짜 짜증나",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 550,
+    "text": "새 끼 진짜 답없다",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 551,
+    "text": "미친 새 끼 아니냐",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 552,
+    "text": "개.새끼 처럼 행동하네",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 553,
+    "text": "ㅅ ㅂ 진짜 어이없다",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 554,
+    "text": "병신 같은 짓 좀 그만해라",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 555,
+    "text": "미쳤 냐 진짜 왜저래",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 556,
+    "text": "꺼 져라 제발 좀",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 557,
+    "text": "죽 어라 진짜 짜증나게",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 558,
+    "text": "좆 같은 영상이다 진짜",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 559,
+    "text": "애 미 없냐 진짜",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 560,
+    "text": "장애 인 처럼 왜저래",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 561,
+    "text": "존재 자체가 민폐다 정말",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 562,
+    "text": "이런 사람이 왜 인기가 있는지 모르겠다",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 563,
+    "text": "능력도 없이 자리만 차지하고 있다",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 564,
+    "text": "저 얼굴로 저런 말할 자격이 있나",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 565,
+    "text": "머리는 장식으로 달고 다니나 보다",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 566,
+    "text": "이 정도 수준이면 접는게 맞다",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 567,
+    "text": "보고 있으면 정신건강에 해롭다",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 568,
+    "text": "이런 사람 응원하는 사람들도 참 신기하다",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 569,
+    "text": "실력 없는거 티내려고 저러나",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 570,
+    "text": "저런 인성으로 뭘 하겠다는건지",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 571,
+    "text": "쓸모없는 영상 그만 좀 올려라",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 572,
+    "text": "존재만으로도 눈살이 찌푸려진다",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 573,
+    "text": "저런 애들 때문에 채널 질이 떨어진다",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 574,
+    "text": "말하는거 보니 수준이 딱 나온다",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 575,
+    "text": "저 실력에 자신감은 어디서 나오는지",
+    "label": "hate",
+    "difficulty": "hard"
+  },
+  {
+    "id": 576,
+    "text": "이런 인간이 왜 카메라 앞에 서는지 모르겠다",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 577,
+    "text": "저 정도 실력으로 돈을 받는다는게 놀랍다",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 578,
+    "text": "보고 있으면 시간 낭비라는 생각밖에 안든다",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 579,
+    "text": "저런 태도로 사람들 앞에 서는게 부끄럽지도 않나",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 580,
+    "text": "실력은 없고 자신감만 넘치는게 딱 보인다",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 581,
+    "text": "이 영상 보고 나니 시간이 아깝다는 생각뿐이다",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 582,
+    "text": "저런 사람을 왜 구독하는지 이해가 안된다",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 583,
+    "text": "노력은 안하고 핑계만 대는게 딱 보인다",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 584,
+    "text": "저 실력에 저 자신감은 어디서 나오는지 궁금하다",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 585,
+    "text": "보는 내내 짜증만 나고 얻는게 하나도 없다",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 586,
+    "text": "이런 콘텐츠 만드는데 시간이 아깝지 않은가보다",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 587,
+    "text": "저런 발언을 아무렇지 않게 하는게 놀랍다",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 588,
+    "text": "실망스럽다 못해 화가 날 지경이다",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 589,
+    "text": "이 정도면 그냥 접는게 서로를 위한 길이다",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 590,
+    "text": "저런 행동 보고 있으면 눈살이 절로 찌푸려진다",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 591,
+    "text": "왜 저러는지 진짜 이해할 수가 없다",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 592,
+    "text": "보고 있기 힘들 정도로 실력이 형편없다",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 593,
+    "text": "저런 모습 보이려고 카메라를 켰다는게 신기하다",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 594,
+    "text": "정말 볼 가치가 없는 영상이다",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 595,
+    "text": "이런 사람이 유명해지는 세상이 이해가 안된다",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 596,
+    "text": "실력도 인성도 다 별로라는 생각이 든다",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 597,
+    "text": "저 정도로 못하면서 계속하는 이유가 궁금하다",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 598,
+    "text": "보다가 답답해서 꺼버렸다 진짜",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 599,
+    "text": "이런 걸 콘텐츠라고 올리다니 어이가 없다",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 600,
+    "text": "저런 태도 때문에 안티가 느는거다",
+    "label": "hate",
+    "difficulty": "medium"
+  },
+  {
+    "id": 601,
+    "text": "우와 정말 대단한 재능이네요 진심으로",
+    "label": "sarcasm",
+    "difficulty": "easy"
+  },
+  {
+    "id": 602,
+    "text": "역시 프로는 다르네요 존경스럽습니다",
+    "label": "sarcasm",
+    "difficulty": "easy"
+  },
+  {
+    "id": 603,
+    "text": "이야 이게 실력이라니 놀랍네요",
+    "label": "sarcasm",
+    "difficulty": "easy"
+  },
+  {
+    "id": 604,
+    "text": "정말 감동적이네요 이런 퀄리티는 처음이에요",
+    "label": "sarcasm",
+    "difficulty": "easy"
+  },
+  {
+    "id": 605,
+    "text": "대단하십니다 이걸 자랑스럽게 올리시다니",
+    "label": "sarcasm",
+    "difficulty": "easy"
+  },
+  {
+    "id": 606,
+    "text": "역시 남다르시네요 어떻게 저런 생각을",
+    "label": "sarcasm",
+    "difficulty": "easy"
+  },
+  {
+    "id": 607,
+    "text": "천재는 다르구나 싶습니다 정말로",
+    "label": "sarcasm",
+    "difficulty": "easy"
+  },
+  {
+    "id": 608,
+    "text": "이런 걸작을 만나다니 영광입니다",
+    "label": "sarcasm",
+    "difficulty": "easy"
+  },
+  {
+    "id": 609,
+    "text": "역시 믿고 보는 채널이네요 그죠",
+    "label": "sarcasm",
+    "difficulty": "easy"
+  },
+  {
+    "id": 610,
+    "text": "이 정도면 상 받으셔야죠 진심으로",
+    "label": "sarcasm",
+    "difficulty": "easy"
+  },
+  {
+    "id": 611,
+    "text": "완벽하네요 지적할 게 하나도 없어요",
+    "label": "sarcasm",
+    "difficulty": "easy"
+  },
+  {
+    "id": 612,
+    "text": "역시 최고의 편집이네요 놀랍습니다",
+    "label": "sarcasm",
+    "difficulty": "easy"
+  },
+  {
+    "id": 613,
+    "text": "정말 성실하게 준비하신 티가 나네요",
+    "label": "sarcasm",
+    "difficulty": "easy"
+  },
+  {
+    "id": 614,
+    "text": "이렇게까지 열심히 하실 줄이야",
+    "label": "sarcasm",
+    "difficulty": "easy"
+  },
+  {
+    "id": 615,
+    "text": "역시 노력의 결과물이 다르네요",
+    "label": "sarcasm",
+    "difficulty": "easy"
+  },
+  {
+    "id": 616,
+    "text": "그래 니 말이 다 맞다 진짜 대단해",
+    "label": "sarcasm",
+    "difficulty": "medium"
+  },
+  {
+    "id": 617,
+    "text": "역시 답이 없네 진심으로 감동이다",
+    "label": "sarcasm",
+    "difficulty": "medium"
+  },
+  {
+    "id": 618,
+    "text": "누가봐도 최선을 다한 결과물이네요",
+    "label": "sarcasm",
+    "difficulty": "medium"
+  },
+  {
+    "id": 619,
+    "text": "이 정도로 준비하셨다니 감탄스럽습니다",
+    "label": "sarcasm",
+    "difficulty": "medium"
+  },
+  {
+    "id": 620,
+    "text": "역시 명불허전이네요 기대를 저버리지 않으시네",
+    "label": "sarcasm",
+    "difficulty": "medium"
+  },
+  {
+    "id": 621,
+    "text": "우와 진짜 신선한 발상이네요 처음 보는 방식이에요",
+    "label": "sarcasm",
+    "difficulty": "medium"
+  },
+  {
+    "id": 622,
+    "text": "역시 어휴 대단하시다는 말밖에 안나오네요",
+    "label": "sarcasm",
+    "difficulty": "medium"
+  },
+  {
+    "id": 623,
+    "text": "진짜 뇌절이다 이 정도면 예술이네요",
+    "label": "sarcasm",
+    "difficulty": "medium"
+  },
+  {
+    "id": 624,
+    "text": "누가봐도 완벽한 계획이었네요 정말로",
+    "label": "sarcasm",
+    "difficulty": "medium"
+  },
+  {
+    "id": 625,
+    "text": "역시 준비성이 남다르시네요 박수쳐드립니다",
+    "label": "sarcasm",
+    "difficulty": "medium"
+  },
+  {
+    "id": 626,
+    "text": "이런 참신한 아이디어는 어디서 나오는건가요",
+    "label": "sarcasm",
+    "difficulty": "medium"
+  },
+  {
+    "id": 627,
+    "text": "정말 참 잘하셨어요 이렇게까지 될 줄은 몰랐네요",
+    "label": "sarcasm",
+    "difficulty": "medium"
+  },
+  {
+    "id": 628,
+    "text": "역시 억까 당할만 하네요 이 정도면",
+    "label": "sarcasm",
+    "difficulty": "medium"
+  },
+  {
+    "id": 629,
+    "text": "우와 진짜 클래스가 다르시네요???",
+    "label": "sarcasm",
+    "difficulty": "medium"
+  },
+  {
+    "id": 630,
+    "text": "역시 실력자는 티가 나네요 아주 잘",
+    "label": "sarcasm",
+    "difficulty": "medium"
+  },
+  {
+    "id": 631,
+    "text": "이 정도 퀄리티면 상 하나 만들어야겠어요",
+    "label": "sarcasm",
+    "difficulty": "medium"
+  },
+  {
+    "id": 632,
+    "text": "정말 성의있는 답변 감사합니다 참 대단해요",
+    "label": "sarcasm",
+    "difficulty": "medium"
+  },
+  {
+    "id": 633,
+    "text": "역시 준비 많이 하셨네요 티가 팍팍 나요",
+    "label": "sarcasm",
+    "difficulty": "medium"
+  },
+  {
+    "id": 634,
+    "text": "우와 진짜 예상대로 흘러가네요 놀랍지도 않아요",
+    "label": "sarcasm",
+    "difficulty": "medium"
+  },
+  {
+    "id": 635,
+    "text": "이런 반전은 진짜 상상도 못했네요 대단하세요",
+    "label": "sarcasm",
+    "difficulty": "medium"
+  },
+  {
+    "id": 636,
+    "text": "역시 기대를 저버리지 않으시네요 하 정말",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 637,
+    "text": "우와 이 정도 실력이면 어디가서도 인정받겠어요",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 638,
+    "text": "진짜 놀랍네요 이렇게까지 될 줄은 상상도 못했어요",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 639,
+    "text": "역시 준비된 자세네요 하나부터 열까지 완벽하고요",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 640,
+    "text": "이야 이건 진짜 클래스가 다른 수준이네요 참",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 641,
+    "text": "역시 남다른 시각이시네요 누가봐도 특별해요",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 642,
+    "text": "이 정도 퀄리티라니 정말 자랑스러우시겠어요",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 643,
+    "text": "역시 이런 결과가 나올 줄 알았어요 예상대로네요",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 644,
+    "text": "진짜 대단한 열정이시네요 이렇게까지 하시다니",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 645,
+    "text": "우와 진짜 완벽한 타이밍이네요 하필이면",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 646,
+    "text": "역시 믿고 거르는 이유가 있었네요 참 대단해요",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 647,
+    "text": "이야 이 정도면 레전드로 남을 것 같아요 진짜로",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 648,
+    "text": "정말 신박한 방식이네요 처음 보는 스타일이라",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 649,
+    "text": "역시 준비성 하나는 최고시네요 감탄했습니다",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 650,
+    "text": "우와 진짜 예술이네요 이런 발상을 하시다니",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 651,
+    "text": "역시 예상했던대로 흘러가네요 신기하지도 않아요",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 652,
+    "text": "우와 진짜 반전 없는 반전이네요",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 653,
+    "text": "이 정도면 계획이 다 있으셨나봐요 완벽하네요",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 654,
+    "text": "역시 준비 하나도 안하신 티가 확 나네요",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 655,
+    "text": "정말 정성스럽게 만드신 티가 팍팍 나요",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 656,
+    "text": "이야 진짜 이런 결말은 상상도 못했어요 뻔하게도",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 657,
+    "text": "역시 실력자시네요 매번 같은 실수를 하시고",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 658,
+    "text": "우와 정말 신선한 변명이네요 매번 다르시고",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 659,
+    "text": "이 정도 준비성이면 어디서든 인정받으시겠어요",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 660,
+    "text": "역시 믿음직스럽네요 이번에도 어김없이",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 661,
+    "text": "진짜 감동이에요 이렇게까지 성의없으실줄이야",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 662,
+    "text": "우와 정말 대단한 집중력이네요 삼분만에 끝내시고",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 663,
+    "text": "역시 완벽한 타이밍이네요 하필 또 이럴때",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 664,
+    "text": "이야 진짜 클래스 다르시네요 매번 이러시고",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 665,
+    "text": "정말 성실하시네요 매번 똑같은 핑계 대시고",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 666,
+    "text": "역시 여전하시네요 발전이 없다는 뜻으로요",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 667,
+    "text": "우와 이런 아이디어는 정말 참신하네요 놀랍게도",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 668,
+    "text": "이 정도 노력이면 결과가 안좋을 수가 없죠 그쵸",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 669,
+    "text": "역시 진심이 느껴지네요 대충 하신것 치고는",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 670,
+    "text": "진짜 감탄스럽네요 매번 이런 핑계를 만드시고",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 671,
+    "text": "우와 정말 프로다우시네요 매번 늦으시고",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 672,
+    "text": "이야 이번에도 역시나네요 기대를 저버리지 않고",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 673,
+    "text": "역시 한결같으시네요 발전이 없다는 의미로",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 674,
+    "text": "정말 대단한 뻔뻔함이네요 칭찬입니다 물론",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 675,
+    "text": "우와 이 정도 자신감은 어디서 나오나요 신기해서",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 676,
+    "text": "역시 최선을 다하셨네요 결과가 그모양인걸 보니",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 677,
+    "text": "이야 진짜 명연기시네요 티가 다 나는데도",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 678,
+    "text": "정말 감쪽같으시네요 다 티나는데 말이죠",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 679,
+    "text": "역시 여유가 넘치시네요 준비가 하나도 안된 와중에",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 680,
+    "text": "우와 진짜 특별한 재능이시네요 매번 이런식이라",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 681,
+    "text": "이 정도 완성도면 자랑스러우시겠어요 정말로요",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 682,
+    "text": "역시 대단한 배짱이시네요 이렇게 올리시다니",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 683,
+    "text": "진짜 재치있으시네요 매번 같은 변명을 다르게 하시고",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 684,
+    "text": "우와 이런 뻔한 전개는 정말 오랜만이네요",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 685,
+    "text": "역시 한결같이 실망시키지 않으시네요",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 686,
+    "text": "이야 정말 노련하시네요 매번 이런식으로 넘어가시고",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 687,
+    "text": "정말 훌륭하시네요 결과물이 이모양인데도 당당하시고",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 688,
+    "text": "우와 진짜 예측 가능하네요 매번 똑같은 패턴이라",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 689,
+    "text": "역시 프로답게 책임은 안지시네요",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 690,
+    "text": "이 정도 뻔뻔함이면 존경스러울 지경이에요",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 691,
+    "text": "진짜 대단한 자기합리화네요 감탄스럽습니다",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 692,
+    "text": "우와 역시 한결같이 핑계는 늘고 실력은 그대로네요",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 693,
+    "text": "이야 정말 예술적인 회피네요 매번 감탄합니다",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 694,
+    "text": "역시 여전히 발전이 없으시네요 안정적이라 좋아요",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 695,
+    "text": "정말 놀라운 자신감이네요 실력과는 별개로요",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 696,
+    "text": "우와 이 정도면 상 받으셔야겠어요 뻔뻔함으로요",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 697,
+    "text": "역시 기대한 대로 실망시켜주시네요 정확하게",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 698,
+    "text": "진짜 감동입니다 이렇게까지 한결같으실줄은",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 699,
+    "text": "이야 정말 완벽한 무성의네요 티 하나 없이",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 700,
+    "text": "우와 역시 준비성 하나는 여전하시네요 없다는 뜻으로",
+    "label": "sarcasm",
+    "difficulty": "hard"
+  },
+  {
+    "id": 701,
+    "text": "오늘 영상도 재밌게 잘 봤어요",
+    "label": "normal",
+    "difficulty": "easy"
+  },
+  {
+    "id": 702,
+    "text": "항상 좋은 콘텐츠 감사합니다",
+    "label": "normal",
+    "difficulty": "easy"
+  },
+  {
+    "id": 703,
+    "text": "편집 진짜 깔끔하네요",
+    "label": "normal",
+    "difficulty": "easy"
+  },
+  {
+    "id": 704,
+    "text": "목소리가 편안해서 좋아요",
+    "label": "normal",
+    "difficulty": "easy"
+  },
+  {
+    "id": 705,
+    "text": "설명 이해하기 쉽게 잘 해주시네요",
+    "label": "normal",
+    "difficulty": "easy"
+  },
+  {
+    "id": 706,
+    "text": "다음 영상도 기대할게요",
+    "label": "normal",
+    "difficulty": "easy"
+  },
+  {
+    "id": 707,
+    "text": "매번 응원하고 있어요",
+    "label": "normal",
+    "difficulty": "easy"
+  },
+  {
+    "id": 708,
+    "text": "이런 주제 다뤄주셔서 감사해요",
+    "label": "normal",
+    "difficulty": "easy"
+  },
+  {
+    "id": 709,
+    "text": "퀄리티가 계속 좋아지는것 같아요",
+    "label": "normal",
+    "difficulty": "easy"
+  },
+  {
+    "id": 710,
+    "text": "오늘도 힘내세요 응원합니다",
+    "label": "normal",
+    "difficulty": "easy"
+  },
+  {
+    "id": 711,
+    "text": "정말 유익한 정보 감사합니다",
+    "label": "normal",
+    "difficulty": "easy"
+  },
+  {
+    "id": 712,
+    "text": "이 영상 보고 많이 배웠어요",
+    "label": "normal",
+    "difficulty": "easy"
+  },
+  {
+    "id": 713,
+    "text": "항상 잘 챙겨보고 있습니다",
+    "label": "normal",
+    "difficulty": "easy"
+  },
+  {
+    "id": 714,
+    "text": "센스 있으시네요 재밌게 봤어요",
+    "label": "normal",
+    "difficulty": "easy"
+  },
+  {
+    "id": 715,
+    "text": "노력하시는게 느껴져서 좋아요",
+    "label": "normal",
+    "difficulty": "easy"
+  },
+  {
+    "id": 716,
+    "text": "촬영 장소도 예쁘고 좋네요",
+    "label": "normal",
+    "difficulty": "easy"
+  },
+  {
+    "id": 717,
+    "text": "이 시리즈 계속 해주세요",
+    "label": "normal",
+    "difficulty": "easy"
+  },
+  {
+    "id": 718,
+    "text": "웃으면서 잘 봤습니다 감사해요",
+    "label": "normal",
+    "difficulty": "easy"
+  },
+  {
+    "id": 719,
+    "text": "친절하게 설명해주셔서 도움됐어요",
+    "label": "normal",
+    "difficulty": "easy"
+  },
+  {
+    "id": 720,
+    "text": "구독하고 갑니다 좋은 채널이네요",
+    "label": "normal",
+    "difficulty": "easy"
+  },
+  {
+    "id": 721,
+    "text": "미친 퀄리티다 진짜 대박이에요",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 722,
+    "text": "존나 웃기다 ㅋㅋㅋ 이 장면 레전드",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 723,
+    "text": "헐 완전 소름이다 진짜 잘 봤어요",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 724,
+    "text": "진짜 개웃겨요 이 편집 미쳤네요",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 725,
+    "text": "와 진짜 미쳤다 이 실력 대단해요",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 726,
+    "text": "이거 레전드다 진짜 최고의 영상",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 727,
+    "text": "미쳤다 진짜 어떻게 이렇게 잘하지",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 728,
+    "text": "존나 잘한다 진짜 감탄했어요",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 729,
+    "text": "와 개 신기하다 이런것도 되는구나",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 730,
+    "text": "진짜 미친 실력이네요 박수쳐요",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 731,
+    "text": "완전 개좋다 이 노래 계속 듣고있어요",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 732,
+    "text": "미친 몰입감이다 시간가는줄 몰랐어요",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 733,
+    "text": "이거 진짜 개꿀잼이다 계속 웃었어요",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 734,
+    "text": "와 진짜 미친 타이밍이다 소름돋았어요",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 735,
+    "text": "존나 감동적이다 눈물날뻔했어요",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 736,
+    "text": "미쳤다 이 반전 진짜 예상 못했어요",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 737,
+    "text": "개 신박하다 이런 아이디어 어떻게 냈어요",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 738,
+    "text": "와 진짜 미친 퀄리티 계속 보게되네요",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 739,
+    "text": "존나 재밌다 벌써 다음편 기다려져요",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 740,
+    "text": "미친듯이 웃었다 진짜 개웃겨요 이거",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 741,
+    "text": "이거 레전드다!!! 진짜 미쳤다 대박이에요",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 742,
+    "text": "예??? 진짜요? 완전 신기하네요 대박",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 743,
+    "text": "와... 진짜 소름 돋았어요 미친 퀄리티",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 744,
+    "text": "헐!!! 이게 실화라고요? 완전 대박이에요",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 745,
+    "text": "미쳤다 진짜!!! 이런 반전이 있을줄이야",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 746,
+    "text": "ㅋㅋㅋㅋㅋㅋㅋ 진짜 개웃겨요 배아파요",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 747,
+    "text": "ㅋㅋㅋㅋ 이거 뭐야 진짜 미쳤네요 대박",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 748,
+    "text": "와 진짜 미쳤다... 이 정도일줄 몰랐어요",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 749,
+    "text": "대박!!! 진짜 소름 쫙 돋았어요 최고예요",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 750,
+    "text": "진짜???!! 완전 대박이네요 미친 실력",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 751,
+    "text": "이야 이거 진짜 미친 타이밍이다 ㅋㅋㅋ",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 752,
+    "text": "헐 대박 진짜 개미쳤다 이 퀄리티",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 753,
+    "text": "와 진짜 개쩐다 이거 레전드 각인데요",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 754,
+    "text": "미친 존잘이시네요 진짜 팬 됐어요",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 755,
+    "text": "완전 개인정 이 영상 진짜 도움됐어요",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 756,
+    "text": "이거 진짜 미친 몰입감 시간 순삭이에요",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 757,
+    "text": "와 개 레전드다 진짜 역대급 영상이에요",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 758,
+    "text": "ㅋㅋㅋㅋㅋ 미쳤다 진짜 너무 웃겨요",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 759,
+    "text": "대박이다 진짜 미친 편집 실력이네요",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 760,
+    "text": "와 진짜 소름끼치게 잘하시네요 미쳤어요",
+    "label": "normal",
+    "difficulty": "hard"
+  },
+  {
+    "id": 761,
+    "text": "존나 대박이다 이 노래 계속 듣게되네요",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 762,
+    "text": "미친 실력이다 진짜 어떻게 저렇게 하지",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 763,
+    "text": "와 개 신기하다 어떻게 만든거예요 이거",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 764,
+    "text": "진짜 미친 몰입감이다 시간가는줄 몰랐어요",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 765,
+    "text": "헐 개좋다 이 노래 벌써 열번째 듣고있어요",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 766,
+    "text": "존나 웃기다 진짜 배꼽빠지는줄 알았어요",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 767,
+    "text": "미쳤다 이 편집 실력 정말 대단해요",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 768,
+    "text": "와 진짜 개감동이다 눈물 날뻔했어요",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 769,
+    "text": "이거 완전 미친 반전이다 진짜 소름",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 770,
+    "text": "존나 잘만들었다 이 영상 최고예요",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 771,
+    "text": "미친 퀄리티다 진짜 감탄하고 갑니다",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 772,
+    "text": "와 개신박하다 이런 아이디어 어떻게 생각했어요",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 773,
+    "text": "헐 미쳤다 진짜 이 정도일줄 몰랐어요",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 774,
+    "text": "존나 감동적이다 진짜 잘봤습니다",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 775,
+    "text": "미친 실력자시네요 진짜 팬됐어요",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 776,
+    "text": "와 진짜 개꿀잼이다 계속 웃으면서 봤어요",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 777,
+    "text": "이거 레전드다 진짜 최고의 편집이에요",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 778,
+    "text": "존나 소름돋았다 진짜 대박 영상이에요",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 779,
+    "text": "미쳤다 진짜 이런 반전 처음봐요",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 780,
+    "text": "와 개웃기다 진짜 오늘도 잘웃고갑니다",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 781,
+    "text": "미친 타이밍이다 진짜 완벽했어요",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 782,
+    "text": "존나 재밌다 다음편 진짜 기다려져요",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 783,
+    "text": "와 진짜 개대박이다 이 영상 최고",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 784,
+    "text": "미친 실력 인정합니다 진짜 대단해요",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 785,
+    "text": "헐 개소름 진짜 완벽한 연출이었어요",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 786,
+    "text": "존나 좋다 이 노래 플레이리스트에 저장했어요",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 787,
+    "text": "미쳤다 진짜 어떻게 이런생각을 하지",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 788,
+    "text": "와 개웃긴 장면이다 진짜 몇번을 돌려봤어요",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 789,
+    "text": "이거 진짜 미친 퀄리티 계속 기대돼요",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 790,
+    "text": "존나 감탄했다 진짜 노력이 느껴져요",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 791,
+    "text": "미친 몰입감 진짜 시간순삭이었어요",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 792,
+    "text": "와 진짜 개좋아요 이런 콘텐츠 더 해주세요",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 793,
+    "text": "헐 미친 실력 진짜 대단하다고 밖에 안나와요",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 794,
+    "text": "존나 웃긴데 감동도 있는 영상이었어요",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 795,
+    "text": "미쳤다 진짜 이 정도 노력 존경스러워요",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 796,
+    "text": "와 개신기한 반전이다 진짜 예상 못했어요",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 797,
+    "text": "이거 완전 레전드 각이다 진짜 최고예요",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 798,
+    "text": "존나 재밌게 잘봤어요 항상 응원합니다",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 799,
+    "text": "미친 편집실력 진짜 감탄하고 가요",
+    "label": "normal",
+    "difficulty": "medium"
+  },
+  {
+    "id": 800,
+    "text": "와 진짜 개감동 스토리 잘 봤습니다",
+    "label": "normal",
+    "difficulty": "medium"
   }
 ]

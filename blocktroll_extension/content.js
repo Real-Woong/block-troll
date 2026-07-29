@@ -869,9 +869,20 @@ function thresholdsByIntensity(level) {
   // fallback
   return { soft: 0.60, hard: 0.75 };
 }
-//#endregion
+// manifest.json은 여러 소셜 도메인을 매치하지만, 댓글 수집기(getCommentTextEls)는
+// 아직 YouTube/Instagram만 구현돼 있다. 다른 도메인에서 스캔 루프를 돌려봐야
+// 항상 빈 결과만 나오므로, 미지원 사이트에서는 관찰자를 아예 띄우지 않는다.
+const SUPPORTED_PLATFORMS = new Set(["youtube", "instagram"]);
 
-startObservers();
+if (SUPPORTED_PLATFORMS.has(platformForLocation())) {
+  startObservers();
+} else {
+  maybeSendExtensionDebug("unsupported-platform", { host: location.hostname }, 0);
+  console.info(
+    `[BlockTroll] ${location.hostname}은(는) 아직 댓글 필터링을 지원하지 않습니다. ` +
+    "(현재 지원: YouTube, Instagram)"
+  );
+}
 //#endregion
 }
 }

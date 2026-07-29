@@ -23,6 +23,7 @@
     .label{font-size:11px;color:#6a7685;margin-bottom:4px}
     .value{font-size:14px;font-weight:700}
     .banner{margin-top:10px;padding:10px;border-radius:10px;background:#fff3cd;color:#6b4e00;font-size:12px}
+    .banner.warn{background:#fde2e1;color:#8a2c22}
     .toolbtn{width:100%;margin-top:10px;padding:10px;border-radius:10px;border:1px solid #9aa8bb;background:#172033;color:#fff;cursor:pointer;font-weight:700}
     .toolbtn:hover{background:#25324a}
   </style>
@@ -75,6 +76,8 @@
   <div class="banner">
     현재 권장 모드는 `욕설 + 스팸` 중심입니다. 비꼼(TAUNT)은 오탐이 많아 기본적으로 꺼져 있습니다.
   </div>
+
+  <div id="siteSupportBanner" class="banner warn" style="display:none;"></div>
 
   <button id="injectBtn" class="toolbtn">현재 YouTube 탭 연결 확인</button>
 

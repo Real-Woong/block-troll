@@ -26,10 +26,13 @@ app = FastAPI(title="BlockTroll Local Agent", version="0.3.0")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # 개발용. 나중에 chrome-extension://ID로 좁혀도 됨
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    # Only chrome-extension:// callers should reach this local API.
+    # The extension itself bypasses CORS via manifest host_permissions,
+    # so this only blocks arbitrary websites from calling the local server.
+    allow_origin_regex=r"^chrome-extension://.*$",
+    allow_credentials=False,
+    allow_methods=["GET", "POST"],
+    allow_headers=["Content-Type"],
 )
 
 # 서버 시작 시 모델 로드 시도

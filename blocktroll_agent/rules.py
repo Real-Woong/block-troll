@@ -9,21 +9,79 @@ BAD_WORDS: Dict[str, float] = {
     "ㅅㅂ": 1.2, "시발": 1.3, "씨발": 1.3, "병신": 1.3,
     "꺼져": 1.1, "죽어": 1.2, "좆": 1.3,
     "존나": 0.18, "개새": 1.2, "새끼": 1.0, "애미": 1.2,
-    "ㄴㅇㅁ": 1.2, "장애인": 1.2
+    "ㄴㅇㅁ": 1.2, "장애인": 1.2,
+    "ㅄ": 1.2, "ㅂㅅ": 1.2,  # 병신의 초성 축약형
 }
 
+# 우회(공백/기호 삽입) 방어용 구분자. 숫자는 넣지 않는다 —
+# 날짜/번호 등 정상 텍스트와의 충돌(예: "23시 발표")이 너무 잦다.
+_EVASION_SEP = r"[\s.\-_*]{0,1}"
+
+# 욕설 뒤에 자연스럽게 붙는 조사/어미/결합어. 이런 글자가 바로 뒤에 와도
+# (예: "병신아", "새끼놈") 여전히 같은 단어로 취급한다.
+_TRAILING_ALLOWED = set("아야이가은는을를도만요다냐네니고며들러려서용거놈년")
+
+
+def _is_hangul_syllable(ch: str) -> bool:
+    return "가" <= ch <= "힣"
+
+
+def _ew(word: str) -> str:
+    """Evasion-tolerant regex fragment for a literal keyword (unescaped, for composing patterns)."""
+    return _EVASION_SEP.join(re.escape(c) for c in word)
+
+
+def _build_evasion_pattern(word: str) -> "re.Pattern[str]":
+    return re.compile(_ew(word))
+
+
+BAD_WORD_PATTERNS: Dict[str, "re.Pattern[str]"] = {
+    w: _build_evasion_pattern(w) for w in BAD_WORDS
+}
+
+
+def _count_bad_word_hits(word: str, pattern: "re.Pattern[str]", text: str) -> int:
+    """Count matches of `word`, tolerating a single space/./-/_/* between letters.
+
+    A contiguous match (no separator used) is always counted — identical to the
+    previous plain substring behavior, so this never removes an existing hit.
+    A separated match (e.g. "시 발", "병.신") is only counted when it is not
+    clearly a fragment of an unrelated word (e.g. "택시 발레파킹", "신경써줘서").
+    """
+    count = 0
+    word_len = len(word)
+    for m in pattern.finditer(text):
+        if (m.end() - m.start()) == word_len:
+            count += 1
+            continue
+        start, end = m.start(), m.end()
+        if start > 0 and _is_hangul_syllable(text[start - 1]):
+            continue
+        if end < len(text):
+            nxt = text[end]
+            if _is_hangul_syllable(nxt) and nxt not in _TRAILING_ALLOWED:
+                continue
+        count += 1
+    return count
+
+
 TOXIC_PATTERNS: List[Tuple[str, float]] = [
-    (r"미친\s*(놈|년|새끼|새키)", 1.2),
+    (r"미친" + _EVASION_SEP + r"(놈|년|새끼|새키)", 1.2),
     (r"미쳤냐", 1.0),
     (r"돌았냐", 0.9),
     (r"(꺼져|닥쳐)\s*(라|라니까|좀)?", 1.1),
+    # 손가락 욕 이모지 대용으로 쓰이는 고립된/반복된 'ㅗ' (예: "ㅗㅗㅗ", 단독 "ㅗ")
+    (r"(?:^|\s)ㅗ{1,}(?:\s|$)", 1.0),
 ]
 
 SPAM_PATTERNS: List[Tuple[str, float]] = [
-    (r"무료.*(링크|상담|체험)", 1.1),
-    (r"(카톡|카카오톡).*(문의|상담|오픈채팅|링크)", 1.2),
-    (r"(돈|수익).*(벌|버는|벌기)", 1.0),
-    (r"(구독|좋아요).*(이벤트|추첨|지급)", 0.9),
+    # 각 키워드 내부에 공백/기호가 끼어드는 우회("카.톡", "무료체 험")를 막기 위해
+    # 키워드 하나하나를 evasion-tolerant 조각으로 구성한다. 키워드 사이는
+    # 기존처럼 '.*'로 넓게 허용한다.
+    (rf"{_ew('무료')}.*({_ew('링크')}|{_ew('상담')}|{_ew('체험')})", 1.1),
+    (rf"({_ew('카톡')}|{_ew('카카오톡')}).*({_ew('문의')}|{_ew('상담')}|{_ew('오픈채팅')}|{_ew('링크')})", 1.2),
+    (rf"({_ew('돈')}|{_ew('수익')}).*({_ew('벌')}|{_ew('버는')}|{_ew('벌기')})", 1.0),
+    (rf"({_ew('구독')}|{_ew('좋아요')}).*({_ew('이벤트')}|{_ew('추첨')}|{_ew('지급')})", 0.9),
 ]
 
 # UNCERTAIN -> TAUNT (비꼼/조롱)
@@ -93,7 +151,7 @@ def score_toxic(text: str):
     reasons = []
     has_bad_word = False
     for w, weight in BAD_WORDS.items():
-        hits = count_substring_hits(text, w)
+        hits = _count_bad_word_hits(w, BAD_WORD_PATTERNS[w], text)
         if hits:
             has_bad_word = True
             raw += weight * min(hits, 3)
