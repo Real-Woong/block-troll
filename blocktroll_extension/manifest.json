@@ -1,14 +1,20 @@
 {
   "manifest_version": 3,
   "name": "BlockTroll",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "AI agent comment filter for social platforms (TOXIC/SPAM/TAUNT).",
 
   "permissions": ["storage", "activeTab", "scripting", "tabs"],
   "host_permissions": [
+    "http://100.96.86.10:8787/*",
+    "http://jinwoong-kims-mac-mini.tail7bc26c.ts.net:8787/*",
     "http://127.0.0.1:8787/*",
     "http://localhost:8787/*"
   ],
+
+  "background": {
+    "service_worker": "background.js"
+  },
 
   "options_page": "options.html",
 

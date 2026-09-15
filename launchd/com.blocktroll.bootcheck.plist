@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.blocktroll.bootcheck</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/bash</string>
+    <string>/Users/jinwoong_kim/Projects/BlockTroll/scripts/bootcheck.sh</string>
+  </array>
+  <!-- 로그인마다 1회만 실행 (KeepAlive 없음) -->
+  <key>RunAtLoad</key>
+  <true/>
+  <key>StandardErrorPath</key>
+  <string>/Users/jinwoong_kim/Library/Logs/BlockTroll/bootcheck.err.log</string>
+</dict>
+</plist>

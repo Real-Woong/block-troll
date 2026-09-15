@@ -1,5 +1,5 @@
 const DEFAULTS = {
-  serverUrl: "http://127.0.0.1:8787",
+  serverUrl: "http://100.96.86.10:8787",
   mode: "blur_click",            // blur_click | blur | hide
   enableTaunt: false,
   enableToxic: true,

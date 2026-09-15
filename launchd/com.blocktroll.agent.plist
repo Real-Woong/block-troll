@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.blocktroll.agent</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/bash</string>
+    <string>/Users/jinwoong_kim/Projects/BlockTroll/scripts/run_server.sh</string>
+  </array>
+
+  <!-- 부팅(로그인) 시 자동 시작 -->
+  <key>RunAtLoad</key>
+  <true/>
+
+  <!-- 종료 사유와 무관하게 항상 되살린다 -->
+  <key>KeepAlive</key>
+  <true/>
+
+  <!-- 재시작 폭주 방지 -->
+  <key>ThrottleInterval</key>
+  <integer>10</integer>
+
+  <key>WorkingDirectory</key>
+  <string>/Users/jinwoong_kim/Projects/BlockTroll</string>
+
+  <!-- 서버 로그는 run_server.sh가 타임스탬프 붙여 agent.log에 남긴다.
+       여기 두 파일은 스크립트가 뜨기 전에 죽는 경우를 잡기 위한 것. -->
+  <key>StandardOutPath</key>
+  <string>/Users/jinwoong_kim/Library/Logs/BlockTroll/launchd.out.log</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/jinwoong_kim/Library/Logs/BlockTroll/launchd.err.log</string>
+
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PATH</key>
+    <string>/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+  </dict>
+</dict>
+</plist>

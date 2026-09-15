@@ -1,0 +1,15 @@
+# BlockTroll 추론 전용 의존성 (Mac mini 상시 구동용)
+#
+# 학습/파인튜닝 패키지(datasets, evaluate, accelerate, tensorboard,
+# scikit-learn, pandas 등)는 requirements.txt에만 두고 여기서는 제외한다.
+# 이 머신은 추론만 담당한다.
+cachetools==7.0.1
+fastapi==0.129.0
+numpy==2.4.2
+pydantic==2.12.5
+python-dotenv==1.2.1
+safetensors==0.7.0
+tokenizers==0.22.2
+torch==2.10.0
+transformers==5.2.0
+uvicorn==0.41.0

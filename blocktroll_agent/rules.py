@@ -84,6 +84,56 @@ SPAM_PATTERNS: List[Tuple[str, float]] = [
     (rf"({_ew('구독')}|{_ew('좋아요')}).*({_ew('이벤트')}|{_ew('추첨')}|{_ew('지급')})", 0.9),
 ]
 
+# --- 아래 신호들은 "단독으로는 SPAM 확정에 못 미치도록" 가중치를 잡았다. ---
+# saturate(raw)=1-exp(-raw), TH_SPAM=0.65 이므로 확정에는 raw >= 1.05가 필요하다.
+# "코인", "19금", "검색" 같은 단어는 정상 댓글에도 흔해서 단독 확정은 오탐이 된다.
+# 대신 미끼 + 링크 + 행동유도가 겹치면 콤보 보너스로 임계값을 넘긴다.
+
+# (1) 미끼 소재: 돈/투자/도박/성인. 최대 0.55 — 단독이면 saturate=0.42로 OK 유지.
+SPAM_BAIT_PATTERNS: List[Tuple[str, float]] = [
+    (rf"({_ew('코인')}|{_ew('리딩')}|{_ew('급등주')}|{_ew('종목')}|{_ew('선물거래')})", 0.45),
+    (rf"({_ew('수익률')}|{_ew('원금보장')}|{_ew('월수익')}|{_ew('일수익')}|{_ew('고수익')})", 0.55),
+    (rf"({_ew('부업')}|{_ew('재택알바')}|{_ew('재택근무')}|{_ew('투잡')}|{_ew('단기알바')})", 0.5),
+    (rf"({_ew('토토')}|{_ew('먹튀')}|{_ew('카지노')}|{_ew('바카라')}|{_ew('슬롯')}|{_ew('홀덤')})", 0.55),
+    (rf"({_ew('조건만남')}|{_ew('야동')}|{_ew('19금')}|{_ew('성인사이트')})", 0.55),
+]
+
+# (2) 연락 수단: 정상 댓글이 굳이 남길 이유가 없다. 텔레그램은 특히 강한 신호.
+# 주의: '@아이디'는 넣지 않는다 — 유튜브 댓글의 사용자 멘션과 구분이 안 된다.
+SPAM_CONTACT_PATTERNS: List[Tuple[str, float]] = [
+    (rf"({_ew('텔레그램')}|{_ew('텔레')}|telegram|t\.me)", 0.6),
+    (rf"({_ew('오픈카톡')}|{_ew('오픈채팅')}|{_ew('카톡아이디')}|{_ew('라인아이디')})", 0.6),
+    (r"01[016-9][\s.\-]?\d{3,4}[\s.\-]?\d{4}", 0.6),   # 휴대폰 번호
+]
+
+# (3) 행동 유도(CTA). 단독으로는 약하게.
+SPAM_CTA_PATTERNS: List[Tuple[str, float]] = [
+    (rf"({_ew('지금')}\s*{_ew('클릭')}|{_ew('클릭하')}|{_ew('접속하')}|{_ew('방문하')})", 0.35),
+    (rf"({_ew('선착순')}|{_ew('마감임박')}|{_ew('서둘러')}|{_ew('놓치지')})", 0.35),
+    (rf"({_ew('신청하')}|{_ew('문의주')}|{_ew('상담받')}|{_ew('디엠주')})", 0.3),
+]
+
+# (4) 검색 유도: "네이버에 OO 검색" 류. 한국 스팸에서 매우 특징적이라 가중치를 높게 준다.
+# 그래도 0.8이라 단독 saturate=0.55 < 0.65 — "네이버에 검색해보니 나오네요" 같은 정상 댓글은 살아남는다.
+SPAM_SEARCH_BAIT = re.compile(
+    rf"({_ew('네이버')}|{_ew('구글')}|{_ew('다음')}|{_ew('유튜브')}).{{0,20}}{_ew('검색')}"
+)
+
+# (5) 시선 끌기용 장식 문자 반복. 정상 댓글은 이런 걸 연속으로 쓰지 않는다.
+_DECOR_CHARS = "\u2605\u2606\u2665\u2661\u25c6\u25c7\u25a0\u25a1\u25b6\u25b7\u25c0\u25c1\u203b\u2729\u272a\u2739\u3010\u3011"
+_DECOR_CLASS = "[" + _DECOR_CHARS + "]"
+# 장식 문자가 2개 이상 연달아 오거나, 문구를 감싸는 형태(★무료 이벤트★)를 잡는다.
+SPAM_DECOR_RE = re.compile(_DECOR_CLASS + "{2,}|" + _DECOR_CLASS + ".{0,30}" + _DECOR_CLASS)
+
+# (6) 단축 URL: 목적지를 숨기는 행위 자체가 일반 URL보다 훨씬 강한 스팸 신호다.
+SHORT_URL_RE = re.compile(
+    r"(bit\.ly|tinyurl|goo\.gl|t\.co|han\.gl|vo\.la|me2\.kr|buly\.kr|url\.kr|muz\.so|abit\.ly|c11\.kr)"
+)
+
+
+def has_short_url(text: str) -> bool:
+    return bool(SHORT_URL_RE.search(text))
+
 # UNCERTAIN -> TAUNT (비꼼/조롱)
 # 주의: 'ㅋㅋ/ㅎㅎ'는 긍정 반응에서도 매우 흔해서, 단독 신호로는 TAUNT로 확정하지 않도록 보수적으로 둔다.
 TAUNT_SIGNALS: List[Tuple[str, float]] = [
@@ -177,13 +227,64 @@ def score_toxic(text: str):
 def score_spam(text: str):
     raw = 0.0
     reasons = []
+
+    signal_count = 0   # URL을 제외한 스팸 신호 개수
+
     for pat, weight in SPAM_PATTERNS:
         if re.search(pat, text):
             raw += weight
+            signal_count += 1
             reasons.append(f"spam_pat:{pat}")
-    if has_url(text):
+
+    # 미끼 소재/연락 수단은 콤보 보너스의 트리거가 된다.
+    # CTA(클릭하세요 등)는 점수만 더하고 트리거로는 쓰지 않는다 —
+    # "이 링크 방문하세요"처럼 정상 추천 댓글도 CTA를 쓰기 때문이다.
+    has_bait = False
+    for kind, patterns in (
+        ("bait", SPAM_BAIT_PATTERNS),
+        ("contact", SPAM_CONTACT_PATTERNS),
+    ):
+        for pat, weight in patterns:
+            if re.search(pat, text):
+                raw += weight
+                has_bait = True
+                signal_count += 1
+                reasons.append(f"spam_{kind}:{pat}")
+
+    for pat, weight in SPAM_CTA_PATTERNS:
+        if re.search(pat, text):
+            raw += weight
+            signal_count += 1
+            reasons.append(f"spam_cta:{pat}")
+
+    if SPAM_SEARCH_BAIT.search(text):
+        raw += 0.8
+        has_bait = True
+        signal_count += 1
+        reasons.append("search_bait")
+
+    if SPAM_DECOR_RE.search(text):
+        raw += 0.3
+        signal_count += 1
+        reasons.append("decor_chars")
+
+    linked = has_url(text)
+    if linked:
         raw += 0.25
         reasons.append("url_present")
+    if has_short_url(text):
+        # 목적지를 숨기는 단축 URL은 일반 링크보다 훨씬 강한 신호다.
+        raw += 0.7
+        linked = True
+        reasons.append("short_url")
+
+    # 미끼 + 링크 조합이 광고 댓글의 전형. 다만 미끼 하나 + 링크만으로는 부족하다 —
+    # "수익률 계산법 영상 감사합니다 <블로그 링크>" 같은 정상 댓글이 그 모양이다.
+    # 미끼가 있으면서 URL 외 신호가 2개 이상일 때만 확정 쪽으로 민다.
+    if has_bait and linked and signal_count >= 2:
+        raw += 0.5
+        reasons.append("multi_signal_link_combo")
+
     return saturate(raw), raw, reasons
 
 def score_taunt(text: str):

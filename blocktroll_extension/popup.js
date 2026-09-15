@@ -1,5 +1,5 @@
 const DEFAULTS = {
-  serverUrl: "http://127.0.0.1:8787",
+  serverUrl: "http://100.96.86.10:8787",
   useCustomThresholds: false,
   intensity: 2,
   enableTaunt: false,
@@ -17,21 +17,33 @@ function thresholdsByIntensity(level) {
   return { soft: 0.60, hard: 0.75, label: "보통" };
 }
 
-async function refreshServerStatus(serverUrl) {
+async function refreshServerStatus() {
   const dot = document.getElementById("serverDot");
   const text = document.getElementById("serverStatus");
-  try {
-    const res = await fetch((serverUrl || DEFAULTS.serverUrl).replace(/\/+$/, "") + "/health");
-    if (!res.ok) throw new Error(String(res.status));
-    const data = await res.json();
-    dot.className = "dot ok";
-    text.textContent = `서버 연결됨 · model=${data.model_ready ? "ON" : "OFF"} · taunt=${data.taunt_enabled ? "ON" : "OFF"}`;
-    return data;
-  } catch {
+
+  // content script와 동일하게 service worker를 거친다. 팝업이 직접 fetch 해도
+  // 되지만, 주소 정규화/타임아웃 로직을 한 곳(background.js)에만 두기 위해서다.
+  const res = await new Promise((resolve) => {
+    try {
+      chrome.runtime.sendMessage({ type: "bt-health" }, (r) => {
+        const err = chrome.runtime.lastError;
+        resolve(err ? { ok: false, error: err.message } : (r || { ok: false, error: "no response" }));
+      });
+    } catch (e) {
+      resolve({ ok: false, error: String(e?.message || e) });
+    }
+  });
+
+  if (!res.ok) {
     dot.className = "dot bad";
-    text.textContent = "서버 연결 실패";
+    text.textContent = `서버 연결 실패 (${res.error || "unknown"})`;
     return null;
   }
+
+  const data = res.data;
+  dot.className = "dot ok";
+  text.textContent = `서버 연결됨 · model=${data.model_ready ? "ON" : "OFF"} · taunt=${data.taunt_enabled ? "ON" : "OFF"}`;
+  return data;
 }
 
 // manifest.json에는 매치돼 있지만 아직 댓글 수집기(content.js)가 없는 곳.
@@ -106,7 +118,7 @@ async function load() {
   document.getElementById("currentIntensity").textContent = thresholdState.label;
   document.getElementById("softValue").textContent = Number(thresholdState.soft).toFixed(2);
   document.getElementById("hardValue").textContent = Number(thresholdState.hard).toFixed(2);
-  const serverStatus = await refreshServerStatus(v.serverUrl);
+  const serverStatus = await refreshServerStatus();
   const tauntEnabledOnServer = serverStatus?.taunt_enabled !== false;
   document.getElementById("tauntStatus").textContent = tauntEnabledOnServer && v.enableTaunt ? "ON" : "OFF";
 

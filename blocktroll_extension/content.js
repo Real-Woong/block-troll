@@ -2,21 +2,24 @@
 // VSCode에서 섹션 접기/펼치기: //#region ... //#endregion
 {
 if (globalThis.__blocktrollContentScriptLoaded) {
-  fetch("http://127.0.0.1:8787/debug", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      event: "already-loaded",
-      href: location.href,
-      readyState: document.readyState
-    })
-  }).catch(() => {});
+  // 서버 통신은 전부 service worker(background.js)를 거친다. content script에서
+  // 직접 fetch 하면 페이지 origin으로 CORS가 걸리고 mixed-content로도 막힌다.
+  try {
+    chrome.runtime.sendMessage({
+      type: "bt-debug",
+      payload: {
+        event: "already-loaded",
+        href: location.href,
+        readyState: document.readyState
+      }
+    }, () => void chrome.runtime.lastError);
+  } catch {}
 } else {
 globalThis.__blocktrollContentScriptLoaded = true;
 
 //#region 0) 기본 설정/옵션 (DEFAULTS, OPT, loadOptionsMaybe)
 const DEFAULTS = {
-  serverUrl: "http://127.0.0.1:8787",
+  serverUrl: "http://100.96.86.10:8787",
   mode: "blur_click",
   enableTaunt: false,
   enableToxic: true,
@@ -47,24 +50,30 @@ function debugLog(...args) {
   if (OPT.debug) console.log(...args);
 }
 
-function currentMode() {
-  return String(OPT?.mode || DEFAULTS.mode || "blur_click");
+// service worker(background.js)로 요청을 보내고 응답을 기다린다.
+// SW가 잠들어 있어도 sendMessage가 깨우므로 별도 처리는 필요 없다.
+// 항상 { ok, data?, error? } 형태로 resolve 하고 reject 하지 않는다.
+function sendToBackground(message) {
+  return new Promise((resolve) => {
+    try {
+      chrome.runtime.sendMessage(message, (res) => {
+        const err = chrome.runtime.lastError;
+        if (err) {
+          if (isInvalidatedExtensionContext(err)) stopForInvalidatedContext();
+          resolve({ ok: false, error: err.message });
+          return;
+        }
+        resolve(res || { ok: false, error: "empty response from background" });
+      });
+    } catch (e) {
+      if (isInvalidatedExtensionContext(e)) stopForInvalidatedContext();
+      resolve({ ok: false, error: String(e?.message || e) });
+    }
+  });
 }
 
-function serverUrlForFetch(rawUrl) {
-  const fallback = DEFAULTS.serverUrl;
-  const value = String(rawUrl || fallback).trim() || fallback;
-
-  try {
-    const url = new URL(value);
-    if (url.hostname === "localhost") {
-      url.hostname = "127.0.0.1";
-    }
-    return url.toString().replace(/\/+$/, "");
-  } catch {
-    console.warn("[BlockTroll] invalid serverUrl, using default:", value);
-    return fallback;
-  }
+function currentMode() {
+  return String(OPT?.mode || DEFAULTS.mode || "blur_click");
 }
 
 function maybeSendExtensionDebug(event, detail = {}, minIntervalMs = 4000) {
@@ -80,12 +89,8 @@ function maybeSendExtensionDebug(event, detail = {}, minIntervalMs = 4000) {
     ...detail
   };
 
-  fetch(serverUrlForFetch(OPT.serverUrl) + "/debug", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload)
-  }).catch((e) => {
-    debugLog("[BlockTroll] debug event failed:", e);
+  sendToBackground({ type: "bt-debug", payload }).then((res) => {
+    if (!res?.ok) debugLog("[BlockTroll] debug event failed:", res?.error);
   });
 }
 
@@ -373,6 +378,17 @@ function directChildByClass(el, className) {
   return null;
 }
 
+// 배지(.bt-badge)는 우리가 주입한 UI다. 이게 댓글 원문으로 섞여 들어가면
+// (1) 지문이 매 스캔마다 바뀌어 같은 댓글이 무한 재분류되고
+// (2) "욕설 의심 댓글 보기" 같은 문구가 분류기 입력으로 들어간다.
+// 래핑된 노드는 항상 .bt-text 안쪽만 읽는다.
+function readCommentText(el) {
+  if (!el) return "";
+  const textSpan = directChildByClass(el, "bt-text");
+  const src = textSpan || el;
+  return normalizeText(src.innerText || src.textContent || "");
+}
+
 function textFingerprint(text) {
   let hash = 0;
   for (let i = 0; i < text.length; i++) {
@@ -411,6 +427,8 @@ function platformForLocation() {
   const host = String(location.hostname || "").toLowerCase();
   if (host === "youtube.com" || host.endsWith(".youtube.com")) return "youtube";
   if (host === "instagram.com" || host.endsWith(".instagram.com")) return "instagram";
+  if (host === "x.com" || host.endsWith(".x.com")) return "x";
+  if (host === "twitter.com" || host.endsWith(".twitter.com")) return "x";
   return "";
 }
 
@@ -442,11 +460,12 @@ function extractYouTubeCommentText(root) {
     ".yt-core-attributed-string",
     "span[role='text']"
   ].join(", "));
-  const preferredText = normalizeText(preferred?.innerText || preferred?.textContent || "");
+  const preferredText = readCommentText(preferred);
   if (preferredText) return { el: preferred, text: preferredText };
 
   const clone = root.cloneNode(true);
   for (const noisy of clone.querySelectorAll([
+    ".bt-badge",
     "#author-text",
     "#published-time-text",
     "#vote-count-middle",
@@ -497,7 +516,7 @@ function getYouTubeCommentTextEls() {
 
   for (const root of roots) {
     for (const el of root.querySelectorAll(textSelectors)) {
-      const text = normalizeText(el.innerText || el.textContent);
+      const text = readCommentText(el);
       if (!text || text.length < 1 || text.length > 2000) continue;
       if (el.closest("a, button, time")) continue;
       if (seenTexts.has(text)) continue;
@@ -521,30 +540,53 @@ function getYouTubeCommentTextEls() {
   return Array.from(textEls);
 }
 
-function youtubeScanDebugInfo(foundEls = []) {
-  const selectors = [
-    "ytd-comment-thread-renderer",
-    "ytd-comment-renderer",
-    "ytd-comment-view-model",
-    "yt-comment-thread-renderer",
-    "yt-comment-view-model",
-    "ytm-comment-thread-renderer",
-    "ytd-engagement-panel-section-list-renderer[target-id*='comments']",
-    "#comments",
-    "#content-text",
-    "[id='content-text']",
-    "yt-attributed-string",
-    "span[role='text']"
-  ];
+function selectorCounts(selectors) {
   const counts = {};
   for (const selector of selectors) {
     counts[selector] = document.querySelectorAll(selector).length;
   }
+  return counts;
+}
+
+function youtubeScanDebugInfo(foundEls = []) {
   return {
     found: foundEls.length,
-    counts,
+    counts: selectorCounts([
+      "ytd-comment-thread-renderer",
+      "ytd-comment-renderer",
+      "ytd-comment-view-model",
+      "yt-comment-thread-renderer",
+      "yt-comment-view-model",
+      "ytm-comment-thread-renderer",
+      "ytd-engagement-panel-section-list-renderer[target-id*='comments']",
+      "#comments",
+      "#content-text",
+      "[id='content-text']",
+      "yt-attributed-string",
+      "span[role='text']"
+    ]),
     samples: foundEls.slice(0, 5).map((el) => textForElement(el).slice(0, 120))
   };
+}
+
+function xScanDebugInfo(foundEls = []) {
+  return {
+    found: foundEls.length,
+    counts: selectorCounts([
+      "article[data-testid='tweet']",
+      "article[role='article']",
+      "[data-testid='tweetText']",
+      "[data-testid='cellInnerDiv']"
+    ]),
+    samples: foundEls.slice(0, 5).map((el) => textForElement(el).slice(0, 120))
+  };
+}
+
+function scanDebugInfo(foundEls = []) {
+  const platform = platformForLocation();
+  if (platform === "youtube") return youtubeScanDebugInfo(foundEls);
+  if (platform === "x") return xScanDebugInfo(foundEls);
+  return { found: foundEls.length };
 }
 
 function getInstagramCommentTextEls() {
@@ -555,7 +597,7 @@ function getInstagramCommentTextEls() {
 
   for (const el of candidates) {
     const row = el.closest("li");
-    const text = normalizeText(el.innerText);
+    const text = readCommentText(el);
 
     if (!row || !row.querySelector("time")) continue;
     if (!text || text.length < 2 || text.length > 2000) continue;
@@ -568,10 +610,41 @@ function getInstagramCommentTextEls() {
   return Array.from(textEls);
 }
 
+function getXCommentTextEls() {
+  // X(Twitter) renders every post and reply as the same article node, with the
+  // body in [data-testid='tweetText']. A quoted post nests a second tweetText
+  // inside the same article, so collect per-article and dedupe by text.
+  // Unlike YouTube/Instagram there is no separate "comment" container: on a
+  // status page the focused post and its replies are indistinguishable in the
+  // DOM, so the original post is filtered like any other node.
+  const roots = Array.from(document.querySelectorAll([
+    "article[data-testid='tweet']",
+    "article[role='article']"
+  ].join(", ")));
+
+  const textEls = new Set();
+  const seenTexts = new Set();
+
+  for (const root of roots) {
+    for (const el of root.querySelectorAll("[data-testid='tweetText']")) {
+      const text = readCommentText(el);
+      if (!text || text.length < 1 || text.length > 2000) continue;
+      if (el.closest("a, button, time")) continue;
+      if (seenTexts.has(text)) continue;
+      seenTexts.add(text);
+      setTextOverride(el, text);
+      textEls.add(el);
+    }
+  }
+
+  return Array.from(textEls);
+}
+
 function getCommentTextEls() {
   const platform = platformForLocation();
   if (platform === "youtube") return getYouTubeCommentTextEls();
   if (platform === "instagram") return getInstagramCommentTextEls();
+  if (platform === "x") return getXCommentTextEls();
   return [];
 }
 
@@ -657,8 +730,12 @@ function applyActionToEl(el, action, decision) {
   badgeSpan.textContent = btxt;
 
   // Apply blur ONLY to the text span (badge remains crisp)
+  // 사용자가 직접 눌러서 펼친 댓글은 재적용 때 다시 가리지 않는다.
+  // (원문이 바뀌어 재분류된 경우엔 resetAppliedUi가 revealed를 지우므로 정상적으로 다시 가려진다.)
   textSpan.classList.remove("bt-soft", "bt-hard");
-  textSpan.classList.add(action === "HARD" ? "bt-hard" : "bt-soft");
+  if (el.dataset.blocktrollRevealed !== "1") {
+    textSpan.classList.add(action === "HARD" ? "bt-hard" : "bt-soft");
+  }
 
   el.style.visibility = "visible";
 
@@ -671,27 +748,18 @@ function applyActionToEl(el, action, decision) {
 
 //#region 7) 서버 통신 (classifyBatch)
 async function classifyBatch(texts) {
-  const url = serverUrlForFetch(OPT.serverUrl) + "/classify";
+  const res = await sendToBackground({
+    type: "bt-classify",
+    texts,
+    platform: platformForLocation() || "unknown"
+  });
 
-  let res;
-  try {
-    res = await fetch(url, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ texts, platform: platformForLocation() || "unknown" })
-    });
-  } catch (e) {
-    e.message = `${e.message} (${url})`;
-    throw e;
+  if (!res?.ok) {
+    throw new Error(`classify failed: ${res?.error || "no response"} (${res?.url || "background"})`);
   }
 
-  if (!res.ok) {
-    throw new Error(`classify failed: ${res.status}`);
-  }
-
-  const data = await res.json();
   // 서버(app.py) 포맷: { results: [...] }
-  return Array.isArray(data?.results) ? data.results : [];
+  return Array.isArray(res.data?.results) ? res.data.results : [];
 }
 //#endregion
 
@@ -728,15 +796,12 @@ async function scanAndApply() {
 
   const els = getCommentTextEls();
   if (!els.length) {
-    const detail = platformForLocation() === "youtube" ? youtubeScanDebugInfo(els) : { found: 0 };
-    maybeSendExtensionDebug("scan-empty", detail);
+    maybeSendExtensionDebug("scan-empty", scanDebugInfo(els));
     __btScanInFlight = false;
     return;
   }
 
-  if (platformForLocation() === "youtube") {
-    maybeSendExtensionDebug("scan-found", youtubeScanDebugInfo(els), 10000);
-  }
+  maybeSendExtensionDebug("scan-found", scanDebugInfo(els), 10000);
 
   // If options changed (e.g., intensity moved to 5), re-process all currently loaded comments
   if (OPT.__changed) {
@@ -850,11 +915,23 @@ function startObservers() {
   // 최초 1회
   scheduleScan(0);
 
-  // 주기 스캔 (YouTube는 무한 스크롤/동적 로딩)
-  __btScanInterval = setInterval(() => scheduleScan(0), 1200);
+  // 주기 스캔은 안전망이다. 새 댓글 로딩은 아래 MutationObserver가 즉시 잡으므로
+  // 짧은 주기로 전체 DOM을 훑을 이유가 없다.
+  __btScanInterval = setInterval(() => scheduleScan(0), 3000);
 
-  // DOM 변화에도 반응
-  __btDomObserver = new MutationObserver(() => scheduleScan(200));
+  // DOM 변화에도 반응.
+  // 단, 우리가 주입한 노드(.bt-host/.bt-text/.bt-badge)의 변경은 무시한다.
+  // 이걸 걸러내지 않으면 "스캔 → 배지 삽입 → 변경 감지 → 스캔"이 계속 돈다.
+  __btDomObserver = new MutationObserver((records) => {
+    for (const r of records) {
+      const t = r.target;
+      const node = t?.nodeType === 1 ? t : t?.parentElement;
+      if (node?.closest?.(".bt-host")) continue;
+      if (node?.classList?.contains?.("bt-badge")) continue;
+      scheduleScan(200);
+      return;
+    }
+  });
   __btDomObserver.observe(document.documentElement, { childList: true, subtree: true });
 }
 
@@ -870,9 +947,9 @@ function thresholdsByIntensity(level) {
   return { soft: 0.60, hard: 0.75 };
 }
 // manifest.json은 여러 소셜 도메인을 매치하지만, 댓글 수집기(getCommentTextEls)는
-// 아직 YouTube/Instagram만 구현돼 있다. 다른 도메인에서 스캔 루프를 돌려봐야
+// 아직 일부 플랫폼만 구현돼 있다. 다른 도메인에서 스캔 루프를 돌려봐야
 // 항상 빈 결과만 나오므로, 미지원 사이트에서는 관찰자를 아예 띄우지 않는다.
-const SUPPORTED_PLATFORMS = new Set(["youtube", "instagram"]);
+const SUPPORTED_PLATFORMS = new Set(["youtube", "instagram", "x"]);
 
 if (SUPPORTED_PLATFORMS.has(platformForLocation())) {
   startObservers();
@@ -880,7 +957,7 @@ if (SUPPORTED_PLATFORMS.has(platformForLocation())) {
   maybeSendExtensionDebug("unsupported-platform", { host: location.hostname }, 0);
   console.info(
     `[BlockTroll] ${location.hostname}은(는) 아직 댓글 필터링을 지원하지 않습니다. ` +
-    "(현재 지원: YouTube, Instagram)"
+    "(현재 지원: YouTube, Instagram, X)"
   );
 }
 //#endregion
